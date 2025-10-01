@@ -1,81 +1,129 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/01-introduction.html</loc>
+    <loc>https://EPCCed.github.io/2025-10-14-archer2-intro-hpc/01-introduction.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/404.html</loc>
+    <loc>https://EPCCed.github.io/2025-10-14-archer2-intro-hpc/10-connecting-hpc.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/CODE_OF_CONDUCT.html</loc>
+    <loc>https://EPCCed.github.io/2025-10-14-archer2-intro-hpc/11-hpc-intro.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/LICENSE.html</loc>
+    <loc>https://EPCCed.github.io/2025-10-14-archer2-intro-hpc/12-cluster.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/aio.html</loc>
+    <loc>https://EPCCed.github.io/2025-10-14-archer2-intro-hpc/13-scheduler.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/images.html</loc>
+    <loc>https://EPCCed.github.io/2025-10-14-archer2-intro-hpc/14-modules.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/index.html</loc>
+    <loc>https://EPCCed.github.io/2025-10-14-archer2-intro-hpc/15-transferring-files.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/instructor/01-introduction.html</loc>
+    <loc>https://EPCCed.github.io/2025-10-14-archer2-intro-hpc/17-resources.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/instructor/404.html</loc>
+    <loc>https://EPCCed.github.io/2025-10-14-archer2-intro-hpc/18-responsibility.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/instructor/CODE_OF_CONDUCT.html</loc>
+    <loc>https://EPCCed.github.io/2025-10-14-archer2-intro-hpc/404.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/instructor/LICENSE.html</loc>
+    <loc>https://EPCCed.github.io/2025-10-14-archer2-intro-hpc/CODE_OF_CONDUCT.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/instructor/aio.html</loc>
+    <loc>https://EPCCed.github.io/2025-10-14-archer2-intro-hpc/LICENSE.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/instructor/images.html</loc>
+    <loc>https://EPCCed.github.io/2025-10-14-archer2-intro-hpc/aio.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/instructor/index.html</loc>
+    <loc>https://EPCCed.github.io/2025-10-14-archer2-intro-hpc/images.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/instructor/instructor-notes.html</loc>
+    <loc>https://EPCCed.github.io/2025-10-14-archer2-intro-hpc/index.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/instructor/introduction.html</loc>
+    <loc>https://EPCCed.github.io/2025-10-14-archer2-intro-hpc/instructor/01-introduction.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/instructor/key-points.html</loc>
+    <loc>https://EPCCed.github.io/2025-10-14-archer2-intro-hpc/instructor/10-connecting-hpc.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/instructor/keypoints.html</loc>
+    <loc>https://EPCCed.github.io/2025-10-14-archer2-intro-hpc/instructor/11-hpc-intro.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/instructor/profiles.html</loc>
+    <loc>https://EPCCed.github.io/2025-10-14-archer2-intro-hpc/instructor/12-cluster.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/instructor/reference.html</loc>
+    <loc>https://EPCCed.github.io/2025-10-14-archer2-intro-hpc/instructor/13-scheduler.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/instructor-notes.html</loc>
+    <loc>https://EPCCed.github.io/2025-10-14-archer2-intro-hpc/instructor/14-modules.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/introduction.html</loc>
+    <loc>https://EPCCed.github.io/2025-10-14-archer2-intro-hpc/instructor/15-transferring-files.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/key-points.html</loc>
+    <loc>https://EPCCed.github.io/2025-10-14-archer2-intro-hpc/instructor/17-resources.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/keypoints.html</loc>
+    <loc>https://EPCCed.github.io/2025-10-14-archer2-intro-hpc/instructor/18-responsibility.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/profiles.html</loc>
+    <loc>https://EPCCed.github.io/2025-10-14-archer2-intro-hpc/instructor/404.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-rmd/reference.html</loc>
+    <loc>https://EPCCed.github.io/2025-10-14-archer2-intro-hpc/instructor/CODE_OF_CONDUCT.html</loc>
+  </url>
+  <url>
+    <loc>https://EPCCed.github.io/2025-10-14-archer2-intro-hpc/instructor/LICENSE.html</loc>
+  </url>
+  <url>
+    <loc>https://EPCCed.github.io/2025-10-14-archer2-intro-hpc/instructor/aio.html</loc>
+  </url>
+  <url>
+    <loc>https://EPCCed.github.io/2025-10-14-archer2-intro-hpc/instructor/images.html</loc>
+  </url>
+  <url>
+    <loc>https://EPCCed.github.io/2025-10-14-archer2-intro-hpc/instructor/index.html</loc>
+  </url>
+  <url>
+    <loc>https://EPCCed.github.io/2025-10-14-archer2-intro-hpc/instructor/instructor-notes.html</loc>
+  </url>
+  <url>
+    <loc>https://EPCCed.github.io/2025-10-14-archer2-intro-hpc/instructor/introduction.html</loc>
+  </url>
+  <url>
+    <loc>https://EPCCed.github.io/2025-10-14-archer2-intro-hpc/instructor/key-points.html</loc>
+  </url>
+  <url>
+    <loc>https://EPCCed.github.io/2025-10-14-archer2-intro-hpc/instructor/keypoints.html</loc>
+  </url>
+  <url>
+    <loc>https://EPCCed.github.io/2025-10-14-archer2-intro-hpc/instructor/profiles.html</loc>
+  </url>
+  <url>
+    <loc>https://EPCCed.github.io/2025-10-14-archer2-intro-hpc/instructor/reference.html</loc>
+  </url>
+  <url>
+    <loc>https://EPCCed.github.io/2025-10-14-archer2-intro-hpc/instructor-notes.html</loc>
+  </url>
+  <url>
+    <loc>https://EPCCed.github.io/2025-10-14-archer2-intro-hpc/introduction.html</loc>
+  </url>
+  <url>
+    <loc>https://EPCCed.github.io/2025-10-14-archer2-intro-hpc/key-points.html</loc>
+  </url>
+  <url>
+    <loc>https://EPCCed.github.io/2025-10-14-archer2-intro-hpc/keypoints.html</loc>
+  </url>
+  <url>
+    <loc>https://EPCCed.github.io/2025-10-14-archer2-intro-hpc/profiles.html</loc>
+  </url>
+  <url>
+    <loc>https://EPCCed.github.io/2025-10-14-archer2-intro-hpc/reference.html</loc>
   </url>
 </urlset>
