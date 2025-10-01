@@ -2,11 +2,10 @@
 title: Setup
 ---
 
-<!-- Not sure if this is needed? Shows an error on the rendered page 
 ```{r load_config, include=FALSE}
 library(yaml)
 config <- yaml.load_file("lesson_config.yaml")
-``` -->
+```
 
 </br>
 
