@@ -2,7 +2,6 @@
 site: sandpaper::sandpaper_site
 ---
 
-# Welcome! 
 
 ## General Information
 
@@ -26,14 +25,12 @@ By the end of this lesson, students will know how to:
 
 To begin this lesson you must have completed the following:
 
- * Sign up for an account on ARCHER2? 
  * Participants must bring a laptop with a Mac, Linux, or Windows operating 
    system (not a tablet, Chromebook, etc.) that they can download and run 
    a terminal application on. Alternatively, they should have a few specific software 
    packages installed (listed in the Setup section below). 
  * Participants must agree to abide by the ARCHER2 [Code of Conduct](https://www.archer2.ac.uk/about/policies/code-of-conduct) 
- * Attendees should be familair with using the bash shell. This is covered in the 
-   [Introduction to the Shell HPC course](https://epcced.github.io/2024-06-19-hpc-shell-shampton/)
+ * Attendees should be familair with using the bash shell. This is covered in the [Introduction to the Shell HPC course](https://epcced.github.io/2024-06-19-hpc-shell-shampton/)
  * Complete the software/system [setup](#shell-setup) including how to connection to ARCHER2 via [SSH](#connect-to-archer2).
 
 :::
