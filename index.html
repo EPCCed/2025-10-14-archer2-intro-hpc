@@ -329,11 +329,8 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><h1 class="schedule-heading">Summary and Setup</h1>
       
-<div class="section level1">
-<h1 id="welcome">Welcome!<a class="anchor" aria-label="anchor" href="#welcome"></a></h1>
-<div class="section level2">
-<h2 id="general-information">General Information<a class="anchor" aria-label="anchor" href="#general-information"></a></h2>
-<p>This lesson is an introduction to using high-performance computing
+<section><h2 class="section-heading" id="general-information">General Information<a class="anchor" aria-label="anchor" href="#general-information"></a></h2>
+<hr class="half-width"><p>This lesson is an introduction to using high-performance computing
 systems effectively. We obviously can’t cover every case or give an
 exhaustive course on parallel programming in just one lesson of teaching
 time. Instead, this lesson is intended to give students a good
@@ -364,8 +361,7 @@ files, and use software through environment modules.</li>
 <div class="callout-inner">
 <div class="callout-content">
 <p>To begin this lesson you must have completed the following:</p>
-<ul><li>Sign up for an account on ARCHER2?</li>
-<li>Participants must bring a laptop with a Mac, Linux, or Windows
+<ul><li>Participants must bring a laptop with a Mac, Linux, or Windows
 operating system (not a tablet, Chromebook, etc.) that they can download
 and run a terminal application on. Alternatively, they should have a few
 specific software packages installed (listed in the Setup section
@@ -388,10 +384,7 @@ any links that you are not going to use.
 
 use like [gitbash][gitbash]
  -->
-</div>
-</div>
-
-      <section id="setup"><p><code>{r load_config, include=FALSE} library(yaml) config &lt;- yaml.load_file("lesson_config.yaml")</code></p>
+</section><section id="setup"><p></p>
 <div class="section level1">
 <h1 id="setup">Setup<a class="anchor" aria-label="anchor" href="#setup"></a></h1>
 <p>There are several pieces of software you will wish to install before
@@ -413,18 +406,15 @@ remote machine (<code>ssh</code>).</p>
 </div>
 </div>
 <div class="section level2">
-<h2 id="where-to-type-commands-how-to-open-a-new-shell">Where to type commands: How to open a new shell<a class="anchor" aria-label="anchor" href="#where-to-type-commands-how-to-open-a-new-shell"></a></h2>
+<h2 id="shell-ssh-set-up">Shell &amp; SSH Set-up<a class="anchor" aria-label="anchor" href="#shell-ssh-set-up"></a></h2>
 <p>The shell is a program that enables us to send commands to the
 computer and receive output. It is also referred to as the terminal or
 command line.</p>
-<p>Some computers include a default Unix Shell program. The steps below
-describe some methods for identifying and opening a Unix Shell program
-if you already have one installed. There are also options for
-identifying and downloading a Unix Shell program, a Linux/UNIX emulator,
-or a program to access a Unix Shell on a server.</p>
-</div>
-<div class="section level2">
-<h2 id="shell-setup">Shell Setup<a class="anchor" aria-label="anchor" href="#shell-setup"></a></h2>
+<p>Alongside this, all attendees should have an SSH client installed.
+SSH is a tool that allows us to connect to and use a remote computer as
+our own.</p>
+<p>Please follow the directions below to install a Shell and SSH client
+for your system if you do not already have one.</p>
 <div id="details" class="callout discussion">
 <div class="callout-square">
 <i class="callout-icon" data-feather="message-circle"></i>
@@ -433,11 +423,11 @@ or a program to access a Unix Shell on a server.</p>
 <div id="details" class="callout-inner">
 <h3 class="callout-title">Details</h3>
 <div class="callout-content">
-<p>Setup for different systems can be presented in dropdown menus via a
-<code>solution</code> tag. They will join to this discussion block, so
-you can give a general overview of the software used in this lesson here
-and fill out the individual operating systems (and potentially add more,
-e.g. online setup) in the solutions blocks.</p>
+<p>Some computers include a default Unix Shell program. The steps below
+describe some methods for identifying and opening a Unix Shell program
+if you already have one installed. There are also options for
+identifying and downloading a Unix Shell program, a Linux/UNIX emulator,
+or a program to access a Unix Shell on a server.</p>
 </div>
 </div>
 </div>
@@ -448,7 +438,7 @@ e.g. online setup) in the solutions blocks.</p>
   Windows
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Computers with Windows operating systems do not automatically have a
 Unix Shell program installed. In this lesson, we encourage you to use an
@@ -493,12 +483,17 @@ Subsystem for Linux</a>
 <li>Use the Windows <a href="https://docs.microsoft.com/en-us/powershell/scripting/learn/remoting/ssh-remoting-in-powershell-core?view=powershell-7" class="external-link">Powershell</a>
 </li>
 <li>Read up on <a href="https://faculty.smu.edu/reynolds/unixtut/windows.html" class="external-link">Using a
-Unix/Linux emulator (Cygwin) or Secure Shell (SSH) client (Putty)</a>
-&gt; ## Warning &gt; &gt; Commands in the Windows Subsystem for Linux
-(WSL), Powershell, or Cygwin &gt; may differ slightly from those shown
-in the lesson or presented in the &gt; workshop. Please ask if you
-encounter such a mismatch — you’re &gt; probably not alone.</li>
-</ul></div>
+Unix/Linux emulator (Cygwin) or Secure Shell (SSH) client
+(Putty)</a>
+</li>
+</ul><blockquote>
+<h2 id="warning">Warning</h2>
+<p>Commands in the Windows Subsystem for Linux (WSL), Powershell, or
+Cygwin may differ slightly from those shown in the lesson or presented
+in the workshop. Please ask if you encounter such a mismatch — you’re
+probably not alone.</p>
+</blockquote>
+</div>
 </div>
 </div>
 </div>
@@ -513,7 +508,7 @@ encounter such a mismatch — you’re &gt; probably not alone.</li>
   MacOS
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>On macOS, the default Unix Shell is accessible by running the
 Terminal program from the <code>/Application/Utilities</code> folder in
@@ -523,7 +518,10 @@ Finder.</p>
 Terminal in the Utilities folder and open it.</li>
 <li>Use the Mac ‘Spotlight’ computer search function. Search for:
 <code>Terminal</code> and press <kbd>Return</kbd>.</li>
-</ul><div class="section level4">
+</ul><p>macOS comes with SSH pre-installed, so you should not need to install
+anything. You can type <code>ssh --help</code> to test if it is
+available.</p>
+<div class="section level4">
 <h4 id="reference-1">Reference<a class="anchor" aria-label="anchor" href="#reference-1"></a></h4>
 <p><a href="https://www.macworld.co.uk/feature/mac-software/how-use-terminal-on-mac-3608274/" class="external-link">How
 to Use Terminal on a Mac</a></p>
@@ -539,41 +537,17 @@ to Use Terminal on a Mac</a></p>
   Linux
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <p>On most versions of Linux, the default Unix Shell is accessible by
 running the <a href="https://help.gnome.org/users/gnome-terminal/stable/" class="external-link">(Gnome)
 Terminal</a> or <a href="https://konsole.kde.org/" class="external-link">(KDE) Konsole</a> or
 <a href="https://en.wikipedia.org/wiki/Xterm" class="external-link">xterm</a>, which can be
 found via the applications menu or the search bar.</p>
-<div class="section level4">
-<h4 id="special-cases">Special cases<a class="anchor" aria-label="anchor" href="#special-cases"></a></h4>
-<p>If none of the options above address your circumstances, try an
-online search for: <code>Unix shell [your operating system]</code>.</p>
-<p>This setup takes you through getting ready for the course by ensuring
-you have an SSH client installed and registering for an ARCHER2 account
-(you can also use an existing ARCHER2 account if you are already a
-user).</p>
+<p>Linux comes with SSH pre-installed, so you should not need to install
+anything. You can type <code>ssh --help</code> to test if it is
+available.</p>
 </div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="section level2">
-<h2 id="setup-an-ssh-client">Setup an SSH client<a class="anchor" aria-label="anchor" href="#setup-an-ssh-client"></a></h2>
-<div id="details-1" class="callout discussion">
-<div class="callout-square">
-<i class="callout-icon" data-feather="message-circle"></i>
-</div>
-<span class="callout-header">Discussion</span>
-<div id="details-1" class="callout-inner">
-<h3 class="callout-title">Details</h3>
-<div class="callout-content">
-<p>All attendees should have an SSH client installed. SSH is a tool that
-allows us to connect to and use a remote computer as our own. Please
-follow the directions below to install an SSH client for your system if
-you do not already have one.</p>
 </div>
 </div>
 </div>
@@ -581,73 +555,84 @@ you do not already have one.</p>
 <div class="accordion-item">
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4">
-  Windows
+  None of the above
   </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
 <div class="accordion-body">
-<p>Modern versions of Windows have SSH available in Powershell. You can
-test if it is available by typing <code>ssh --help</code> in Powershell.
-If it is installed, you should see some useful output. If it is not
-installed, you will get an error. If SSH is not available in Powershell,
-then you should install MobaXterm as described below.</p>
-<p>An alternative is to install MobaXterm from <a href="https://mobaxterm.mobatek.net" class="external-link">https://mobaxterm.mobatek.net</a>.
-You will want to get the Home edition (Installer edition). However, if
-Powershell works, you do not need this.</p>
+<p>If none of the options above address your circumstances, try an
+online search for: <code>Unix shell [your operating system]</code>.</p>
 </div>
 </div>
 </div>
 </div>
-<div id="accordionSolution5" class="accordion challenge-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
-  <h4 class="accordion-header" id="headingSolution5">
-  macOS
-  </h4>
-</button>
-<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
-<div class="accordion-body">
-<p>macOS comes with SSH pre-installed, so you should not need to install
-anything. Use your “Terminal” app.</p>
-</div>
-</div>
-</div>
-</div>
-<div id="accordionSolution6" class="accordion challenge-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution6" aria-expanded="false" aria-controls="collapseSolution6">
-  <h4 class="accordion-header" id="headingSolution6">
-  Linux
-  </h4>
-</button>
-<div id="collapseSolution6" class="accordion-collapse collapse" data-bs-parent="#accordionSolution6" aria-labelledby="headingSolution6">
-<div class="accordion-body">
-<p>Linux users do not need to install anything, you should be set! Use
-your terminal application.</p>
-</div>
-</div>
-</div>
-</div>
+<!-- ## Setup an SSH client
+
+This setup ensures you have an SSH client installed, ready to connect to a remote HPC system.
+
+::::::::::::::::::::::::: discussion
+
+### Details
+
+All attendees should have an SSH client installed.
+SSH is a tool that allows us to connect to and use a remote computer as our own.
+Please follow the directions below to install an SSH client for your system if you do not
+already have one.
+
+:::::::::::::::::::::::::
+
+::: solution
+
+### Windows
+
+Modern versions of Windows have SSH available in Powershell. You can test if it is available by typing `ssh --help` in Powershell. If it is
+installed, you should see some useful output. If it is not installed, you will get an error. If SSH is not available in Powershell, then
+you should install MobaXterm as described below.
+
+An alternative is to install MobaXterm from [https://mobaxterm.mobatek.net](https://mobaxterm.mobatek.net). You will want to get the Home edition (Installer edition). However, if Powershell works, you do not need this.
+
+:::
+
+::: solution
+
+### macOS
+
+macOS comes with SSH pre-installed, so you should not need to install anything. Use your "Terminal" app.
+
+:::
+
+::: solution
+### Linux
+
+Linux users do not need to install anything, you should be set! Use your terminal application.
+
+:::
+-->
 </div>
 <div class="section level2">
 <h2 id="connect-to-archer2">Connect to ARCHER2<a class="anchor" aria-label="anchor" href="#connect-to-archer2"></a></h2>
-<div id="details-2" class="callout discussion">
+<p>For this lesson, we will be using <a href="archer2.ac.uk">ARCHER2</a>, the latest iteration of the UK
+National Supercomputing Service. ARCHER2 will be available to you for
+the duration of the course and for a few days afterwards, to allow you
+to complete the practical exercises and put some of what you have
+learned into practice.</p>
+<p>Please register for an ARCHER2 account (you can also use an existing
+ARCHER2 account if you are already a user).</p>
+<div id="callout1" class="callout">
 <div class="callout-square">
-<i class="callout-icon" data-feather="message-circle"></i>
+<i class="callout-icon" data-feather="bell"></i>
 </div>
-<span class="callout-header">Discussion</span>
-<div id="details-2" class="callout-inner">
-<h3 class="callout-title">Details</h3>
+<span class="callout-header">Callout</span>
+<div class="callout-inner">
 <div class="callout-content">
 <p><strong>Note:</strong> If you already have an ARCHER2 account you can
 use that for this course. Please see see the notes at the end of this
 page rather than requesting a new account. Of course, if you prefer to
 sign up for another ARCHER2 account specifically for this course, you
 are welcome to do this instead!</p>
-<p>Please sign up for your account on our HPC machine, ARCHER2, which
-will be available to you for the duration of the course and for a few
-days afterwards, to allow you to complete the practical exercises and
-put some of what you have learned into practice.</p>
+</div>
+</div>
+</div>
 <div class="section level3">
 <h3 id="sign-up-for-a-safe-account">Sign up for a SAFE account<a class="anchor" aria-label="anchor" href="#sign-up-for-a-safe-account"></a></h3>
 <p>To sign up, you must first register for an account on SAFE (our
@@ -660,7 +645,8 @@ User Signup Form</a>
 <li>Fill in your personal details. You can come back later and change
 them if you wish. Note: you should register using your institutional or
 company email address - email domains such as gmail.com, outlook.com,
-etc. are not allowed to be used for access to ARCHER2</li>
+etc. are <strong>not</strong> allowed to be used for access to
+ARCHER2</li>
 <li>Click “Submit”</li>
 <li>You are now registered. A single use login link will be emailed to
 the email address you provided. You can use this link to login and set
@@ -671,8 +657,8 @@ your password.</li>
 <ol style="list-style-type: decimal"><li><a href="https://safe.epcc.ed.ac.uk" class="external-link">Login to SAFE</a></li>
 <li>Go to the Menu “Login accounts” and select “Request login
 account”</li>
-<li>Choose the <code>r config$sched$project</code> project “Choose
-Project for Machine Account” box and click “Next”</li>
+<li>Choose the <code>ta180</code> project “Choose Project for Machine
+Account” box and click “Next”</li>
 <li>On the next page, the ARCHER2 system should be selected. Click
 “Next”</li>
 <li>Enter the username you would prefer to use on ARCHER2. Every
@@ -716,22 +702,26 @@ limited code to verify your identity beyond a password and username.</p>
 <p>To setup your MFA TOTP you will need an authenticator application on
 your phone or laptop. Follow the <a href="https://epcced.github.io/safe-docs/safe-for-users/#how-to-turn-on-mfa-on-your-machine-account" class="external-link">steps</a>
 at the SAFE documentation, ensuring you create the code for your
-<code>r config$sched$project</code> project account.</p>
+<code>ta180</code> project account.</p>
 <p>You will only be prompted at login for your TOTP code once a day.</p>
 </div>
 <div class="section level3">
 <h3 id="log-into-archer2">Log into ARCHER2<a class="anchor" aria-label="anchor" href="#log-into-archer2"></a></h3>
 <p>You should now be able to log into ARCHER2 by following the <a href="https://docs.archer2.ac.uk/user-guide/connecting/#ssh-clients" class="external-link">login
 instructions in the ARCHER2 documentation</a>.</p>
+<div id="using-an-existing-archer2-account" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
 </div>
-<div class="section level3">
-<h3 id="using-an-existing-archer2-account">Using an existing ARCHER2 account<a class="anchor" aria-label="anchor" href="#using-an-existing-archer2-account"></a></h3>
+<span class="callout-header">Callout</span>
+<div id="using-an-existing-archer2-account" class="callout-inner">
+<h3 class="callout-title">Using an existing ARCHER2 account</h3>
+<div class="callout-content">
 <p>If you wish to use an existing ARCHER2 account for the course, that
 is perfectly fine. The only differences from the specific course account
 are that you will not have access to the course account code. Instead,
 you can use your existing account code (the cost of the jobs is
 negligible as they are very short and small).</p>
-</div>
 </div>
 </div>
 </div>
@@ -741,6 +731,7 @@ any links that you are not going to use.
 
 use like [gitbash][gitbash]
  -->
+</div>
 </div>
 </div>
 
