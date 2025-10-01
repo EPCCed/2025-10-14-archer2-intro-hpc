@@ -2,10 +2,13 @@
 title: Setup
 ---
 
+<!-- Not sure if this is needed? Shows an error on the rendered page 
 ```{r load_config, include=FALSE}
 library(yaml)
 config <- yaml.load_file("lesson_config.yaml")
-```
+``` -->
+
+</br>
 
 # Setup
 
@@ -22,27 +25,27 @@ the ability to securely connect to a remote machine (`ssh`).
 
 :::
 
-## Where to type commands: How to open a new shell
+## Shell & SSH Set-up
 
 The shell is a program that enables us to send commands to the computer and
 receive output. It is also referred to as the terminal or command line.
+
+Alongside this, all attendees should have an SSH client installed. SSH is a tool that allows 
+us to connect to and use a remote computer as our own. 
+
+Please follow the directions below to install a Shell and SSH client for your system if you do not 
+already have one.
+
+
+::::::::::::::::::::::::::::::::::::::: discussion
+
+### Details
 
 Some computers include a default Unix Shell program. The steps below describe
 some methods for identifying and opening a Unix Shell program if you already
 have one installed. There are also options for identifying and downloading a
 Unix Shell program, a Linux/UNIX emulator, or a program to access a Unix Shell
 on a server.
-
-## Shell Setup
-
-::::::::::::::::::::::::::::::::::::::: discussion
-
-### Details
-
-Setup for different systems can be presented in dropdown menus via a `solution`
-tag. They will join to this discussion block, so you can give a general overview
-of the software used in this lesson here and fill out the individual operating
-systems (and potentially add more, e.g. online setup) in the solutions blocks.
 
 :::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -61,8 +64,7 @@ the Windows start menu.
 
 * [MobaXterm](https://mobaxterm.mobatek.net/download-home-edition.html) &mdash; *Recommended*
 * [Git for Windows](https://gitforwindows.org/) &mdash; Alternative option used by other Software Carpentries
-* [Windows Subsystem for Linux](
-  https://docs.microsoft.com/en-us/windows/wsl/install-win10)
+* [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10)
   &mdash; advanced option for Windows 10
 
 ::: discussion
@@ -78,9 +80,10 @@ a Unix/Linux emulator.
 
 For advanced users, you may choose one of the following alternatives: 
 
- * Install the [Windows Subsystem for   Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10)
+ * Install the [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10)
  * Use the Windows [Powershell](https://docs.microsoft.com/en-us/powershell/scripting/learn/remoting/ssh-remoting-in-powershell-core?view=powershell-7)
  * Read up on [Using a Unix/Linux emulator (Cygwin) or Secure Shell (SSH) client (Putty)](https://faculty.smu.edu/reynolds/unixtut/windows.html)
+
 > ## Warning
 >
 > Commands in the Windows Subsystem for Linux (WSL), Powershell, or Cygwin
@@ -106,6 +109,10 @@ To open Terminal, try one or both of the following:
 * Use the Mac ‘Spotlight’ computer search function. Search for: `Terminal` and
   press <kbd>Return</kbd>.
 
+macOS comes with SSH pre-installed, so you should not need to install anything. 
+You can type `ssh --help` to test if it is available. 
+
+
 #### Reference 
 
 [How to Use Terminal on a Mac](
@@ -124,19 +131,26 @@ On most versions of Linux, the default Unix Shell is accessible by running the
 [xterm](https://en.wikipedia.org/wiki/Xterm), which can be found via the
 applications menu or the search bar.
 
-#### Special cases
-
-If none of the options above address your circumstances, try an online search
-for: `Unix shell [your operating system]`.
-
-This setup takes you through getting ready for the course by ensuring you have an SSH client installed
-and registering for an ARCHER2 account (you can also use an existing ARCHER2 account if you are already
-a user).
+Linux comes with SSH pre-installed, so you should not need to install anything. 
+You can type `ssh --help` to test if it is available. 
 
 :::::::::::::::::::::::::
 
 
-## Setup an SSH client
+:::::::::::::::: solution
+
+### None of the above
+
+If none of the options above address your circumstances, try an online search
+for: `Unix shell [your operating system]`.
+
+
+:::::::::::::::::::::::::
+
+
+<!-- ## Setup an SSH client
+
+This setup ensures you have an SSH client installed, ready to connect to a remote HPC system. 
 
 ::::::::::::::::::::::::: discussion
 
@@ -145,7 +159,7 @@ a user).
 All attendees should have an SSH client installed.
 SSH is a tool that allows us to connect to and use a remote computer as our own.
 Please follow the directions below to install an SSH client for your system if you do not 
-already have one.
+already have one. 
 
 :::::::::::::::::::::::::
 
@@ -175,21 +189,25 @@ macOS comes with SSH pre-installed, so you should not need to install anything. 
 Linux users do not need to install anything, you should be set! Use your terminal application.
 
 :::
+-->
 
 ## Connect to ARCHER2
 
-::::::::::::::::: discussion
+For this lesson, we will be using [ARCHER2](archer2.ac.uk), the latest iteration of the UK National Supercomputing Service. ARCHER2 will be available to you for the duration of the course and for a few days afterwards, to allow you to complete the practical exercises and put some of what you have learned into practice.
 
-## Details
+Please register for an ARCHER2 account (you can also use an existing ARCHER2 account if you are already
+a user).
+
+
+::::::::::::::::: callout
 
 **Note:** If you already have an ARCHER2 account you can use that for this course. Please see
 see the notes at the end of this page rather than requesting a new account. Of course, if 
 you prefer to sign up for another ARCHER2 account specifically for this course, you are 
 welcome to do this instead!
 
-Please sign up for your account on our HPC machine, ARCHER2, which will be available to
-you for the duration of the course and for a few days afterwards, to allow you to
-complete the practical exercises and put some of what you have learned into practice.
+::::::::::::::::::::::
+
 
 ### Sign up for a SAFE account
 
@@ -199,7 +217,7 @@ web application):
 If you are already registered on the SAFE you do not need to re-register. Please proceed to the next step.
 
 1. Go to the [SAFE New User Signup Form](https://safe.epcc.ed.ac.uk/signup.jsp)
-2. Fill in your personal details. You can come back later and change them if you wish. Note: you should register using your institutional or company email address - email domains such as gmail.com, outlook.com, etc. are not allowed to be used for access to ARCHER2
+2. Fill in your personal details. You can come back later and change them if you wish. Note: you should register using your institutional or company email address - email domains such as gmail.com, outlook.com, etc. are **not** allowed to be used for access to ARCHER2
 3. Click “Submit”
 4. You are now registered. A single use login link will be emailed to the email address you provided. You can use this link to login and set your password.
 
@@ -247,6 +265,9 @@ You will only be prompted at login for your TOTP code once a day.
 
 You should now be able to log into ARCHER2 by following the [login instructions in the ARCHER2 documentation](https://docs.archer2.ac.uk/user-guide/connecting/#ssh-clients).
 
+
+::: callout
+
 ### Using an existing ARCHER2 account
 
 If you wish to use an existing ARCHER2 account for the course, that is perfectly
@@ -255,4 +276,4 @@ have access to the course account code. Instead, you can use your existing
 account code (the cost of the jobs is negligible as they are very short and
 small).
 
-::::::::::::::::::::::
+:::

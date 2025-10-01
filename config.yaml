@@ -72,7 +72,7 @@ episodes:
 # Information for Learners
 learners:
   - reference.md
-  - setup.md
+  - setup.Rmd
 
 # Information for Instructors
 instructors:
