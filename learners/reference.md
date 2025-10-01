@@ -1,8 +1,9 @@
 ---
-title: 'Reference'
+title: 'Glossary'
 ---
 
-## Glossary
+HPC
+: High Performance Computing
 
-This is a placeholder file. Please add content here. 
-
+CPU
+: Central Processing Unit
