@@ -13,7 +13,7 @@ config <- yaml.load_file("lesson_config.yaml")
 
 There are several pieces of software you will wish to install before the
 workshop. Though help will be provided at the workshop, we
-recommend taking a look at the below information can ensure you arrive prepared! 
+recommend taking a look at the below information to help you arrive prepared! 
 
 ::: prereq
 
@@ -77,18 +77,17 @@ computers is PuTTY. See the reference below for information on installing and
 using PuTTY, using the Windows 10 command-line tool, or installing and using
 a Unix/Linux emulator.
 
-For advanced users, you may choose one of the following alternatives: 
+For advanced users, you might choose one of the following alternatives: 
 
  * Install the [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10)
  * Use the Windows [Powershell](https://docs.microsoft.com/en-us/powershell/scripting/learn/remoting/ssh-remoting-in-powershell-core?view=powershell-7)
- * Read up on [Using a Unix/Linux emulator (Cygwin) or Secure Shell (SSH) client (Putty)](https://faculty.smu.edu/reynolds/unixtut/windows.html)
+ * Read up on using a Unix/Linux emulator (Cygwin) or Secure Shell (SSH) client (Putty)
 
-> ## Warning
->
-> Commands in the Windows Subsystem for Linux (WSL), Powershell, or Cygwin
-> may differ slightly from those shown in the lesson or presented in the
-> workshop. Please ask if you encounter such a mismatch &mdash; you're
-> probably not alone.
+## Warning: 
+Commands in the Windows Subsystem for Linux (WSL), Powershell, or Cygwin
+may differ slightly from those shown in the lesson or presented in the
+workshop. Please ask if you encounter such a mismatch &mdash; you're
+probably not alone.
 
 :::
 
@@ -114,8 +113,7 @@ You can type `ssh --help` to test if it is available.
 
 #### Reference 
 
-[How to Use Terminal on a Mac](
-https://www.macworld.co.uk/feature/mac-software/how-use-terminal-on-mac-3608274/)
+[How to Use Terminal on a Mac](https://support.apple.com/en-gb/guide/terminal/welcome/mac)
 
 :::::::::::::::::::::::::
 
@@ -147,55 +145,13 @@ for: `Unix shell [your operating system]`.
 :::::::::::::::::::::::::
 
 
-<!-- ## Setup an SSH client
-
-This setup ensures you have an SSH client installed, ready to connect to a remote HPC system. 
-
-::::::::::::::::::::::::: discussion
-
-### Details
-
-All attendees should have an SSH client installed.
-SSH is a tool that allows us to connect to and use a remote computer as our own.
-Please follow the directions below to install an SSH client for your system if you do not 
-already have one. 
-
-:::::::::::::::::::::::::
-
-::: solution
-
-### Windows
-
-Modern versions of Windows have SSH available in Powershell. You can test if it is available by typing `ssh --help` in Powershell. If it is
-installed, you should see some useful output. If it is not installed, you will get an error. If SSH is not available in Powershell, then
-you should install MobaXterm as described below.
-
-An alternative is to install MobaXterm from [https://mobaxterm.mobatek.net](https://mobaxterm.mobatek.net). You will want to get the Home edition (Installer edition). However, if Powershell works, you do not need this.
-
-:::
-
-::: solution
-
-### macOS
-
-macOS comes with SSH pre-installed, so you should not need to install anything. Use your "Terminal" app.
-
-:::
-
-::: solution
-### Linux
-
-Linux users do not need to install anything, you should be set! Use your terminal application.
-
-:::
--->
-
 ## Connect to ARCHER2
 
-For this lesson, we will be using [ARCHER2](archer2.ac.uk), the latest iteration of the UK National Supercomputing Service. ARCHER2 will be available to you for the duration of the course and for a few days afterwards, to allow you to complete the practical exercises and put some of what you have learned into practice.
+For this lesson, we will be using [ARCHER2](https://www.archer2.ac.uk), the latest iteration of the 
+UK National Supercomputing Service. ARCHER2 will be available to you for the duration of the course and 
+for a few days afterwards, to allow you to complete the practical exercises and put some of what you have learned into practice.
 
-Please register for an ARCHER2 account (you can also use an existing ARCHER2 account if you are already
-a user).
+Please register for an ARCHER2 account.
 
 
 ::::::::::::::::: callout
@@ -233,7 +189,8 @@ Once this has been done, you should be sent an email. _If you have not received 
 ### Generate an SSH key pair and upload it to SAFE
 
 In addition to your password, you will need an SSH key pair to access ARCHER2. There is useful guidance on how
-to generate SSH key pairs in [the ARCHER2 documentation](https://docs.archer2.ac.uk/user-guide/connecting/#ssh-key-pairs).
+to generate SSH key pairs in [the ARCHER2 documentation](https://docs.archer2.ac.uk/user-guide/connecting/#ssh-key-pairs), but 
+we will also cover this in the first lesson. 
 
 Once you have generated your key pair, you need to add the public part to your ARCHER2 account in SAFE:
 
