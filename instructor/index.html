@@ -360,7 +360,39 @@ files, and use software through environment modules.</li>
 </ul></div>
 </div>
 </div>
-<div id="prereq1" class="callout prereq">
+<div class="section level3">
+<h3 id="schedule">Schedule<a class="anchor" aria-label="anchor" href="#schedule"></a></h3>
+<table class="table"><thead><tr class="header"><th>Time</th>
+<th>Item</th>
+</tr></thead><tbody><tr class="odd"><td>09:00 – 10:00</td>
+<td>Connecting to the remote HPC system</td>
+</tr><tr class="even"><td>10:00 – 10:20</td>
+<td>Why use an HPC System?</td>
+</tr><tr class="odd"><td>10:20 – 11:00</td>
+<td>Working on a remote HPC system</td>
+</tr><tr class="even"><td><strong>11:00 – 11:30</strong></td>
+<td><strong>Tea/coffee break</strong></td>
+</tr><tr class="odd"><td>11:30 – 13:00</td>
+<td>Working with the scheduler</td>
+</tr><tr class="even"><td><strong>13:00 – 14:00</strong></td>
+<td><strong>Lunch</strong></td>
+</tr><tr class="odd"><td>14:00 – 14:45</td>
+<td>Accessing software via Modules</td>
+</tr><tr class="even"><td>14:45 – 15:30</td>
+<td>Transferring files with remote computers</td>
+</tr><tr class="odd"><td><strong>15:30 – 16:00</strong></td>
+<td><strong>Tea/coffee break</strong></td>
+</tr><tr class="even"><td>16:00 – 16:40</td>
+<td>Using resources effectively</td>
+</tr><tr class="odd"><td>16:40 – 17:00</td>
+<td>Using shared resources responsibly</td>
+</tr><tr class="even"><td>17:05 – 18:00</td>
+<td>Career development discussion for female participants</td>
+</tr><tr class="odd"><td><strong>18:00 – 19:00</strong></td>
+<td>Free time</td>
+</tr><tr class="even"><td><strong>19:00 –</strong></td>
+<td>Event dinner (The Nag’s Head)</td>
+</tr></tbody></table><div id="prereq1" class="callout prereq">
 <div class="callout-square">
 <i class="callout-icon" data-feather="check"></i>
 </div>
@@ -380,8 +412,8 @@ Conduct</a>
 covered in the <a href="https://epcced.github.io/2024-06-19-hpc-shell-shampton/" class="external-link">Introduction
 to the Shell HPC course</a>
 </li>
-<li>Complete the software/system <a href="#shell-setup">setup</a>
-including how to connection to ARCHER2 via <a href="#connect-to-archer2">SSH</a>.</li>
+<li>Complete the software/system setup including how to connection to
+ARCHER2 via <a href="#connect-to-archer2">SSH</a>.</li>
 </ul></div>
 </div>
 </div>
@@ -391,6 +423,7 @@ any links that you are not going to use.
 
 use like [gitbash][gitbash]
  -->
+</div>
 </section><section id="schedule"><table class="table table schedule table-striped" role="presentation"><tbody><tr><td></td><td><a href="#setup">Setup Instructions</a></td><td> Download files required for the lesson</td>
           </tr><tr><td>
 <span class="visually-hidden">Duration: </span>00h 00m
@@ -495,8 +528,7 @@ use like [gitbash][gitbash]
 <h1 id="setup">Setup<a class="anchor" aria-label="anchor" href="#setup"></a></h1>
 <p>There are several pieces of software you will wish to install before
 the workshop. Though help will be provided at the workshop, we recommend
-taking a look at the below information can ensure you arrive
-prepared!</p>
+taking a look at the below information to help you arrive prepared!</p>
 <div id="bash-and-ssh" class="callout prereq">
 <div class="callout-square">
 <i class="callout-icon" data-feather="check"></i>
@@ -581,24 +613,22 @@ usually be done through a Secure Shell (SSH) client. One such client
 available for free for Windows computers is PuTTY. See the reference
 below for information on installing and using PuTTY, using the Windows
 10 command-line tool, or installing and using a Unix/Linux emulator.</p>
-<p>For advanced users, you may choose one of the following
+<p>For advanced users, you might choose one of the following
 alternatives:</p>
 <ul><li>Install the <a href="https://docs.microsoft.com/en-us/windows/wsl/install-win10" class="external-link">Windows
 Subsystem for Linux</a>
 </li>
 <li>Use the Windows <a href="https://docs.microsoft.com/en-us/powershell/scripting/learn/remoting/ssh-remoting-in-powershell-core?view=powershell-7" class="external-link">Powershell</a>
 </li>
-<li>Read up on <a href="https://faculty.smu.edu/reynolds/unixtut/windows.html" class="external-link">Using a
-Unix/Linux emulator (Cygwin) or Secure Shell (SSH) client
-(Putty)</a>
-</li>
-</ul><blockquote>
-<h2 id="warning">Warning</h2>
+<li>Read up on using a Unix/Linux emulator (Cygwin) or Secure Shell
+(SSH) client (Putty)</li>
+</ul><div class="section level2">
+<h2 id="warning">Warning:<a class="anchor" aria-label="anchor" href="#warning"></a></h2>
 <p>Commands in the Windows Subsystem for Linux (WSL), Powershell, or
 Cygwin may differ slightly from those shown in the lesson or presented
 in the workshop. Please ask if you encounter such a mismatch — you’re
 probably not alone.</p>
-</blockquote>
+</div>
 </div>
 </div>
 </div>
@@ -629,8 +659,8 @@ anything. You can type <code>ssh --help</code> to test if it is
 available.</p>
 <div class="section level4">
 <h4 id="reference-1">Reference<a class="anchor" aria-label="anchor" href="#reference-1"></a></h4>
-<p><a href="https://www.macworld.co.uk/feature/mac-software/how-use-terminal-on-mac-3608274/" class="external-link">How
-to Use Terminal on a Mac</a></p>
+<p><a href="https://support.apple.com/en-gb/guide/terminal/welcome/mac" class="external-link">How to
+Use Terminal on a Mac</a></p>
 </div>
 </div>
 </div>
@@ -672,58 +702,15 @@ online search for: <code>Unix shell [your operating system]</code>.</p>
 </div>
 </div>
 </div>
-<!-- ## Setup an SSH client
-
-This setup ensures you have an SSH client installed, ready to connect to a remote HPC system.
-
-::::::::::::::::::::::::: discussion
-
-### Details
-
-All attendees should have an SSH client installed.
-SSH is a tool that allows us to connect to and use a remote computer as our own.
-Please follow the directions below to install an SSH client for your system if you do not
-already have one.
-
-:::::::::::::::::::::::::
-
-::: solution
-
-### Windows
-
-Modern versions of Windows have SSH available in Powershell. You can test if it is available by typing `ssh --help` in Powershell. If it is
-installed, you should see some useful output. If it is not installed, you will get an error. If SSH is not available in Powershell, then
-you should install MobaXterm as described below.
-
-An alternative is to install MobaXterm from [https://mobaxterm.mobatek.net](https://mobaxterm.mobatek.net). You will want to get the Home edition (Installer edition). However, if Powershell works, you do not need this.
-
-:::
-
-::: solution
-
-### macOS
-
-macOS comes with SSH pre-installed, so you should not need to install anything. Use your "Terminal" app.
-
-:::
-
-::: solution
-### Linux
-
-Linux users do not need to install anything, you should be set! Use your terminal application.
-
-:::
--->
 </div>
 <div class="section level2">
 <h2 id="connect-to-archer2">Connect to ARCHER2<a class="anchor" aria-label="anchor" href="#connect-to-archer2"></a></h2>
-<p>For this lesson, we will be using <a href="../archer2.ac.uk">ARCHER2</a>, the latest iteration of the UK
-National Supercomputing Service. ARCHER2 will be available to you for
-the duration of the course and for a few days afterwards, to allow you
-to complete the practical exercises and put some of what you have
+<p>For this lesson, we will be using <a href="https://www.archer2.ac.uk" class="external-link">ARCHER2</a>, the latest iteration of
+the UK National Supercomputing Service. ARCHER2 will be available to you
+for the duration of the course and for a few days afterwards, to allow
+you to complete the practical exercises and put some of what you have
 learned into practice.</p>
-<p>Please register for an ARCHER2 account (you can also use an existing
-ARCHER2 account if you are already a user).</p>
+<p>Please register for an ARCHER2 account.</p>
 <div id="callout1" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
@@ -763,7 +750,7 @@ your password.</li>
 <ol style="list-style-type: decimal"><li><a href="https://safe.epcc.ed.ac.uk" class="external-link">Login to SAFE</a></li>
 <li>Go to the Menu “Login accounts” and select “Request login
 account”</li>
-<li>Choose the <code>ta180</code> project and click “Next”</li>
+<li>Choose the <code>ta215</code> project and click “Next”</li>
 <li>On the next page, the ARCHER2 system should be selected. Click
 “Next”</li>
 </ol><p>Now you have to wait for the course organiser to accept your request
@@ -778,7 +765,8 @@ shot initial password for ARCHER2 from your SAFE account.</p>
 <h3 id="generate-an-ssh-key-pair-and-upload-it-to-safe">Generate an SSH key pair and upload it to SAFE<a class="anchor" aria-label="anchor" href="#generate-an-ssh-key-pair-and-upload-it-to-safe"></a></h3>
 <p>In addition to your password, you will need an SSH key pair to access
 ARCHER2. There is useful guidance on how to generate SSH key pairs in <a href="https://docs.archer2.ac.uk/user-guide/connecting/#ssh-key-pairs" class="external-link">the
-ARCHER2 documentation</a>.</p>
+ARCHER2 documentation</a>, but we will also cover this in the first
+lesson.</p>
 <p>Once you have generated your key pair, you need to add the public
 part to your ARCHER2 account in SAFE:</p>
 <ol style="list-style-type: decimal"><li><a href="https://safe.epcc.ed.ac.uk" class="external-link">Login to SAFE</a></li>
@@ -804,7 +792,7 @@ limited code to verify your identity beyond a password and username.</p>
 <p>To setup your MFA TOTP you will need an authenticator application on
 your phone or laptop. Follow the <a href="https://epcced.github.io/safe-docs/safe-for-users/#how-to-turn-on-mfa-on-your-machine-account" class="external-link">steps</a>
 at the SAFE documentation, ensuring you create the code for your
-<code>ta180</code> project account.</p>
+<code>ta215</code> project account.</p>
 <p>You will only be prompted at login for your TOTP code once a day.</p>
 </div>
 <div class="section level3">

@@ -48,4 +48,4 @@ sched:
   info: "sinfo"
   comment: "#SBATCH"
   hist: "sacct"
-  project: "ta180"
+  project: "ta215"
