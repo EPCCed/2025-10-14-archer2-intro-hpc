@@ -4,7 +4,7 @@ local:
   bash_shebang: "#!/bin/bash"
 
 snippets: EPCC_ARCHER2_slurm
-baseurl: "https://epcced.github.io/2025-10-14-archer2-hpc-intro-parasols/"
+baseurl: "https://epcced.github.io/2025-10-14-archer2-intro-hpc"
 
 remote:
   name: "ARCHER2"
@@ -13,11 +13,11 @@ remote:
   host: "ln03"
   node: "nid001053"
   location: "EPCC, The University of Edinburgh"
-  homedir: "/home/ta180/ta180/userid"
-  workdir: "/work/ta180/ta180/userid"
+  homedir: "/home/ta215/ta215/userid"
+  workdir: "/work/ta215/ta215/userid"
   user: "userid"
   prompt: "userid@ln03:~>"
-  prompt_work: "userid@ln03:/work/ta180/ta180/userid>"
+  prompt_work: "userid@ln03:/work/ta215/ta215/userid>"
   module_python3: "cray-python"
   bash_shebang: "#!/bin/bash"
 
