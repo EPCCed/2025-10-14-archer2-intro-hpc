@@ -9,8 +9,8 @@ title: Setup
 # Setup
 
 There are several pieces of software you will wish to install before the
-workshop. Though installation help will be provided at the workshop, we
-recommend that these tools are installed (or at least downloaded) beforehand.
+workshop. Though help will be provided at the workshop, we
+recommend taking a look at the below information can ensure you arrive prepared! 
 
 ::: prereq
 
@@ -221,9 +221,8 @@ If you are already registered on the SAFE you do not need to re-register. Please
 
 1. [Login to SAFE](https://safe.epcc.ed.ac.uk)
 2. Go to the Menu "Login accounts" and select "Request login account"
-3. Choose the `ta180` project “Choose Project for Machine Account” box and click "Next"
+3. Choose the `ta180` project and click "Next"
 4. On the next page, the ARCHER2 system should be selected. Click "Next"
-5. Enter the username you would prefer to use on ARCHER2. Every username must be unique, so if your chosen name is taken, you will need to choose another
 
 Now you have to wait for the course organiser to accept your request to register. When this has happened, your account will be created on ARCHER2.
 Once this has been done, you should be sent an email. _If you have not received an email but believe that your account should have been activated, check your account status in SAFE which will also show when the account has been activated._ You can then pick up your one shot initial password for ARCHER2 from your SAFE account.
