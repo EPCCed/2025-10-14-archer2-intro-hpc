@@ -14,6 +14,6 @@
 "episodes/18-responsibility.Rmd" "9abef04ad9d80b6c0dd5202b8d6203ce" "site/built/18-responsibility.md" "2025-10-01"
 "instructors/instructor-notes.md" "cae72b6712578d74a49fea7513099f8c" "site/built/instructor-notes.md" "2025-09-02"
 "learners/reference.md" "b247288208a01d96232aabf5b3785490" "site/built/reference.md" "2025-10-01"
-"learners/setup.Rmd" "dae4cb652a316be37f93fab332ae910f" "site/built/setup.md" "2025-10-01"
+"learners/setup.Rmd" "68a04ec7e3777a39dfd70ab5b077adef" "site/built/setup.md" "2025-10-02"
 "profiles/learner-profiles.md" "67072bcc5265e66932cd86d9ed242812" "site/built/learner-profiles.md" "2025-10-01"
 "renv/profiles/lesson-requirements/renv.lock" "c4ad430c24c14bb82579a6f6c4426dd0" "site/built/renv.lock" "2025-09-02"
