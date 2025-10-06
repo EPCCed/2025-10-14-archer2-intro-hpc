@@ -6,7 +6,7 @@ title: Setup
 
 </br>
 
-# Setup
+# Quick-Start: Setup
 
 There are several pieces of software you will wish to install before the
 workshop. Though help will be provided at the workshop, we
@@ -21,7 +21,7 @@ the ability to securely connect to a remote machine (`ssh`).
 
 :::
 
-## Shell & SSH Set-up
+## Quick-Start: Shell & SSH Set-up
 
 The shell is a program that enables us to send commands to the computer and
 receive output. It is also referred to as the terminal or command line.
@@ -142,7 +142,7 @@ for: `Unix shell [your operating system]`.
 :::::::::::::::::::::::::
 
 
-## Connect to ARCHER2
+## Quick-Start: Connect to ARCHER2
 
 For this lesson, we will be using [ARCHER2](https://www.archer2.ac.uk), the latest iteration of the 
 UK National Supercomputing Service. ARCHER2 will be available to you for the duration of the course and 
