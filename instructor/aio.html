@@ -244,7 +244,7 @@
 <div class="accordion accordion-flush" id="accordionFlush2">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading2">
-        <a href="10-connecting-hpc.html">1. Connecting to the remote HPC systemd</a>
+        <a href="10-connecting-hpc.html">1. Connecting to the remote HPC system</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -392,9 +392,9 @@
     <main id="main-content" class="main-content"><div class="container lesson-content">
         
         
-<section id="aio-10-connecting-hpc"><p>Content from <a href="10-connecting-hpc.html">Connecting to the remote HPC systemd</a></p>
+<section id="aio-10-connecting-hpc"><p>Content from <a href="10-connecting-hpc.html">Connecting to the remote HPC system</a></p>
 <hr>
-<p>Last updated on 2025-10-01 |
+<p>Last updated on 2025-10-06 |
 
         <a href="https://github.com/EPCCed/2025-10-14-archer2-intro-hpc/edit/main/episodes/10-connecting-hpc.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 40 minutes</p>
@@ -433,12 +433,12 @@
 </h1>
 <p>Connecting to an HPC system is most often done through a tool known
 as “SSH” (Secure SHell) and usually SSH is run through a terminal. So,
-to begin using an HPC system we need to begin by opening a terminal.
-Different operating systems have different terminals, none of which are
-exactly the same in terms of their features and abilities while working
-on the operating system. When connected to the remote system the
-experience between terminals will be identical as each will faithfully
-present the same experience of using that system.</p>
+to begin using an HPC system we need to begin by opening a terminal.</p>
+<p>Different operating systems have different terminals, none of which
+are exactly the same in terms of their features and abilities while
+working on the operating system. However, when connected to the remote
+system the experience between terminals will be identical as each will
+faithfully present the same experience of using that system.</p>
 <p>Here is the process for opening a terminal in each operating
 system.</p>
 <div class="section level3">
@@ -474,7 +474,7 @@ System) it does not have an SSH tool built into it and so one needs to
 be installed. There are a variety of programs that can be used for this;
 a few common ones we describe here, as follows:</p>
 <div class="section level4">
-<h4 id="mobaxterm">MobaXterm<a class="anchor" aria-label="anchor" href="#mobaxterm"></a>
+<h4 id="mobaxterm">(1) MobaXterm<a class="anchor" aria-label="anchor" href="#mobaxterm"></a>
 </h4>
 <p>MobaXterm is a terminal window emulator for Windows and the home
 edition can be downloaded for free from <a href="" title="https://mobaxterm.mobatek.net/download-home-edition.html">mobatek.net</a>.
@@ -498,17 +498,18 @@ the middle of that window with the text “Start Local Terminal”. Click
 this button and you will have a terminal window at your disposal.</p>
 </div>
 <div class="section level4">
-<h4 id="git-bash">Git BASH<a class="anchor" aria-label="anchor" href="#git-bash"></a>
+<h4 id="git-bash">(2) Git BASH<a class="anchor" aria-label="anchor" href="#git-bash"></a>
 </h4>
 <p>Git BASH gives you a terminal like interface in Windows. You can use
 this to connect to a remote computer via SSH. It can be downloaded for
 free from <a href="https://gitforwindows.org/" class="external-link">here</a>.</p>
 </div>
 <div class="section level4">
-<h4 id="windows-subsystem-for-linux">Windows Subsystem for Linux<a class="anchor" aria-label="anchor" href="#windows-subsystem-for-linux"></a>
+<h4 id="windows-subsystem-for-linux">(3) Windows Subsystem for Linux<a class="anchor" aria-label="anchor" href="#windows-subsystem-for-linux"></a>
 </h4>
 <p>The Windows Subsystem for Linux also allows you to connect to a
 remote computer via SSH. Instructions on installing it can be found <a href="https://docs.microsoft.com/en-us/windows/wsl/install-win10" class="external-link">here</a>.</p>
+<p></p>
 </div>
 </div>
 <div class="section level2">
@@ -1172,7 +1173,7 @@ neighbors.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> It’s a Beautiful Day in the Neighborhood </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>The deepest layer should differ: <code>userid</code> is uniquely
 yours. Are there differences in the path at higher levels?</p>
@@ -1309,7 +1310,7 @@ computer cluster, you need to log out first. To do so, type
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>There are several ways to do this. Most operating systems have a
 graphical system monitor, like the Windows Task Manager. More detailed
@@ -1357,7 +1358,7 @@ node.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3330,7 +3331,7 @@ worked or not.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Creating a file called <code>submit-pi-mpi.slurm</code>:</p>
 <div class="codewrapper sourceCode" id="cb2">
@@ -3518,7 +3519,7 @@ figure for the Calculation core seconds. Is this what you observe?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>The table below shows example timings for runs on ARCHER2</p>
 <table class="table">
@@ -3732,7 +3733,7 @@ choose this option?</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <p>The table below gives example results for ARCHER2 based on the
 example runtimes given in the solution above.</p>
@@ -4013,7 +4014,7 @@ node?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Building software, creating directories, and unpacking software are
 common and acceptable tasks for the login node: options #2
@@ -4244,7 +4245,7 @@ the following would be the best way to transfer them to ARCHER2?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>Lets go through each option</p>
 <ol style="list-style-type: decimal">
@@ -4344,8 +4345,8 @@ use like [gitbash][gitbash]
   "url": "https://EPCCed.github.io/2025-10-14-archer2-intro-hpc/instructor/aio.html",
   "identifier": "https://EPCCed.github.io/2025-10-14-archer2-intro-hpc/instructor/aio.html",
   "dateCreated": "2025-10-14",
-  "dateModified": "2025-10-02",
-  "datePublished": "2025-10-02"
+  "dateModified": "2025-10-06",
+  "datePublished": "2025-10-06"
 }
 
   </script><script>
