@@ -1,5 +1,5 @@
 ---
-title: "Connecting to the remote HPC systemd"
+title: "Connecting to the remote HPC system"
 teaching: 25
 exercises: 15
 ---
@@ -24,9 +24,10 @@ snippets <- paste('files/snippets/', config$snippets, sep='')
 
 Connecting to an HPC system is most often done through a tool known as "SSH"
 (Secure SHell) and usually SSH is run through a terminal. So, to begin using an
-HPC system we need to begin by opening a terminal. Different operating systems
-have different terminals, none of which are exactly the same in terms of their
-features and abilities while working on the operating system. When connected to
+HPC system we need to begin by opening a terminal. 
+
+Different operating systems have different terminals, none of which are exactly the same in terms of their
+features and abilities while working on the operating system. However, when connected to
 the remote system the experience between terminals will be identical as each
 will faithfully present the same experience of using that system.
 
@@ -61,12 +62,12 @@ an SSH tool built into it and so one needs to be installed. There are a variety
 of programs that can be used for this; a few common ones we describe here, as
 follows:
 
-#### MobaXterm
+#### (1) MobaXterm
 
 MobaXterm is a terminal window emulator for Windows and the home edition can be
-downloaded for free from
-[mobatek.net][mobatek]. If you
-follow the link you will note that there are two editions of the home version
+downloaded for free from 
+[mobatek.net][mobatek]. 
+If you follow the link you will note that there are two editions of the home version
 available: Portable and Installer. The portable edition puts all MobaXterm
 content in a folder on the desktop (or anywhere else you would like it) so that
 it is easy to add plug-ins or remove the software. The installer edition adds
@@ -85,17 +86,19 @@ Once the MobaXterm window is open you should see a large button in the middle
 of that window with the text "Start Local Terminal". Click this button and you
 will have a terminal window at your disposal.
 
-#### Git BASH
+#### (2) Git BASH
 
 Git BASH gives you a terminal like interface in Windows. You can use this to
 connect to a remote computer via SSH. It can be downloaded for free from
 [here][gitbash].
 
-#### Windows Subsystem for Linux
+#### (3) Windows Subsystem for Linux
 
 The Windows Subsystem for Linux also allows you to connect to a remote computer
-via SSH. Instructions on installing it can be found
+via SSH. Instructions on installing it can be found 
 [here][wsl].
+
+</br>
 
 ## Creating an SSH key
 
