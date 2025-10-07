@@ -1,5 +1,5 @@
 ---
-title: "Why use an HPC System?"
+title: "Why do we use HPC?"
 teaching: 15
 exercises: 5
 ---
@@ -49,12 +49,12 @@ of the desktop or laptop computer where they started:
   computers communicating over a shared network.
 
 In all these cases, access to more (and larger) computers is needed. Those
-computers should be usable at the same time, **solving many researchers'
-problems in parallel**.
+larger computers should be usable by many people and problems at the same time, 
+**therefore solving many researchers' problems in parallel**.
 
 ::: discussion
 
-## Break the Ice
+## Over to you! 
 Talk to your neighbour, office mate or [rubber duck](https://rubberduckdebugging.com/) about your research.
 
  * How does computing help you do your research?
@@ -63,29 +63,34 @@ Talk to your neighbour, office mate or [rubber duck](https://rubberduckdebugging
 
 ## A Standard Laptop for Standard Tasks
 
-Today, people coding or analysing data typically work with laptops.
+Today, many people use coding and data analysis in their jobs, typically working with standard laptops.
 
 ![A standard laptop](fig/200px-laptop-openclipartorg-aoguerrero.svg){alt="A standard laptop"}
 
 
 Let's dissect what resources programs running on a laptop require:
 
-* the keyboard and/or touchpad is used to tell the computer what to do
+* The keyboard and/or touchpad is used to tell the computer what to do
   (**Input**)
-* the internal computing resources **Central Processing Unit** and **Memory**
+* The internal computing resources **Central Processing Unit** and **Memory**
   perform calculation
-* the display depicts progress and results (**Output**)
+* The display depicts progress and results (**Output**)
 
 Schematically, this can be reduced to the following:
 
 ![Schematic of how a computer works](fig/Simple_Von_Neumann_Architecture.svg){
    alt="Schematic of how a computer works"}
 
+
+
+
+
 ## When Tasks Take Too Long
 
 When the task to solve becomes heavy on computations, the operations are
-typically out-sourced from the local laptop or desktop to elsewhere. Take for
-example the task to find the directions for your next vacation. The
+typically out-sourced from the local laptop or desktop to elsewhere. 
+
+For example, the task to find the directions for your next vacation. The
 capabilities of your laptop are typically not enough to calculate that route
 spontaneously: [finding the shortest path](https://en.wikipedia.org/wiki/Dijkstra's_algorithm) through a network runs on
 the order of (*v* log *v*) time, where *v* (vertices) represents the number of
@@ -100,16 +105,18 @@ as you are.
 
 Note here, that a server is mostly a noisy computer mounted into a rack cabinet
 which in turn resides in a data center. The internet made it possible that
-these data centers do not require to be nearby your laptop. What people call
-**the cloud** is mostly a web-service where you can rent such servers by
-providing your credit card details and requesting remote resources that satisfy
-your requirements. This is often handled through an online, browser-based
-interface listing the various machines available and their capacities in terms
-of processing power, memory, and storage.
+these data centers do not require to be nearby your laptop. 
+
+What people call **the cloud** is mostly a web-service where you can rent such servers by 
+requesting remote resources that satisfy your requirements and paying for the time. 
+This is often handled through an online, browser-based interface listing the various machines 
+available and their capacities in terms of processing power, memory, and storage.
 
 The server itself has no direct display or input methods attached to it. But
 most importantly, it has much more storage, memory and compute capacity than
-your laptop will ever have. In any case, you need a local device (laptop,
+your laptop will ever have. 
+
+In any case, you need a local device (laptop,
 workstation, mobile phone or tablet) to interact with this remote machine,
 which people typically call 'a server'.
 
@@ -117,22 +124,21 @@ which people typically call 'a server'.
 
 If the computational task or analysis to complete is daunting for a single
 server, larger agglomerations of servers are used. These go by the name of
-"clusters" or "super computers".
+"clusters" or "supercomputers".
 
-<figure style="max-width: 30%; text-align: center; display: block">
-  <img src="fig/serverrack-openclipartorg-psteinb-basedon-ericlemerdy.svg" alt="A rack with servers" class="figure">
-  <div class="figcaption">A rack with servers</div>
+<figure style="max-width: 30%; margin: 0 auto; text-align: center;">
+  <img src="fig/serverrack-openclipartorg-psteinb-basedon-ericlemerdy.svg" alt="A rack full with servers" class="figure">
+  <div class="figcaption">A rack full with servers</div>
 </figure>
 
 The methodology of providing the input data, configuring the program options,
 and retrieving the results is quite different to using a plain laptop.
-Moreover, using a graphical interface is often discarded in favor of using the
-command line. This imposes a double paradigm shift for prospective users asked
-to
+Moreover, using a graphical user interface is often discarded in favor of using the
+command line. This imposes a double paradigm shift for prospective users who must: 
 
-1. work with the command line interface (CLI), rather than a graphical user
+1. Work with the command line interface (CLI) or terminal, rather than a graphical user
    interface (GUI)
-1. work with a distributed set of computers (called nodes) rather than the
+1. Work with a distributed set of computers (called nodes) rather than the
    machine attached to their keyboard & mouse
 
 ::: challenge
@@ -179,5 +185,5 @@ collection of servers working together.
  - "These other systems can be used to do work that would either be impossible
   or much slower on smaller systems."
  - "The standard method of interacting with such systems is via a command line
-  interface called Bash."
+  interface (CLI) or Terminal. This can also be called the Bash shell."
 :::

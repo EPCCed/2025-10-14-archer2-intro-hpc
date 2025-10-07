@@ -259,7 +259,7 @@ example of what you can expect from an HPC.
 
 ### Configure TOTP passwords
 
-ARCHER2 now uses one time passwords (TOTP) for multi-factor authentication (MFA). 
+ARCHER2 now uses Time-based One-Time Passwords (TOTP) for multi-factor authentication (MFA). 
 One time passwords are a common security measure used by banking, cloud services and apps that 
 create a changing time limited code to verify your identity beyond a password and username.
 
@@ -322,8 +322,6 @@ things in depth as we explore the system further.)
 
 
 ```output
-This node is running Cray's Linux Environment version 1.3.2
-
 #######################################################################################
 
         @@@@@@@@@
@@ -339,12 +337,14 @@ This node is running Cray's Linux Environment version 1.3.2
 
  -         U K R I         -        E P C C        -         H P E   C r a y         -
 
-Hostname:     uan01
+Hostname:     ln02
 Distribution: SLES 15.1 1
 CPUS:         256
-Memory:       257.4GB
-Configured:   2021-04-27
+Memory:       515.3GB
+Configured:   2025-09-16
 
+######################################################################################
+---------------------------------Welcome to ARCHER2-----------------------------------
 ######################################################################################
 ```
 
