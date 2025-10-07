@@ -263,7 +263,7 @@ example of what you can expect from an HPC.
 
 ### Configure TOTP passwords
 
-ARCHER2 now uses one time passwords (TOTP) for multi-factor authentication (MFA). 
+ARCHER2 now uses Time-based One-Time Passwords (TOTP) for multi-factor authentication (MFA). 
 One time passwords are a common security measure used by banking, cloud services and apps that 
 create a changing time limited code to verify your identity beyond a password and username.
 
