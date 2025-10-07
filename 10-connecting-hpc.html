@@ -438,9 +438,9 @@ a few common ones we describe here, as follows:</p>
 <div class="section level4">
 <h4 id="mobaxterm">(1) MobaXterm<a class="anchor" aria-label="anchor" href="#mobaxterm"></a></h4>
 <p>MobaXterm is a terminal window emulator for Windows and the home
-edition can be downloaded for free from <a href="" title="https://mobaxterm.mobatek.net/download-home-edition.html">mobatek.net</a>.
-If you follow the link you will note that there are two editions of the
-home version available: Portable and Installer. The portable edition
+edition can be downloaded for free from <a href="" title="https://mobaxterm.mobatek.net/download-home-edition.html">mobatek.net</a>.</p>
+<p>If you follow the link you will note that there are two editions of
+the home version available: Portable and Installer. The portable edition
 puts all MobaXterm content in a folder on the desktop (or anywhere else
 you would like it) so that it is easy to add plug-ins or remove the
 software. The installer edition adds MobaXterm to your Windows
@@ -556,24 +556,6 @@ should see the two new files: your private key
 (<code>~/.ssh/key_ARCHER2_rsa.pub</code>). If a key is requested by the
 system administrators, the <em>public</em> key is the one to
 provide.</p>
-<div id="private-keys-are-private" class="callout">
-<div class="callout-square">
-<i class="callout-icon" data-feather="bell"></i>
-</div>
-<span class="callout-header">Callout</span>
-<div id="private-keys-are-private" class="callout-inner">
-<h3 class="callout-title">PRIVATE KEYS ARE PRIVATE</h3>
-<div class="callout-content">
-<p>A private key that is visible to anyone but you should be considered
-compromised, and must be destroyed. This includes having improper
-permissions on the directory it (or a copy) is stored in, traversing any
-network in the clear, attachment on unencrypted email, and even
-displaying the key (which is ASCII text) in your terminal window.</p>
-<p>Protect this key as if it unlocks your front door. In many ways, it
-does.</p>
-</div>
-</div>
-</div>
 <div id="further-information" class="callout discussion">
 <div class="callout-square">
 <i class="callout-icon" data-feather="message-circle"></i>
@@ -597,37 +579,129 @@ Secure Shell</a>.</p>
 <li>MobaKeyGen, see the MobaXterm <a href="https://mobaxterm.mobatek.net/documentation.html" class="external-link">documentation</a>
 </li>
 </ul></div>
+<div class="section level3">
+<h3 id="uploading-the-public-part-of-the-key-to-the-safe">Uploading the public part of the key to the SAFE<a class="anchor" aria-label="anchor" href="#uploading-the-public-part-of-the-key-to-the-safe"></a></h3>
+<p>As part of the <a href="index.html">setup</a> you will have created
+an account on the SAFE.</p>
+<p>The SAFE is an online service management system used by EPCC. Through
+SAFE, individual users can request machine accounts, reset passwords,
+see available resources and track their usage. All users must be
+registered on SAFE before they can apply for their machine account, so
+this is the service you used to sign-up for an ARCHER2 account.</p>
+<p>Once you have generated your key pair, you need to add the public
+part to your ARCHER2 account in SAFE:</p>
+<ol style="list-style-type: decimal"><li><a href="https://safe.epcc.ed.ac.uk" class="external-link">Login to SAFE</a></li>
+<li>Go to the Menu “Login accounts” and select the ARCHER2 account you
+want to add the SSH key to</li>
+<li>On the subsequent Login account details page click the “Add
+Credential” button</li>
+<li>Select “SSH public key” as the Credential Type and click “Next”</li>
+<li>Either copy and paste the public part of your SSH key into the “SSH
+Public key” box or use the button to select the public key file on your
+computer.</li>
+<li>Click “Add” to associate the public SSH key part with your
+account</li>
+</ol><p>The public SSH key part will now be added to your login account on
+the ARCHER2 system, so it can actually be used as your secure handshake
+between remote parties. Remember: you can think of the public key as a
+“lock” and the private key as the “key”. You give the public ‘lock’ to
+remote parties to encrypt or ‘lock’ data. This data is then opened with
+the ‘private’ key which you hold in a secure place.</p>
+<div id="private-keys-are-private" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<span class="callout-header">Callout</span>
+<div id="private-keys-are-private" class="callout-inner">
+<h3 class="callout-title">PRIVATE KEYS ARE PRIVATE</h3>
+<div class="callout-content">
+<p>A private key that is visible to anyone but you should be considered
+compromised, and must be destroyed. This includes having improper
+permissions on the directory it (or a copy) is stored in, traversing any
+network in the clear, attachment on unencrypted email, and even
+displaying the key (which is ASCII text) in your terminal window.</p>
+<p>Protect this key as if it unlocks your front door. In many ways, it
+does.</p>
+</div>
+</div>
+</div>
+</div>
 </section><section><h2 class="section-heading" id="logging-onto-the-system">Logging onto the system<a class="anchor" aria-label="anchor" href="#logging-onto-the-system"></a></h2>
-<hr class="half-width"><p>With all of this in mind, let’s connect to a remote HPC system. In
-this workshop, we will connect to ARCHER2 — an HPC system located at the
-University of Edinburgh. Although it’s unlikely that every system will
-be exactly like ARCHER2, it’s a very good example of what you can expect
-from an HPC installation. To connect to our example computer, we will
-use SSH (if you are using PuTTY, see above).</p>
-<p>SSH allows us to connect to UNIX computers remotely, and use them as
-if they were our own. The general syntax of the connection command
-follows the format
-<code>ssh -i ~/.ssh/key_for_remote_computer yourUsername@remote.computer.address</code>
-when using SSH keys and
-<code>ssh yourUsername@some.computer.address</code> if only password
-access is available. Let’s attempt to connect to the HPC system now:</p>
+<hr class="half-width"><p>With all of this in mind, let’s finally connect to the remote HPC
+system. In this workshop, we will connect to ARCHER2 — an HPC system
+located at the University of Edinburgh. Although it’s unlikely that
+every system will be exactly like ARCHER2, it’s a very good example of
+what you can expect from an HPC.</p>
+<div class="section level3">
+<h3 id="configure-totp-passwords">Configure TOTP passwords<a class="anchor" aria-label="anchor" href="#configure-totp-passwords"></a></h3>
+<p>ARCHER2 now uses one time passwords (TOTP) for multi-factor
+authentication (MFA). One time passwords are a common security measure
+used by banking, cloud services and apps that create a changing time
+limited code to verify your identity beyond a password and username.</p>
+<p>To setup your MFA TOTP you will need an authenticator application on
+your phone or laptop. Follow the steps at <a href="https://epcced.github.io/safe-docs/safe-for-users/#how-to-turn-on-mfa-on-your-machine-account" class="external-link">the
+SAFE documentation</a>, ensuring you create the code for your
+<code>ta215</code> project account.</p>
+<p>You will only be prompted at login for your TOTP code once a day.</p>
+</div>
+<div class="section level3">
+<h3 id="logging-in-to-archer2">Logging in to ARCHER2<a class="anchor" aria-label="anchor" href="#logging-in-to-archer2"></a></h3>
+<p>We’ve already used SSH protocol to generate an SSH key-pair, now we
+will use SSH to connect (if you are using PuTTY, see above). SSH allows
+us to connect to UNIX computers remotely, and use them as if they were
+our own. The general syntax of the connection command follows the
+format:</p>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">ssh</span> <span class="at">-i</span> ~/.ssh/key_ARCHER2_ed25519 yourUsername@login.archer2.ac.uk</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">ssh</span> <span class="at">-i</span> ~/.ssh/key_for_remote_computer yourUsername@remote.computer.address</span></code></pre>
 </div>
-<p>or</p>
+<p>For the SSH key-pair we generated in the previous section, it will
+look like this:</p>
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">ssh</span> <span class="at">-i</span> ~/.ssh/key_ARCHER2_rsa yourUsername@login.archer2.ac.uk</span></code></pre>
 </div>
-<p>or if SSH keys have not been enabled</p>
+<p>If your SSH key pair is stored in the default location (usually
+~/.ssh/id_rsa) on your local system, you may not need to specify the
+path to the private part of the key wih the -i option to ssh. For
+example:</p>
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">ssh</span> yourUsername@ARCHER2</span></code></pre>
 </div>
+<div id="first-login" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<span class="callout-header">Callout</span>
+<div id="first-login" class="callout-inner">
+<h3 class="callout-title">First login!</h3>
+<div class="callout-content">
+<p>As an additional security measure, you will also need to use a
+password from SAFE for your first login to ARCHER2 with a new account.
+When you log into ARCHER2 for the first time with a new account, you
+will be prompted to change your initial password. This is a three step
+process:</p>
+<ol style="list-style-type: decimal"><li>When promoted to enter your ldap password: Enter the password which
+you retrieve from SAFE</li>
+<li>When prompted to enter your new password: type in a new
+password</li>
+<li>When prompted to re-enter the new password: re-enter the new
+password</li>
+</ol><p>Your password has now been changed. You will no longer need this
+password to log into ARCHER2 from this point forwards, you will use your
+SSH key and TOTP code <em>only</em>.</p>
+</div>
+</div>
+</div>
+<p>If you’ve connected successfully, you should see a prompt like the
+one below. This prompt is informative, and lets you grasp certain
+information at a glance. (If you don’t understand what these things are,
+don’t worry! We will cover things in depth as we explore the system
+further.)</p>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -656,29 +730,24 @@ Configured:   2021-04-27
 
 ######################################################################################</code></pre>
 </div>
-<p>If you’ve connected successfully, you should see a prompt like the
-one below. This prompt is informative, and lets you grasp certain
-information at a glance. (If you don’t understand what these things are,
-don’t worry! We will cover things in depth as we explore the system
-further.)</p>
-<div class="codewrapper sourceCode" id="cb7">
+</div>
+</section><section><h2 class="section-heading" id="telling-the-difference-between-the-local-terminal-and-the-remote-terminal">Telling the Difference between the Local Terminal and the Remote
+Terminal<a class="anchor" aria-label="anchor" href="#telling-the-difference-between-the-local-terminal-and-the-remote-terminal"></a></h2>
+<hr class="half-width"><div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="ex">userid@ln03:~</span><span class="op">&gt;</span></span></code></pre>
 </div>
-</section><section><h2 class="section-heading" id="telling-the-difference-between-the-local-terminal-and-the-remote-terminal">Telling the Difference between the Local Terminal and the Remote
-Terminal<a class="anchor" aria-label="anchor" href="#telling-the-difference-between-the-local-terminal-and-the-remote-terminal"></a></h2>
-<hr class="half-width"><p>You may have noticed that the prompt changed when you logged into the
+<p>You may have noticed that the prompt changed when you logged into the
 remote system using the terminal (if you logged in using PuTTY this will
-not apply because it does not offer a local terminal). This change is
-important because it makes it clear on which system the commands you
-type will be run when you pass them into the terminal. This change is
-also a small complication that we will need to navigate throughout the
-workshop. Exactly what is reported before the <code>$</code> in the
-terminal when it is connected to the local system and the remote system
-will typically be different for every user. We still need to indicate
-which system we are entering commands on though so we will adopt the
-following convention:</p>
+not apply because it does not offer a local terminal).</p>
+<p>This change is important because it makes it clear on which system
+the commands you type will be run when you pass them into the terminal.
+This change is also a small complication that we will need to navigate
+throughout the workshop. Exactly what is reported before the
+<code>$</code> in the terminal when it is connected to the local system
+and the remote system will typically be different for every user.</p>
+<p>We will using the following to differentiate:</p>
 <ul><li>
 <code>[local]$</code> when the command is to be entered on a
 terminal connected to your local computer</li>
@@ -688,21 +757,9 @@ a terminal connected to the remote system</li>
 <li>
 <code>$</code> when it really doesn’t matter which system the
 terminal is connected to.</li>
-</ul><div id="being-certain-which-system-your-terminal-is-connected-to" class="callout">
-<div class="callout-square">
-<i class="callout-icon" data-feather="bell"></i>
-</div>
-<span class="callout-header">Callout</span>
-<div id="being-certain-which-system-your-terminal-is-connected-to" class="callout-inner">
-<h3 class="callout-title">Being certain which system your terminal is
-connected to</h3>
-<div class="callout-content">
-<p>If you ever need to be certain which system a terminal you are using
+</ul><p>If you ever need to be certain which system a terminal you are using
 is connected to then use the following command:
 <code>$ hostname</code>.</p>
-</div>
-</div>
-</div>
 <div id="keep-two-terminal-windows-open" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
@@ -727,17 +784,13 @@ disconnect when you see the reverse.</p>
 <span class="callout-header">Key Points</span>
 <div class="callout-inner">
 <div class="callout-content">
-<ul><li>To connect to a remote HPC system using SSH and a password, run</li>
-</ul><div class="codewrapper sourceCode" id="cb8">
+<p>To connect to a remote HPC system using SSH, we would run the
+following command and enter an SSH key passphrase and machine password.
+(For ARCHER2, this is a TOTP)</p>
+<div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="fu">ssh</span> yourUsername@remote.computer.address</span></code></pre>
-</div>
-<ul><li>To connect to a remote HPC system using SSH and an SSH key, run</li>
-</ul><div class="codewrapper sourceCode" id="cb9">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="fu">ssh</span> <span class="at">-i</span> ~/.ssh/key_for_remote_computer yourUsername@remote.computer.address</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="fu">ssh</span> <span class="at">-i</span> ~/.ssh/key_for_remote_computer yourUsername@remote.computer.address</span></code></pre>
 </div>
 </div>
 </div>

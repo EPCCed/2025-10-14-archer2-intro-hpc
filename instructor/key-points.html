@@ -394,21 +394,13 @@
         
 <section id="10-connecting-hpc"><h2 class="section-heading"><a href="10-connecting-hpc.html">Connecting to the remote HPC system</a></h2>
 <hr class="half-width">
-<ul>
-<li>To connect to a remote HPC system using SSH and a password, run</li>
-</ul>
+<p>To connect to a remote HPC system using SSH, we would run the
+following command and enter an SSH key passphrase and machine password.
+(For ARCHER2, this is a TOTP)</p>
 <div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="fu">ssh</span> yourUsername@remote.computer.address</span></code></pre>
-</div>
-<ul>
-<li>To connect to a remote HPC system using SSH and an SSH key, run</li>
-</ul>
-<div class="codewrapper sourceCode" id="cb9">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="fu">ssh</span> <span class="at">-i</span> ~/.ssh/key_for_remote_computer yourUsername@remote.computer.address</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="fu">ssh</span> <span class="at">-i</span> ~/.ssh/key_for_remote_computer yourUsername@remote.computer.address</span></code></pre>
 </div></section><section id="11-hpc-intro"><h2 class="section-heading"><a href="11-hpc-intro.html">Why use an HPC System?</a></h2>
 <hr class="half-width">
 <ul>
