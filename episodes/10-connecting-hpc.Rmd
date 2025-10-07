@@ -80,7 +80,8 @@ follows:
 
 MobaXterm is a terminal window emulator for Windows and the home edition can be
 downloaded for free from 
-[mobatek.net][mobatek]. 
+[mobatek.net][mobatek].
+
 If you follow the link you will note that there are two editions of the home version
 available: Portable and Installer. The portable edition puts all MobaXterm
 content in a folder on the desktop (or anywhere else you would like it) so that
@@ -192,21 +193,6 @@ the public key (`~/.ssh/key_`r config$remote$name`_rsa.pub`). If a key is
 requested by the system administrators, the *public* key is the one
 to provide.
 
-
-:::::::::::: callout
-
-## PRIVATE KEYS ARE PRIVATE
-
-  A private key that is visible to anyone but you should be considered compromised,
-  and must be destroyed. This includes having improper permissions on the directory
-  it (or a copy) is stored in, traversing any network in the clear, attachment on 
-  unencrypted email, and even displaying the key (which is ASCII text) in your 
-  terminal window.
-
-  Protect this key as if it unlocks your front door. In many ways, it does.
-
-::::::::::::
-
 :::::::::::: challenge
 
 #### Further information
@@ -225,67 +211,144 @@ For other options when using Windows, see:
  - MobaKeyGen, see the MobaXterm [documentation](https://mobaxterm.mobatek.net/documentation.html) 
 
 
+### Uploading the public part of the key to the SAFE 
 
+As part of the [setup](../index.md) you will have created an account on the SAFE. 
+
+The SAFE is an online service management system used by EPCC. Through SAFE, individual 
+users can request machine accounts, reset passwords, see available resources and track their 
+usage. All users must be registered on SAFE before they can apply for their machine account, so this 
+is the service you used to sign-up for an ARCHER2 account. 
+
+Once you have generated your key pair, you need to add the public part to your ARCHER2 account in SAFE:
+
+1. [Login to SAFE](https://safe.epcc.ed.ac.uk)
+2. Go to the Menu “Login accounts” and select the ARCHER2 account you want to add the SSH key to
+3. On the subsequent Login account details page click the “Add Credential” button
+4. Select “SSH public key” as the Credential Type and click “Next”
+5. Either copy and paste the public part of your SSH key into the “SSH Public key” box or use the button to select the public key file on your computer.
+6. Click “Add” to associate the public SSH key part with your account
+
+The public SSH key part will now be added to your login account on the ARCHER2 system, so it can actually be used as your
+secure handshake between remote parties. Remember: you can think of the public 
+key as a "lock" and the private key as the "key". You give the public 'lock' to 
+remote parties to encrypt or 'lock' data. This data is then opened with the 'private' 
+key which you hold in a secure place.
+
+:::::::::::: callout
+
+## PRIVATE KEYS ARE PRIVATE
+
+  A private key that is visible to anyone but you should be considered compromised,
+  and must be destroyed. This includes having improper permissions on the directory
+  it (or a copy) is stored in, traversing any network in the clear, attachment on 
+  unencrypted email, and even displaying the key (which is ASCII text) in your 
+  terminal window.
+
+  Protect this key as if it unlocks your front door. In many ways, it does.
+
+::::::::::::
 
 
 
 
 ## Logging onto the system
 
-With all of this in mind, let's connect to a remote HPC system. In this
+With all of this in mind, let's finally connect to the remote HPC system. In this
 workshop, we will connect to `r config$remote$name` --- an HPC system
 located at the University of Edinburgh. Although it's unlikely that
 every system will be exactly like `r config$remote$name`, it's a very good
-example of what you can expect from an HPC installation. To connect to our
-example computer, we will use SSH (if you are using PuTTY, see above).
+example of what you can expect from an HPC. 
 
-SSH allows us to connect to UNIX computers remotely, and use them as if they
-were our own. The general syntax of the connection command follows the format
-`ssh -i ~/.ssh/key_for_remote_computer yourUsername@remote.computer.address` 
-when using SSH keys and `ssh yourUsername@some.computer.address` if only
-password access is available.  Let's attempt to connect to the HPC system
-now:
+
+### Configure TOTP passwords
+
+ARCHER2 now uses one time passwords (TOTP) for multi-factor authentication (MFA). 
+One time passwords are a common security measure used by banking, cloud services and apps that 
+create a changing time limited code to verify your identity beyond a password and username.
+
+To setup your MFA TOTP you will need an authenticator application on your phone or laptop. 
+Follow the steps at [the SAFE documentation](https://epcced.github.io/safe-docs/safe-for-users/#how-to-turn-on-mfa-on-your-machine-account), 
+ensuring you create the code for your ``r config$sched$project`` project account.
+
+You will only be prompted at login for your TOTP code once a day.
+
+
+### Logging in to ARCHER2
+
+We've already used SSH protocol to generate an SSH key-pair, now we will use SSH to connect
+(if you are using PuTTY, see above). SSH allows us to connect to UNIX computers remotely, and use them as if they
+were our own. The general syntax of the connection command follows the format: 
 
 ```bash
-ssh -i ~/.ssh/key_`r config$remote$name`_ed25519 yourUsername@`r config$remote$login`
+ssh -i ~/.ssh/key_for_remote_computer yourUsername@remote.computer.address
 ```
 
-or
+For the SSH key-pair we generated in the previous section, it will look like this: 
 
 ```bash
 ssh -i ~/.ssh/key_`r config$remote$name`_rsa yourUsername@`r config$remote$login`
 ```
 
-or if SSH keys have not been enabled 
+
+
+If your SSH key pair is stored in the default location (usually ~/.ssh/id_rsa) on your local system, 
+you may not need to specify the path to the private part of the key wih the -i option to ssh. 
+For example: 
 
 ```bash
 ssh yourUsername@`r config$remote$name`
 ```
 
-```{r, child=paste(snippets, '/login_output.Rmd', sep=''), eval=TRUE}
-```
+:::::::::::: callout
+
+### First login! 
+
+As an additional security measure, you will also need to use a password from SAFE for your 
+first login to ARCHER2 with a new account. When you log into ARCHER2 for the first time with a 
+new account, you will be prompted to change your initial password. This is a three step process:
+
+1. When promoted to enter your ldap password: Enter the password which you retrieve from SAFE
+2. When prompted to enter your new password: type in a new password
+3. When prompted to re-enter the new password: re-enter the new password
+
+Your password has now been changed. You will no longer need this password to log into ARCHER2 
+from this point forwards, you will use your SSH key and TOTP code _only_.
+
+::::::::::::
+
 
 If you've connected successfully, you should see a prompt like the one below.
 This prompt is informative, and lets you grasp certain information at a glance.
 (If you don't understand what these things are, don't worry! We will cover
 things in depth as we explore the system further.)
 
+
+```{r, child=paste(snippets, '/login_output.Rmd', sep=''), eval=TRUE}
+```
+
+
+
+
+## Telling the Difference between the Local Terminal and the Remote Terminal
+
+
 ```bash
 `r config$remote$prompt`
 ```
 
-## Telling the Difference between the Local Terminal and the Remote Terminal
-
 You may have noticed that the prompt changed when you logged into the remote
 system using the terminal (if you logged in using PuTTY this will not apply
-because it does not offer a local terminal). This change is important because
+because it does not offer a local terminal). 
+
+This change is important because
 it makes it clear on which system the commands you type will be run when you
 pass them into the terminal. This change is also a small complication that we
 will need to navigate throughout the workshop. Exactly what is reported before
 the `$` in the terminal when it is connected to the local system and the remote
-system will typically be different for every user. We still need to indicate
-which system we are entering commands on though so we will adopt the following
-convention:
+system will typically be different for every user. 
+
+We will using the following to differentiate:
 
  - `[local]$` when the command is to be entered on a terminal connected to your
   local computer
@@ -293,12 +356,8 @@ convention:
   terminal connected to the remote system
  - `$` when it really doesn't matter which system the terminal is connected to.
 
-:::::::::: callout
-# Being certain which system your terminal is connected to
-
 If you ever need to be certain which system a terminal you are using is
 connected to then use the following command: `$ hostname`.
-::::::::::
 
 :::::::::: callout
 ## Keep two terminal windows open
@@ -313,16 +372,8 @@ disconnect when you see the reverse.
 
 
 :::::: keypoints
-
-  - To connect to a remote HPC system using SSH and a password,
-  run
-  
-```bash
-ssh yourUsername@remote.computer.address
-```
-
-  - To connect to a remote HPC system using SSH and an SSH key,
-  run 
+To connect to a remote HPC system using SSH, we would run the following command and enter 
+an SSH key passphrase and machine password. (For ARCHER2, this is a TOTP) 
   
 ```bash
 ssh -i ~/.ssh/key_for_remote_computer yourUsername@remote.computer.address
