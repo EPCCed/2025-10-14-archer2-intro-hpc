@@ -8,8 +8,8 @@ exercises: 15
 
 :::::: questions
   - How do I open a terminal?
-  - How do I connect to a remote computer?
   - What is an SSH key?
+  - How do I connect to a remote computer?
 ::::::
 
 :::::: objectives
