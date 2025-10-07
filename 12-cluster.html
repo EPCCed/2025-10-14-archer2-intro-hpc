@@ -234,11 +234,11 @@
 
     <div id="flush-collapsecurrent" class="accordion-collapse collapse show" aria-labelledby="flush-headingcurrent" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
-        <ul><li><a href="#what-is-an-hpc-system">What Is an HPC System?</a></li>
+        <ul><li><a href="#what-is-an-hpc-system">What is an HPC System?</a></li>
 <li><a href="#logging-in">Logging In</a></li>
 <li><a href="#where-are-we">Where Are We?</a></li>
 <li><a href="#nodes">Nodes</a></li>
-<li><a href="#whats-in-a-node">What's in a Node?</a></li>
+<li><a href="#whats-in-a-node">What’s in a Node?</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
 
@@ -348,7 +348,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Working on a remote HPC system</h1>
-        <p>Last updated on 2025-10-01 |
+        <p>Last updated on 2025-10-07 |
 
         <a href="https://github.com/EPCCed/2025-10-14-archer2-intro-hpc/edit/main/episodes/12-cluster.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -369,7 +369,6 @@
 <h3 class="card-title">Questions</h3>
 <ul><li>What is an HPC system?</li>
 <li>How does an HPC system work?</li>
-<li>How do I log on to a remote HPC system?</li>
 </ul></div>
 </div>
 </div>
@@ -377,14 +376,15 @@
 <div class="card-body">
 <div class="inner bordered">
 <h3 class="card-title">Objectives</h3>
-<ul><li>Connect to a remote HPC system.</li>
-<li>Understand the general HPC system architecture.</li>
+<ul><li>Understand the general HPC system architecture.</li>
+<li>Understand that there are different types of nodes for different
+purposes</li>
 </ul></div>
 </div>
 </div>
 </div>
 </div>
-<section><h2 class="section-heading" id="what-is-an-hpc-system">What Is an HPC System?<a class="anchor" aria-label="anchor" href="#what-is-an-hpc-system"></a></h2>
+<section><h2 class="section-heading" id="what-is-an-hpc-system">What is an HPC System?<a class="anchor" aria-label="anchor" href="#what-is-an-hpc-system"></a></h2>
 <hr class="half-width"><p>The words “cloud”, “cluster”, and the phrase “high-performance
 computing” or “HPC” are used a lot in different contexts and with
 various related meanings. So what do they mean? And more importantly,
@@ -405,48 +405,19 @@ stand-alone resource for computationally intensive workloads. They are
 typically comprised of a multitude of integrated processing and storage
 elements, designed to handle high volumes of data and/or large numbers
 of floating-point operations (<a href="https://en.wikipedia.org/wiki/FLOPS" class="external-link">FLOPS</a>) with the highest
-possible performance. For example, all of the machines on the <a href="https://www.top500.org" class="external-link">Top-500</a> list are HPC systems. To
-support these constraints, an HPC resource must exist in a specific,
-fixed location: networking cables can only stretch so far, and
-electrical and optical signals can travel only so fast.</p>
+possible performance. To support these constraints, an HPC resource must
+exist in a specific, fixed location: networking cables can only stretch
+so far, and electrical and optical signals can travel only so fast. All
+of the machines on the <a href="https://www.top500.org" class="external-link">Top-500</a> list
+are HPC systems.</p>
 <p>The word “cluster” is often used for small to moderate scale HPC
 resources less impressive than the <a href="https://www.top500.org" class="external-link">Top-500</a>. Clusters are often maintained
 in computing centers that support several such systems, all sharing
 common networking and storage to support common compute intensive
 tasks.</p>
 </section><section><h2 class="section-heading" id="logging-in">Logging In<a class="anchor" aria-label="anchor" href="#logging-in"></a></h2>
-<hr class="half-width"><p>The first step in using a cluster is to establish a connection from
-our laptop to the cluster. When we are sitting at a computer (or
-standing, or holding it in our hands or on our wrists), we have come to
-expect a visual display with icons, widgets, and perhaps some windows or
-applications: a graphical user interface, or GUI. Since computer
-clusters are remote resources that we connect to over often slow or
-laggy interfaces (WiFi and VPNs especially), it is more practical to use
-a command-line interface, or CLI, in which commands and results are
-transmitted via text, only. Anything other than text (images, for
-example) must be written to disk and opened with a separate program.</p>
-<p>If you have ever opened the Windows Command Prompt or macOS Terminal,
-you have seen a CLI. If you have already taken The Carpentries’ courses
-on the UNIX Shell or Version Control, you have used the CLI on your
-local machine somewhat extensively. The only leap to be made here is to
-open a CLI on a <em>remote</em> machine, while taking some precautions
-so that other folks on the network can’t see (or change) the commands
-you’re running or the results the remote machine sends back. We will use
-the Secure SHell protocol (or SSH) to open an encrypted network
-connection between two machines, allowing you to send &amp; receive text
-and data without having to worry about prying eyes.</p>
-<figure><img src="fig/connect-to-remote.svg" alt="Connect to cluster" class="figure mx-auto d-block"><div class="figcaption">Connect to cluster</div>
-</figure><p>Make sure you have a SSH client installed on your laptop. Refer to
-the <a href="index.html">setup</a> section for more details. SSH clients
-are usually command-line tools, where you provide the remote machine
-address as the only required argument. If your username on the remote
-system differs from what you use locally, you must provide that as well.
-If your SSH client has a graphical front-end, such as PuTTY or
-MobaXterm, you will set these arguments before clicking “connect.” From
-the terminal, you’ll write something like
-<code>ssh userName@hostname</code>, where the “@” symbol is used to
-separate the two parts of a single argument.</p>
-<p>Go ahead and open your terminal or graphical SSH client, then log in
+<hr class="half-width"><figure><img src="fig/connect-to-remote.svg" alt="Connect to cluster" class="figure mx-auto d-block"><div class="figcaption">Connect to cluster</div>
+</figure><p>Go ahead and open your terminal or graphical SSH client, then log in
 to the cluster using your username and the remote computer you can reach
 from the outside world, EPCC, The University of Edinburgh.</p>
 <div class="codewrapper sourceCode" id="cb1">
@@ -455,27 +426,36 @@ from the outside world, EPCC, The University of Edinburgh.</p>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="ex">[user@laptop</span> ~]$ ssh userid@login.archer2.ac.uk</span></code></pre>
 </div>
 <p>Remember to replace <code>userid</code> with your username or the one
-supplied by the instructors. You may be asked for your password. Watch
-out: the characters you type after the password prompt are not displayed
-on the screen. Normal output will resume once you press
-<code>Enter</code>.</p>
+supplied by the instructors.</p>
+<div id="want-to-refresh-your-memory-on-the-log-in-process" class="callout prereq">
+<div class="callout-square">
+<i class="callout-icon" data-feather="check"></i>
+</div>
+<span class="callout-header">Prerequisite</span>
+<div id="want-to-refresh-your-memory-on-the-log-in-process" class="callout-inner">
+<h3 class="callout-title">Want to refresh your memory on the log in
+process?</h3>
+<div class="callout-content">
+<p>This was covered in <a href="10-connecting-hpc.html">lesson 1</a>,
+and you can find a QuickStart guide in the <a href="index.html">set-up
+section</a>. Ask an instructor if you need help!</p>
+</div>
+</div>
+</div>
 </section><section><h2 class="section-heading" id="where-are-we">Where Are We?<a class="anchor" aria-label="anchor" href="#where-are-we"></a></h2>
 <hr class="half-width"><p>Very often, many users are tempted to think of a high-performance
 computing installation as one giant, magical machine. Sometimes, people
 will assume that the computer they’ve logged onto is the entire
 computing cluster. So what’s really happening? What computer have we
-logged on to? The name of the current computer we are logged onto can be
-checked with the <code>hostname</code> command. (You may also notice
-that the current hostname is also part of our prompt!)</p>
+logged on to?</p>
+<p>The name of the current computer we are logged onto can be checked
+with the <code>hostname</code> command. (You may also notice that the
+current hostname is also part of our prompt!)</p>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ex">userid@ln03:~</span><span class="op">&gt;</span> hostname</span></code></pre>
-</div>
-<div class="codewrapper sourceCode" id="cb3">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="ex">ln03</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ex">userid@ln03:~</span><span class="op">&gt;</span> hostname</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="ex">userid@ln03:~</span><span class="op">&gt;</span> ln03</span></code></pre>
 </div>
 <div id="whats-in-your-home-directory" class="callout challenge">
 <div class="callout-square">
@@ -509,19 +489,19 @@ you or your neighbor has used the system before, there may be
 differences. What are you working on?</p>
 <p>Use <code>pwd</code> to <strong>p</strong>rint the
 <strong>w</strong>orking <strong>d</strong>irectory path:</p>
-<div class="codewrapper sourceCode" id="cb4">
+<div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="ex">userid@ln03:~</span><span class="op">&gt;</span> pwd</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="ex">userid@ln03:~</span><span class="op">&gt;</span> pwd</span></code></pre>
 </div>
 <p>You can run <code>ls</code> to <strong>l</strong>i<strong>s</strong>t
 the directory contents, though it’s possible nothing will show up (if no
 files have been provided). To be sure, use the <code>-a</code> flag to
 show hidden files, too.</p>
-<div class="codewrapper sourceCode" id="cb5">
+<div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="ex">userid@ln03:~</span><span class="op">&gt;</span> ls <span class="at">-a</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="ex">userid@ln03:~</span><span class="op">&gt;</span> ls <span class="at">-a</span></span></code></pre>
 </div>
 <p>At a minimum, this will show the current directory as <code>.</code>,
 and the parent directory as <code>..</code>.</p>
@@ -543,14 +523,19 @@ login node should not be used for time-consuming or resource-intensive
 tasks. You should be alert to this, and check with your site’s operators
 or documentation for details of what is and isn’t allowed. In these
 lessons, we will avoid running jobs on the head node.</p>
-<div id="dedicated-transfer-nodes" class="callout">
+<div id="specialised-nodes" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
 <span class="callout-header">Callout</span>
-<div id="dedicated-transfer-nodes" class="callout-inner">
-<h3 class="callout-title">Dedicated Transfer Nodes</h3>
+<div id="specialised-nodes" class="callout-inner">
+<h3 class="callout-title">Specialised nodes</h3>
 <div class="callout-content">
+<p>Many HPC clusters have a variety of nodes optimized for particular
+workloads. Some nodes may have larger amount of memory, or specialized
+resources such as Graphical Processing Units (GPUs).</p>
+<div class="section level3">
+<h3 id="dedicated-transfer-nodes">Dedicated Transfer Nodes<a class="anchor" aria-label="anchor" href="#dedicated-transfer-nodes"></a></h3>
 <p>If you want to transfer larger amounts of data to or from the
 cluster, some systems offer dedicated nodes for data transfers only. The
 motivation for this lies in the fact that larger data transfers should
@@ -560,6 +545,7 @@ is available. As a rule of thumb, consider all transfers of a volume
 larger than 500 MB to 1 GB as large. But these numbers change, e.g.,
 depending on the network connection of yourself and of your cluster or
 other factors.</p>
+</div>
 </div>
 </div>
 </div>
@@ -574,10 +560,10 @@ scheduler to submit jobs next, but for now, it can also tell us more
 information about the worker nodes.</p>
 <p>For example, we can view all of the worker nodes by running the
 command <code>sinfo</code>.</p>
-<div class="codewrapper sourceCode" id="cb6">
+<div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="ex">userid@ln03:~</span><span class="op">&gt;</span> sinfo</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="ex">userid@ln03:~</span><span class="op">&gt;</span> sinfo</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -591,10 +577,10 @@ standard     up 1-00:00:00     37   resv nid[001038-001039,001109,001146,001148,
 </div>
 <p>There are also specialized machines used for managing disk storage,
 user authentication, and other infrastructure-related tasks. Although we
-do not typically logon to or interact with these machines directly, they
-enable a number of key features like ensuring our user account and files
-are available throughout the HPC system.</p>
-</section><section><h2 class="section-heading" id="whats-in-a-node">What's in a Node?<a class="anchor" aria-label="anchor" href="#whats-in-a-node"></a></h2>
+do not typically log on to or interact with these machines directly,
+they enable a number of key features like ensuring our user account and
+files are available throughout the HPC system.</p>
+</section><section><h2 class="section-heading" id="whats-in-a-node">What’s in a Node?<a class="anchor" aria-label="anchor" href="#whats-in-a-node"></a></h2>
 <hr class="half-width"><p>All of the nodes in an HPC system have the same components as your
 own laptop or desktop: <em>CPUs</em> (sometimes also called
 <em>processors</em> or <em>cores</em>), <em>memory</em> (or
@@ -619,11 +605,11 @@ remote fileserver or cluster of servers.</p>
 your personal computer. Note that, if you’re logged in to the remote
 computer cluster, you need to log out first. To do so, type
 <code>Ctrl+d</code> or <code>exit</code>:</p>
-<div class="codewrapper sourceCode" id="cb8">
+<div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="ex">userid@ln03:~</span><span class="op">&gt;</span> exit</span>
-<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="ex">[user@laptop</span> ~]$</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="ex">userid@ln03:~</span><span class="op">&gt;</span> exit</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="ex">[user@laptop</span> ~]$</span></code></pre>
 </div>
 </div>
 </div>
@@ -640,24 +626,24 @@ graphical system monitor, like the Windows Task Manager. More detailed
 information can sometimes be found on the command line. For example,
 some of the commands used on a Linux system are:</p>
 <p>Run system utilities</p>
+<div class="codewrapper sourceCode" id="cb8">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="ex">[user@laptop</span> ~]$ nproc <span class="at">--all</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="ex">[user@laptop</span> ~]$ free <span class="at">-m</span></span></code></pre>
+</div>
+<p>Read from <code>/proc</code></p>
 <div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="ex">[user@laptop</span> ~]$ nproc <span class="at">--all</span></span>
-<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="ex">[user@laptop</span> ~]$ free <span class="at">-m</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="ex">[user@laptop</span> ~]$ cat /proc/cpuinfo</span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="ex">[user@laptop</span> ~]$ cat /proc/meminfo</span></code></pre>
 </div>
-<p>Read from <code>/proc</code></p>
+<p>Run system monitor</p>
 <div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="ex">[user@laptop</span> ~]$ cat /proc/cpuinfo</span>
-<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a><span class="ex">[user@laptop</span> ~]$ cat /proc/meminfo</span></code></pre>
-</div>
-<p>Run system monitor</p>
-<div class="codewrapper sourceCode" id="cb11">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="ex">[user@laptop</span> ~]$ htop</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="ex">[user@laptop</span> ~]$ htop</span></code></pre>
 </div>
 </div>
 </div>
@@ -683,49 +669,40 @@ node.</p>
 </button>
 <div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb12">
+<div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="ex">[user@laptop</span> ~]$ ssh userid@login.archer2.ac.uk</span>
-<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a><span class="ex">userid@ln03:~</span><span class="op">&gt;</span> nproc <span class="at">--all</span></span>
-<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a><span class="ex">userid@ln03:~</span><span class="op">&gt;</span> free <span class="at">-m</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="ex">[user@laptop</span> ~]$ ssh userid@login.archer2.ac.uk</span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="ex">userid@ln03:~</span><span class="op">&gt;</span> nproc <span class="at">--all</span></span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a><span class="ex">userid@ln03:~</span><span class="op">&gt;</span> free <span class="at">-m</span></span></code></pre>
 </div>
 <p>You can get more information about the processors using
 <code>lscpu</code>, and a lot of detail about the memory by reading the
 file <code>/proc/meminfo</code>:</p>
-<div class="codewrapper sourceCode" id="cb13">
+<div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="ex">userid@ln03:~</span><span class="op">&gt;</span> less /proc/meminfo</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="ex">userid@ln03:~</span><span class="op">&gt;</span> less /proc/meminfo</span></code></pre>
 </div>
 <p>You can also explore the available filesystems using <code>df</code>
 to show <strong>d</strong>isk <strong>f</strong>ree space. The
 <code>-h</code> flag renders the sizes in a human-friendly format, i.e.,
 GB instead of B. The <strong>t</strong>ype flag <code>-T</code> shows
 what kind of filesystem each resource is.</p>
-<div class="codewrapper sourceCode" id="cb14">
+<div class="codewrapper sourceCode" id="cb13">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="ex">userid@ln03:~</span><span class="op">&gt;</span> df <span class="at">-Th</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="ex">userid@ln03:~</span><span class="op">&gt;</span> df <span class="at">-Th</span></span></code></pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div id="discussion1" class="callout discussion">
-<div class="callout-square">
-<i class="callout-icon" data-feather="message-circle"></i>
-</div>
-<span class="callout-header">Discussion</span>
-<div class="callout-inner">
-<div class="callout-content">
-<p>The local filesystems (ext, tmp, xfs, zfs) will depend on whether
-you’re on the same login node (or compute node, later on). Networked
-filesystems (beegfs, cifs, gpfs, nfs, pvfs) will be similar — but may
-include userid, depending on how it is <a href="https://en.wikipedia.org/wiki/Mount_(computing)" class="external-link">mounted</a>.</p>
-</div>
-</div>
-</div>
+<p>&lt;– ::: discussion The local filesystems (ext, tmp, xfs, zfs) will
+depend on whether you’re on the same login node (or compute node, later
+on). Networked filesystems (beegfs, cifs, gpfs, nfs, pvfs) will be
+similar — but may include userid, depending on how it is <a href="https://en.wikipedia.org/wiki/Mount_(computing)" class="external-link">mounted</a>. :::
+–&gt;</p>
 <div id="shared-filesystems" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
@@ -750,10 +727,10 @@ include userid, depending on how it is <a href="https://en.wikipedia.org/wiki/Mo
 <p>Finally, let’s look at the resources available on the worker nodes
 where your jobs will actually run. Try running this command to see the
 name, CPUs and memory available on one of the worker nodes:</p>
-<div class="codewrapper sourceCode" id="cb15">
+<div class="codewrapper sourceCode" id="cb14">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="ex">userid@ln03:~</span><span class="op">&gt;</span> sinfo <span class="at">-n</span> nid001053 <span class="at">-o</span> <span class="st">"%n %c %m"</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="ex">userid@ln03:~</span><span class="op">&gt;</span> sinfo <span class="at">-n</span> nid001053 <span class="at">-o</span> <span class="st">"%n %c %m"</span></span></code></pre>
 </div>
 </div>
 </div>
@@ -775,20 +752,6 @@ your research work on the different systems and nodes?</p>
 </div>
 </div>
 </div>
-<div id="differences-between-nodes" class="callout">
-<div class="callout-square">
-<i class="callout-icon" data-feather="bell"></i>
-</div>
-<span class="callout-header">Callout</span>
-<div id="differences-between-nodes" class="callout-inner">
-<h3 class="callout-title">Differences Between Nodes</h3>
-<div class="callout-content">
-<p>Many HPC clusters have a variety of nodes optimized for particular
-workloads. Some nodes may have larger amount of memory, or specialized
-resources such as Graphical Processing Units (GPUs).</p>
-</div>
-</div>
-</div>
 <p>With all of this in mind, we will now cover how to talk to the
 cluster’s scheduler, and use it to start running our scripts and
 programs!</p>
@@ -799,13 +762,16 @@ programs!</p>
 <span class="callout-header">Key Points</span>
 <div class="callout-inner">
 <div class="callout-content">
-<ul><li>“An HPC system is a set of networked machines.”</li>
-<li>“HPC systems typically provide login nodes and a set of worker
-nodes.”</li>
-<li>“The resources found on independent (worker) nodes can vary in
-volume and type (amount of RAM, processor architecture, availability of
-network mounted filesystems, etc.).”</li>
-<li>“Files saved on one node are available on all nodes.”</li>
+<ul><li>HPC systems are large, fixed-location clusters designed for
+computationally intensive tasks, unlike cloud systems which are flexible
+and distributed.</li>
+<li>HPC systems typically provide login nodes and a set of worker
+nodes.</li>
+<li>The resources found on independent (worker) nodes can vary in volume
+and type (amount of RAM, processor architecture, availability of network
+mounted filesystems, etc.).</li>
+<li>Files and environments are often shared across nodes, meaning users
+can access their data and run jobs anywhere within the cluster.</li>
 </ul></div>
 </div>
 </div>
@@ -873,7 +839,7 @@ use like [gitbash][gitbash]
   "url": "https://EPCCed.github.io/2025-10-14-archer2-intro-hpc/12-cluster.html",
   "identifier": "https://EPCCed.github.io/2025-10-14-archer2-intro-hpc/12-cluster.html",
   "dateCreated": "2025-10-14",
-  "dateModified": "2025-10-01",
+  "dateModified": "2025-10-07",
   "datePublished": "2025-10-07"
 }
 
