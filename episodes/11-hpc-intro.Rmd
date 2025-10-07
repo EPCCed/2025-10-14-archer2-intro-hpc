@@ -183,7 +183,7 @@ results.
   respawn is coordinated in real time by remote machines.
 * **Asking a virtual assistant for help:** saying “Hey Siri” or “OK Google” sends your voice to 
   servers that run speech recognition and natural language models. 
-**Using cloud storage:** saving a document to somewhere in the cloud means it’s being encrypted, 
+* *Using cloud storage:** saving a document to somewhere in the cloud means it’s being encrypted, 
   stored, and backed up across multiple servers — possibly even across continents — so it’s safe 
   even if your laptop isn’t.
 
