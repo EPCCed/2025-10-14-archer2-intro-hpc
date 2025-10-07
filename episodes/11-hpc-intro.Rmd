@@ -10,12 +10,13 @@ config <- yaml.load_file("lesson_config.yaml")
 ```
 
 ::: questions
+ - What is the difference between a laptop, a server and a remote HPC system? 
  - Why would I be interested in High Performance Computing (HPC)?
- - What can I expect to learn from this course?
+ - Have I already been relying on servers without realizing it?
 :::
 
 ::: objectives
- - Be able to describe what an HPC system is
+ - Recognize examples of remote servers and large-scale computing in everyday life.  
  - Identify how an HPC system could benefit you.
 :::
 
@@ -198,10 +199,9 @@ collection of servers working together.
 :::
 
 ::: keypoints
- - "High Performance Computing (HPC) typically involves connecting to very large
-  computing systems elsewhere in the world."
- - "These other systems can be used to do work that would either be impossible
-  or much slower on smaller systems."
- - "The standard method of interacting with such systems is via a command line
-  interface (CLI) or Terminal. This can also be called the Bash shell."
+- High Performance Computing (HPC) typically involves connecting to very large 
+computing systems located elsewhere in the world.  
+- These systems can perform tasks that would be impossible or much slower on smaller, 
+personal computers.  
+- We already rely on remote servers every day.  
 :::
