@@ -16,16 +16,30 @@ exercises: 15
   - Connect to a remote HPC system.
 ::::::
 
-# Opening a Terminal
 
-Connecting to an HPC system is most often done through a tool known as "SSH"
-(Secure SHell) and usually SSH is run through a terminal. So, to begin using an
-HPC system we need to begin by opening a terminal. 
+The first step in using a cluster is to establish a connection from our laptop
+to the cluster. When we are sitting at a computer (or standing, or holding it
+in our hands or on our wrists), we have come to expect a visual display with
+icons, widgets, and perhaps some windows or applications: a graphical user
+interface, or GUI. 
 
-Different operating systems have different terminals, none of which are exactly the same in terms of their
-features and abilities while working on the operating system. However, when connected to
-the remote system the experience between terminals will be identical as each
-will faithfully present the same experience of using that system.
+Since computer clusters are remote resources that we connect
+to over often slow or laggy interfaces (WiFi and VPNs especially), it is more
+practical to use a command-line interface, or CLI, in which commands and
+results are transmitted via text, only. Anything other than text (images, for
+example) are written to disk and opened with a separate program.
+
+If you have ever opened a terminal, i.e. the Windows Command Prompt or macOS Terminal, you have
+seen a CLI. If you have already taken The Carpentries' courses on the UNIX
+Shell or Version Control, you have used the CLI on your local machine somewhat
+extensively. 
+
+## Opening a Terminal
+
+Different operating systems have different terminals, none of which are exactly 
+the same in terms of their features and abilities while working on the operating 
+system. However, when connected to the remote system the experience between terminals 
+will be identical as each will faithfully present the same experience of using that system.
 
 Here is the process for opening a terminal in each operating system.
 
@@ -94,27 +108,55 @@ The Windows Subsystem for Linux also allows you to connect to a remote computer
 via SSH. Instructions on installing it can be found 
 [here][wsl].
 
-</br>
+::: discussion
+## How do I open a terminal?
 
-## Creating an SSH key
+Everyone should now be able to do this! We have completed the first step to using an
+HPC system. 
+:::
 
-SSH keys are an alternative method for authentication to obtain access to 
-remote computing systems. They can also be used for authentication when
-transferring files or for accessing version control systems. In this section
-you will create a pair of SSH keys, a private key which you keep on your
-own computer and a public key which is placed on the remote HPC system
-that you will log in to.
+
+## Secure SHell protocol (SSH)
+
+We can think of connecting to the remote HPC system as opening a terminal on a *remote*
+machine. However, we also need to take some precautions so that other folks on the network can't
+see (or change) the commands you're running or the results the remote machine
+sends back. 
+
+![Connect to cluster](fig/connect-to-remote.svg){alt="Connecting your laptop to a remote cluster"}
+
+We will use the Secure SHell protocol (or SSH) to open an encrypted
+network connection between two machines (your laptop/computer and the remote HPC system), 
+allowing you to send & receive text and data without having to worry about prying eyes.
+
+In this section, we will cover creating a pair of SSH keys: a private key which you keep on your
+own computer and a public key which is placed on the remote HPC system that you will log in to.
+
+These keys initiate a secure handshake between remote parties. The private vs public nomenclature 
+can be confusing as they are both called keys. It is more helpful to think of the public 
+key as a "lock" and the private key as the "key". You give the public 'lock' to 
+remote parties to encrypt or 'lock' data. This data is then opened with the 'private' 
+key which you hold in a secure place.
+
+### Creating an SSH key
+
+Make sure you have a SSH client installed on your laptop. SSH clients are
+usually command-line tools, where you provide the remote machine address as the
+only required argument. If your SSH client has a graphical front-end, such as 
+PuTTY or MobaXterm, you will set these arguments before clicking "connect." From 
+the terminal, you'll write something like `ssh userName@hostname`, where the "@" symbol is 
+used to separate the two parts of the argument.
 
 ### Linux, Mac and Windows Subsystem for Linux
 
-Once you have opened a terminal check for existing SSH keys and filenames
-since existing SSH keys are overwritten,
+Once you have opened a terminal check for existing SSH keys and filenames. 
+Existing SSH keys can be overwritten, so it is good to check this: 
 
 ```bash
 $ ls ~/.ssh/
 ```
 
-then generate a new public-private key pair,
+We can then then generate a new public-private key pair,
 
 ```bash
 $ ssh-keygen -o -a 100 -t rsa -b 4096 -f ~/.ssh/id_ARCHER2_rsa
@@ -146,6 +188,7 @@ the public key (`~/.ssh/key_ARCHER2_rsa.pub`). If a key is
 requested by the system administrators, the *public* key is the one
 to provide.
 
+
 :::::::::::: callout
 
 ## PRIVATE KEYS ARE PRIVATE
@@ -160,7 +203,7 @@ to provide.
 
 ::::::::::::
 
-:::::::::::: callout
+:::::::::::: challenge
 
 #### Further information
  
@@ -172,10 +215,16 @@ flags set here, an excellent resource is
 
 ### Windows
 
-On Windows you can use
+For other options when using Windows, see: 
 
  - puttygen, see the Putty [documentation](https://www.chiark.greenend.org.uk/~sgtatham/putty/docs.html)
  - MobaKeyGen, see the MobaXterm [documentation](https://mobaxterm.mobatek.net/documentation.html) 
+
+
+
+
+
+
 
 ## Logging onto the system
 
