@@ -998,7 +998,7 @@ log <em>v</em>) time, where <em>v</em> (vertices) represents the number
 of intersections in your map. Instead of doing this yourself, you use a
 website, which in turn runs on a server, that is almost definitely not
 in the same room as you are.</p>
-<figure style="max-width: 30%; text-align: center"><img src="fig/servers-openclipartorg-ericlemerdy.svg" alt="A rack half full with servers" class="figure figure"><div class="figcaption">
+<figure style="max-width: 30%; margin: 0 auto; text-align: center"><img src="fig/servers-openclipartorg-ericlemerdy.svg" alt="A rack half full with servers" class="figure figure"><div class="figcaption">
 A rack half full with servers
 </div>
 </figure><p>Note here, that a server is mostly a noisy computer mounted into a
@@ -1061,18 +1061,22 @@ results.</p>
 <div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <ul>
-<li>Checking email: your computer (possibly in your pocket) contacts a
-remote machine, authenticates, and downloads a list of new messages; it
-also uploads changes to message status, such as whether you read, marked
-as junk, or deleted the message. Since yours is not the only account,
-the mail server is probably one of many in a data center.</li>
-<li>Searching for a phrase online involves comparing your search term
-against a massive database of all known sites, looking for matches. This
-“query” operation can be straightforward, but building that database is
-a <a href="https://en.wikipedia.org/wiki/MapReduce" class="external-link">monumental task</a>!
+<li>
+<strong>Checking email:</strong> your computer (possibly in your
+pocket) contacts a remote machine, authenticates, and downloads a list
+of new messages; it also uploads changes to message status, such as
+whether you read, marked as junk, or deleted the message. Since yours is
+not the only account, the mail server is probably one of many in a data
+center.</li>
+<li>
+<strong>Searching for a phrase</strong> online involves comparing
+your search term against a massive database of all known sites, looking
+for matches. This “query” operation can be straightforward, but building
+that database is a <a href="https://en.wikipedia.org/wiki/MapReduce" class="external-link">monumental task</a>!
 Servers are involved at every step.</li>
-<li>Searching for directions on a mapping website involves connecting
-your
+<li>
+<strong>Searching for directions on a mapping website</strong>
+involves connecting your
 <ol style="list-style-type: upper-alpha">
 <li>starting and (B) end points by <a href="https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm" class="external-link">traversing a
 graph</a> in search of the “shortest” path by distance, time, expense,
@@ -1081,6 +1085,25 @@ simple, but calculating all the possible routes between A and B is
 expensive.</li>
 </ol>
 </li>
+<li>
+<strong>Streaming a movie or music:</strong> when you press play on
+a streaming service, your computer requests data from a network of
+servers spread around the world. These servers ensure your video starts
+fast and doesn’t pause mid-climax.</li>
+<li>
+<strong>Playing an online game:</strong> whether you’re in a massive
+multiplayer battle or just racing a friend, a game server keeps
+everyone’s view of the world synchronized. Every jump, shot, and respawn
+is coordinated in real time by remote machines.</li>
+<li>
+<strong>Asking a virtual assistant for help:</strong> saying “Hey
+Siri” or “OK Google” sends your voice to servers that run speech
+recognition and natural language models.</li>
+<li>
+<strong>Using cloud storage:</strong> saving a document to somewhere
+in the cloud means it’s being encrypted, stored, and backed up across
+multiple servers — possibly even across continents — so it’s safe even
+if your laptop isn’t.</li>
 </ul>
 <p>Checking email could be serial: your machine connects to one server
 and exchanges data. Searching by querying the database for your search
@@ -1276,7 +1299,7 @@ neighbors.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> It’s a Beautiful Day in the Neighborhood </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>The deepest layer should differ: <code>userid</code> is uniquely
 yours. Are there differences in the path at higher levels?</p>
@@ -1413,7 +1436,7 @@ computer cluster, you need to log out first. To do so, type
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>There are several ways to do this. Most operating systems have a
 graphical system monitor, like the Windows Task Manager. More detailed
@@ -1461,7 +1484,7 @@ node.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2649,7 +2672,7 @@ node).</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb15">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3430,7 +3453,7 @@ worked or not.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Creating a file called <code>submit-pi-mpi.slurm</code>:</p>
 <div class="codewrapper sourceCode" id="cb2">
@@ -3618,7 +3641,7 @@ figure for the Calculation core seconds. Is this what you observe?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>The table below shows example timings for runs on ARCHER2</p>
 <table class="table">
@@ -3832,7 +3855,7 @@ choose this option?</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <p>The table below gives example results for ARCHER2 based on the
 example runtimes given in the solution above.</p>
