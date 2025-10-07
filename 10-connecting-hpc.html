@@ -206,12 +206,23 @@
 <div class="accordion accordion-flush" id="accordionFlushcurrent">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-headingcurrent">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapsecurrent" aria-expanded="true" aria-controls="flush-collapsecurrent">
         <span class="visually-hidden">Current Chapter</span>
         <span class="current-chapter">
         1. Connecting to the remote HPC system
         </span>
-      
+      </button>
     </div><!--/div.accordion-header-->
+
+    <div id="flush-collapsecurrent" class="accordion-collapse collapse show" aria-labelledby="flush-headingcurrent" data-bs-parent="#accordionFlushcurrent">
+      <div class="accordion-body">
+        <ul><li><a href="#opening-a-terminal">Opening a Terminal</a></li>
+<li><a href="#secure-shell-protocol-ssh">Secure SHell protocol (SSH)</a></li>
+<li><a href="#logging-onto-the-system">Logging onto the system</a></li>
+<li><a href="#telling-the-difference-between-the-local-terminal-and-the-remote-terminal">Telling the Difference between the Local Terminal and the Remote
+Terminal</a></li>
+        </ul></div><!--/div.accordion-body-->
+    </div><!--/div.accordion-collapse-->
 
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
@@ -337,7 +348,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Connecting to the remote HPC system</h1>
-        <p>Last updated on 2025-10-06 |
+        <p>Last updated on 2025-10-07 |
 
         <a href="https://github.com/EPCCed/2025-10-14-archer2-intro-hpc/edit/main/episodes/10-connecting-hpc.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -372,12 +383,23 @@
 </div>
 </div>
 </div>
-<div class="section level1">
-<h1 id="opening-a-terminal">Opening a Terminal<a class="anchor" aria-label="anchor" href="#opening-a-terminal"></a></h1>
-<p>Connecting to an HPC system is most often done through a tool known
-as “SSH” (Secure SHell) and usually SSH is run through a terminal. So,
-to begin using an HPC system we need to begin by opening a terminal.</p>
-<p>Different operating systems have different terminals, none of which
+<p>The first step in using a cluster is to establish a connection from
+our laptop to the cluster. When we are sitting at a computer (or
+standing, or holding it in our hands or on our wrists), we have come to
+expect a visual display with icons, widgets, and perhaps some windows or
+applications: a graphical user interface, or GUI.</p>
+<p>Since computer clusters are remote resources that we connect to over
+often slow or laggy interfaces (WiFi and VPNs especially), it is more
+practical to use a command-line interface, or CLI, in which commands and
+results are transmitted via text, only. Anything other than text
+(images, for example) are written to disk and opened with a separate
+program.</p>
+<p>If you have ever opened a terminal, i.e. the Windows Command Prompt
+or macOS Terminal, you have seen a CLI. If you have already taken The
+Carpentries’ courses on the UNIX Shell or Version Control, you have used
+the CLI on your local machine somewhat extensively.</p>
+<section><h2 class="section-heading" id="opening-a-terminal">Opening a Terminal<a class="anchor" aria-label="anchor" href="#opening-a-terminal"></a></h2>
+<hr class="half-width"><p>Different operating systems have different terminals, none of which
 are exactly the same in terms of their features and abilities while
 working on the operating system. However, when connected to the remote
 system the experience between terminals will be identical as each will
@@ -446,27 +468,62 @@ free from <a href="https://gitforwindows.org/" class="external-link">here</a>.</
 <h4 id="windows-subsystem-for-linux">(3) Windows Subsystem for Linux<a class="anchor" aria-label="anchor" href="#windows-subsystem-for-linux"></a></h4>
 <p>The Windows Subsystem for Linux also allows you to connect to a
 remote computer via SSH. Instructions on installing it can be found <a href="https://docs.microsoft.com/en-us/windows/wsl/install-win10" class="external-link">here</a>.</p>
-<p></p>
+<div id="how-do-i-open-a-terminal" class="callout discussion">
+<div class="callout-square">
+<i class="callout-icon" data-feather="message-circle"></i>
+</div>
+<span class="callout-header">Discussion</span>
+<div id="how-do-i-open-a-terminal" class="callout-inner">
+<h3 class="callout-title">How do I open a terminal?</h3>
+<div class="callout-content">
+<p>Everyone should now be able to do this! We have completed the first
+step to using an HPC system.</p>
 </div>
 </div>
-<div class="section level2">
-<h2 id="creating-an-ssh-key">Creating an SSH key<a class="anchor" aria-label="anchor" href="#creating-an-ssh-key"></a></h2>
-<p>SSH keys are an alternative method for authentication to obtain
-access to remote computing systems. They can also be used for
-authentication when transferring files or for accessing version control
-systems. In this section you will create a pair of SSH keys, a private
+</div>
+</div>
+</div>
+</section><section><h2 class="section-heading" id="secure-shell-protocol-ssh">Secure SHell protocol (SSH)<a class="anchor" aria-label="anchor" href="#secure-shell-protocol-ssh"></a></h2>
+<hr class="half-width"><p>We can think of connecting to the remote HPC system as opening a
+terminal on a <em>remote</em> machine. However, we also need to take
+some precautions so that other folks on the network can’t see (or
+change) the commands you’re running or the results the remote machine
+sends back.</p>
+<figure><img src="fig/connect-to-remote.svg" alt="Connecting your laptop to a remote cluster" class="figure mx-auto d-block"><div class="figcaption">Connect to cluster</div>
+</figure><p>We will use the Secure SHell protocol (or SSH) to open an encrypted
+network connection between two machines (your laptop/computer and the
+remote HPC system), allowing you to send &amp; receive text and data
+without having to worry about prying eyes.</p>
+<p>In this section, we will cover creating a pair of SSH keys: a private
 key which you keep on your own computer and a public key which is placed
 on the remote HPC system that you will log in to.</p>
+<p>These keys initiate a secure handshake between remote parties. The
+private vs public nomenclature can be confusing as they are both called
+keys. It is more helpful to think of the public key as a “lock” and the
+private key as the “key”. You give the public ‘lock’ to remote parties
+to encrypt or ‘lock’ data. This data is then opened with the ‘private’
+key which you hold in a secure place.</p>
+<div class="section level3">
+<h3 id="creating-an-ssh-key">Creating an SSH key<a class="anchor" aria-label="anchor" href="#creating-an-ssh-key"></a></h3>
+<p>Make sure you have a SSH client installed on your laptop. SSH clients
+are usually command-line tools, where you provide the remote machine
+address as the only required argument. If your SSH client has a
+graphical front-end, such as PuTTY or MobaXterm, you will set these
+arguments before clicking “connect.” From the terminal, you’ll write
+something like <code>ssh userName@hostname</code>, where the “@” symbol
+is used to separate the two parts of the argument.</p>
+</div>
 <div class="section level3">
 <h3 id="linux-mac-and-windows-subsystem-for-linux">Linux, Mac and Windows Subsystem for Linux<a class="anchor" aria-label="anchor" href="#linux-mac-and-windows-subsystem-for-linux"></a></h3>
 <p>Once you have opened a terminal check for existing SSH keys and
-filenames since existing SSH keys are overwritten,</p>
+filenames. Existing SSH keys can be overwritten, so it is good to check
+this:</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="ex">$</span> ls ~/.ssh/</span></code></pre>
 </div>
-<p>then generate a new public-private key pair,</p>
+<p>We can then then generate a new public-private key pair,</p>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -517,11 +574,11 @@ does.</p>
 </div>
 </div>
 </div>
-<div id="further-information" class="callout">
+<div id="further-information" class="callout discussion">
 <div class="callout-square">
-<i class="callout-icon" data-feather="bell"></i>
+<i class="callout-icon" data-feather="message-circle"></i>
 </div>
-<span class="callout-header">Callout</span>
+<span class="callout-header">Discussion</span>
 <div id="further-information" class="callout-inner">
 <h3 class="callout-title">Further information</h3>
 <div class="callout-content">
@@ -534,16 +591,14 @@ Secure Shell</a>.</p>
 </div>
 <div class="section level3">
 <h3 id="windows-1">Windows<a class="anchor" aria-label="anchor" href="#windows-1"></a></h3>
-<p>On Windows you can use</p>
+<p>For other options when using Windows, see:</p>
 <ul><li>puttygen, see the Putty <a href="https://www.chiark.greenend.org.uk/~sgtatham/putty/docs.html" class="external-link">documentation</a>
 </li>
 <li>MobaKeyGen, see the MobaXterm <a href="https://mobaxterm.mobatek.net/documentation.html" class="external-link">documentation</a>
 </li>
 </ul></div>
-</div>
-<div class="section level2">
-<h2 id="logging-onto-the-system">Logging onto the system<a class="anchor" aria-label="anchor" href="#logging-onto-the-system"></a></h2>
-<p>With all of this in mind, let’s connect to a remote HPC system. In
+</section><section><h2 class="section-heading" id="logging-onto-the-system">Logging onto the system<a class="anchor" aria-label="anchor" href="#logging-onto-the-system"></a></h2>
+<hr class="half-width"><p>With all of this in mind, let’s connect to a remote HPC system. In
 this workshop, we will connect to ARCHER2 — an HPC system located at the
 University of Edinburgh. Although it’s unlikely that every system will
 be exactly like ARCHER2, it’s a very good example of what you can expect
@@ -611,11 +666,9 @@ further.)</p>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="ex">userid@ln03:~</span><span class="op">&gt;</span></span></code></pre>
 </div>
-</div>
-<div class="section level2">
-<h2 id="telling-the-difference-between-the-local-terminal-and-the-remote-terminal">Telling the Difference between the Local Terminal and the Remote
+</section><section><h2 class="section-heading" id="telling-the-difference-between-the-local-terminal-and-the-remote-terminal">Telling the Difference between the Local Terminal and the Remote
 Terminal<a class="anchor" aria-label="anchor" href="#telling-the-difference-between-the-local-terminal-and-the-remote-terminal"></a></h2>
-<p>You may have noticed that the prompt changed when you logged into the
+<hr class="half-width"><p>You may have noticed that the prompt changed when you logged into the
 remote system using the terminal (if you logged in using PuTTY this will
 not apply because it does not offer a local terminal). This change is
 important because it makes it clear on which system the commands you
@@ -695,12 +748,7 @@ any links that you are not going to use.
 
 use like [gitbash][gitbash]
  -->
-</div>
-</div>
-
-
-
-      </div> <!-- / div.lesson-content -->
+</section></div> <!-- / div.lesson-content -->
     </main><!-- / main#main-content.main-content --><nav class="bottom-pagination mx-md-4" aria-label="Previous and Next Chapter"><div class="d-block d-sm-block d-md-none">
         <a class="chapter-link" href="index.html"><i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>Previous</a>
         <a class="chapter-link float-end" href="11-hpc-intro.html">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
@@ -758,7 +806,7 @@ use like [gitbash][gitbash]
   "url": "https://EPCCed.github.io/2025-10-14-archer2-intro-hpc/10-connecting-hpc.html",
   "identifier": "https://EPCCed.github.io/2025-10-14-archer2-intro-hpc/10-connecting-hpc.html",
   "dateCreated": "2025-10-14",
-  "dateModified": "2025-10-06",
+  "dateModified": "2025-10-07",
   "datePublished": "2025-10-07"
 }
 
