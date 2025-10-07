@@ -7,3 +7,6 @@ HPC
 
 CPU
 : Central Processing Unit
+
+CLI
+: Command Line Interface 
