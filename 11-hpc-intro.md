@@ -98,7 +98,7 @@ intersections in your map. Instead of doing this yourself, you use a website,
 which in turn runs on a server, that is almost definitely not in the same room
 as you are.
 
-<figure style="max-width: 30%; text-align: center">
+<figure style="max-width: 30%; margin: 0 auto; text-align: center">
   <img src="fig/servers-openclipartorg-ericlemerdy.svg" alt="A rack half full with servers" class="figure">
   <div class="figcaption">A rack half full with servers</div>
 </figure>
@@ -152,22 +152,33 @@ results.
 
 ## Some Ideas
 
-* Checking email: your computer (possibly in your pocket) contacts a remote
+* **Checking email:** your computer (possibly in your pocket) contacts a remote
   machine, authenticates, and downloads a list of new messages; it also
   uploads changes to message status, such as whether you read, marked as
   junk, or deleted the message. Since yours is not the only account, the
   mail server is probably one of many in a data center.
-* Searching for a phrase online involves comparing your search term against
+* **Searching for a phrase** online involves comparing your search term against
   a massive database of all known sites, looking for matches. This "query"
   operation can be straightforward, but building that database is a
   [monumental task](https://en.wikipedia.org/wiki/MapReduce)! Servers are
   involved at every step.
-* Searching for directions on a mapping website involves connecting your
+* **Searching for directions on a mapping website** involves connecting your
   (A) starting and (B) end points by [traversing a graph](
   https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm) in search of
   the "shortest" path by distance, time, expense, or another metric.
   Converting a map into the right form is relatively simple, but
   calculating all the possible routes between A and B is expensive.
+* **Streaming a movie or music:** when you press play on a streaming service, your 
+  computer requests data from a network of servers spread around the world. These servers
+  ensure your video starts fast and doesn’t pause mid-climax.
+* **Playing an online game:** whether you’re in a massive multiplayer battle or just racing a 
+  friend, a game server keeps everyone’s view of the world synchronized. Every jump, shot, and 
+  respawn is coordinated in real time by remote machines.
+* **Asking a virtual assistant for help:** saying “Hey Siri” or “OK Google” sends your voice to 
+  servers that run speech recognition and natural language models. 
+* **Using cloud storage:** saving a document to somewhere in the cloud means it’s being encrypted, 
+  stored, and backed up across multiple servers — possibly even across continents — so it’s safe 
+  even if your laptop isn’t.
 
 Checking email could be serial: your machine connects to one server and
 exchanges data. Searching by querying the database for your search term (or
