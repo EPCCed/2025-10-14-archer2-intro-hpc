@@ -13,3 +13,6 @@ TOTP
 
 CPU
 : Central Processing Unit
+
+MPI
+: Message Passing Interface 

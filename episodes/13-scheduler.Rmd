@@ -11,17 +11,15 @@ snippets <- paste('files/snippets/', config$snippets, sep='')
 ```
 
 ::: questions
- - What is a scheduler and why are they used?
  - How do I launch a program to run on any one node in the cluster?
- - How do I capture the output of a program that is run on a node in the
-   cluster?
+ - How does an HPC system decide which jobs run, when, and where? 
+ - What is a scheduler and how do I use it? 
 :::
 
 ::: objectives
- - Run a simple Hello World style program on the cluster.
- - Submit a simple Hello World style script to the cluster.
- - Use the batch system command line tools to monitor the execution of your
-   job.
+ - Run a simple program on the cluster.
+ - Submit a simple script to the cluster.
+ - Monitor the execution of your job.
  - Inspect the output and error files of your jobs.
 :::
 
@@ -33,10 +31,9 @@ resources it needs? This job is handled by a special piece of software called
 the scheduler. On an HPC system, the scheduler manages which jobs run where and
 when.
 
-The following illustration compares these tasks of a job scheduler to a waiter
-in a restaurant. If you can relate to an instance where you had to wait for a
-while in a queue to get in to a popular restaurant, then you may now understand
-why sometimes your job do not start instantly as in your laptop.
+The following illustration compares the tasks of a job scheduler to a waiter
+in a restaurant. Have you had to wait for a while in a queue to get in to a popular restaurant? 
+Scheduling a job can be thought of in the same way! 
 
 ![The waiter scheduler](fig/restaurant_queue_manager.svg){caption="" alt="Compare a job scheduler to a waiter in a restaurant"}
 
@@ -68,6 +65,7 @@ is a pretty good, basic choice.
 
 echo -n "This script is running on "
 hostname
+echo "This script has finished successfully."
 ```
 
 ::: challenge
@@ -82,7 +80,8 @@ Run the script. Does it execute on the cluster or just our login node?
 ::: solution
 
 ```output
-This script is running on `r config$remote$host`
+This script is running on `r config$remote$host` 
+This script has finished successfully.
 ```
 This job runs on the login node.
 :::
@@ -90,8 +89,9 @@ This job runs on the login node.
 
 If you completed the previous challenge successfully, you probably realise that
 there is a distinction between running the job through the scheduler and just
-"running it". To submit this job to the scheduler, we use the
-``r config$sched$submit$name`` command.
+"running it". 
+
+We need to submit the job to the scheduler, so we use the ``r config$sched$submit$name`` command.
 
 ```bash
 `r config$remote$prompt` `r config$sched$submit$name` `r config$sched$submit$options` example-job.sh
@@ -99,7 +99,7 @@ there is a distinction between running the job through the scheduler and just
 
 ```output
 sbatch: Warning: Your job has no time specification (--time=) and the default time is short. You can cancel your job with 'scancel <JOB_ID>' if you wish to resubmit.
-sbatch: Warning: It appears your working directory may be on the home filesystem. It is /home2`r config$remote$homedir`. This is not available from the compute nodes - please check that this is what you intended. You can cancel your job with 'scancel <JOBID>' if you wish to resubmit.
+sbatch: Warning: It appears your working directory may be on the home filesystem. It is `r config$remote$homedir`. This is not available from the compute nodes - please check that this is what you intended. You can cancel your job with 'scancel <JOBID>' if you wish to resubmit.
 Submitted batch job 286949
 ```
 
@@ -118,14 +118,19 @@ compute nodes. On ARCHER2, this is the `/work` file system. The path is similar 
 ```
 
 That's better! And that's all we need to do to submit a job. Our work is done --- now the
-scheduler takes over and tries to run the job for us. While the job is waiting
+scheduler takes over and tries to schedule the job to run on the compute nodes. While the job is waiting
 to run, it goes into a list of jobs called the *queue*. To check on our job's
-status, we check the queue using the command
+status, we can check the queue using the command
 ``r config$sched$status` `r config$sched$flag$user``.
 
 ```bash
 `r config$remote$prompt_work` `r config$sched$status` `r config$sched$flag$user`
 ```
+Or, we can use: 
+```bash
+`r config$remote$prompt_work` `r config$sched$status` --me 
+```
+
 
 ```{r, child=paste(snippets, '/scheduler/basic-job-status.Rmd', sep=''), eval=TRUE}
 ```
@@ -134,13 +139,15 @@ The best way to check our job's status is with ``r config$sched$status``. Of
 course, running ``r config$sched$status`` repeatedly to check on things can be
 a little tiresome. To see a real-time view of our jobs, we can use the `watch`
 command. `watch` reruns a given command at 2-second intervals. This is too
-frequent, and will likely upset your system administrator. You can change the
-interval to a more reasonable value, for example 15 seconds, with the `-n 15`
-parameter. Let's try using it to monitor another job.
+frequent for a large machine like ARCHER2 and **will upset your system administrator.** 
+You can change the interval to a more reasonable value with the `-n seconds`
+parameter. ARCHER2 system administration recommmend this to be set for 60 seconfs or longer. 
+
+Let's try using it to monitor another job.
 
 ```bash
 `r config$remote$prompt_work` `r config$sched$submit$name` `r config$sched$submit$options` example-job.sh
-`r config$remote$prompt_work` watch -n 15 `r config$sched$status` `r config$sched$flag$user`
+`r config$remote$prompt_work` watch -n 60 `r config$sched$status` `r config$sched$flag$user`
 ```
 
 You should see an auto-updating display of your job's status. When it finishes,
@@ -183,7 +190,7 @@ name of a job. Add an option to the script:
 
 ```output
 `r config$remote$bash_shebang`
-`r config$sched$comment` `r config$sched$flag$name` new_name
+`r config$sched$comment` `r config$sched$flag$name`=new_name
 
 echo -n "This script is running on "
 hostname
@@ -209,7 +216,8 @@ for our jobs? One thing that is absolutely critical when working on an HPC
 system is specifying the resources required to run a job. This allows the
 scheduler to find the right time and place to schedule our job. If you do not
 specify requirements (such as the amount of time you need), you will likely be
-stuck with your site's default resources, which is probably not what you want.
+stuck with your site's default resources or face an error when submitting, 
+which is probably not what you want.
 
 The following are several key resource requests:
 
@@ -218,9 +226,8 @@ The following are several key resource requests:
 
 Note that just *requesting* these resources does not make your job run faster,
 nor does it necessarily mean that you will consume all of these resources. It
-only means that these are made available to you. Your job may end up using less
-memory, or less time, or fewer tasks or nodes, than you have requested, and it
-will still run.
+only means that these are made available to you. Your job may end up using less time 
+or fewer tasks or nodes, than you have requested, and it will still run.
 
 It's best if your requests accurately reflect your job's requirements. We'll
 talk more about how to make sure that you're using resources effectively in a
@@ -267,11 +274,11 @@ Why are the `r config$sched$name` runtime and `sleep` time not identical?
 :::
 
 
-```{r, child=paste(snippets, '/scheduler/print-sched-variables.Rmd', sep=''), eval=TRUE}
-```
+#```{r, child=paste(snippets, '/scheduler/print-sched-variables.Rmd', sep=''), eval=TRUE}
+#```
 
 Resource requests are typically binding. If you exceed them, your job will be
-killed. Let's use walltime as an example. We will request 30 seconds of
+killed. Let's use the walltime as an example. We will request 30 seconds of
 walltime, and attempt to run a job for two minutes.
 
 ```bash
@@ -296,7 +303,7 @@ log file.
 
 ```bash
 `r config$remote$prompt_work` `r config$sched$submit$name` example-job.sh
-`r config$remote$prompt_work` watch -n 15 `r config$sched$status` `r config$sched$flag$user`
+`r config$remote$prompt_work` `r config$sched$status` `r config$sched$flag$user`
 ```
 
 ```{r, child=paste(snippets, '/scheduler/runtime-exceeded-job.Rmd', sep=''), eval=TRUE}
@@ -323,6 +330,7 @@ time it actually used. However, you should always try and specify a
 wallclock limit that is close to (but greater than!) the expected
 runtime as this will enable your job to be scheduled more
 quickly.
+
 If you say your job will run for an hour, the scheduler has
 to wait until a full hour becomes free on the machine. If it only ever
 runs for 5 minutes, you could have set a limit of 10 minutes and it
@@ -349,7 +357,6 @@ job info indicates that the job has been successfully cancelled.
 
 ```bash
 `r config$remote$prompt_work` `r config$sched$del` 38759
-# It might take a minute for the job to disappear from the queue...
 `r config$remote$prompt_work` `r config$sched$status` `r config$sched$flag$user`
 ```
 
@@ -364,43 +371,73 @@ job info indicates that the job has been successfully cancelled.
 Up to this point, we've focused on running jobs in batch mode.
 `r config$sched$name` also provides the ability to start an interactive session.
 
-There are very frequently tasks that need to be done interactively. Creating an
-entire job script might be overkill, but the amount of resources required is
-too much for a login node to handle. A good example of this might be building a
-genome index for alignment with a tool like
-[HISAT2](https://ccb.jhu.edu/software/hisat2/index.shtml). Fortunately, we can
-run these types of tasks as a one-off with ``r config$sched$interactive``.
+There are very frequently tasks that need to be done interactively. For example, when we want to debug something 
+that went wrong with a previous job. The amount of resources needed is too much for a login node, but writing 
+an entire job script is overkill. 
 
-```{r, child=paste(snippets, '/scheduler/using-nodes-interactively.Rmd', sep=''), eval=TRUE}
+In this instance, we can run these types of tasks as a one-off with ``r config$sched$interactive``.
+
+``r config$sched$interactive`` runs a single command in the queue system and then exits.
+Let's demonstrate this by running the `hostname` command with ``r config$sched$interactive``. (We can cancel an 
+``r config$sched$interactive`` job with `Ctrl-c`.)
+
+```bash
+`r config$host_prompt_work` srun `r config$sched$submit$options` --time=00:01:00 hostname
 ```
+
+```output
+nid001976
+```
+
+`srun` accepts all of the same options as `sbatch`. However, instead of specifying these in a
+script, these options are specified on the command-line when starting a job.
+
+Typically, the resulting shell environment will be the same as that for
+`sbatch`.
+
+#```bash
+#`r config$host_prompt_work` srun `r config$sched$submit$options` --pty /bin/bash
+#```
+
+#You should be presented with a bash prompt. Note that the prompt may change
+#to reflect your new location, in this case the compute node we are logged on.
+#You can also verify this with `hostname`.
+
+#When you are done with the interactive job, type `exit` to quit your session.
+
+
 
 ## Running parallel jobs using MPI
 
-As we have already seen, the power of HPC systems comes from *parallelism*, i.e. having lots of
-processors/disks etc. connected together rather than having more powerful components than your
-laptop or workstation. Often, when running research programs on HPC you will need to run a
-program that has been built to use the MPI (Message Passing Interface) parallel library. The MPI
-library allows programs to exploit multiple processing cores in parallel to allow researchers
-to model or simulate faster on larger problem sizes. The details of how MPI work are not important
-for this course or even to use programs that have been built using MPI; however, MPI programs 
-typically have to be launched in job submission scripts in a different way to serial programs and
-users of parallel programs on HPC systems need to know how to do this. Specifically, launching
+The power of HPC systems comes from *parallelism*. That is, connecting many processors, disks, and 
+other components to work together, rather than relying on having more powerful components than your
+laptop or workstation. 
+
+Often, when running research programs on HPC you will need to run a program that has been built 
+to use the MPI (Message Passing Interface) parallel library for parallel computing. MPI enables programs to 
+take advantage of multiple processing cores in parallel, allowing researchers to run large simulations or 
+models more quickly. 
+
+The details of how MPI works, or even using MPI-based programs, is not important for this course. 
+However, it's important to know that MPI programs are launched differently from serial programs, 
+and you'll need to submit them correctly in your job submission scrips. Specifically, launching
 parallel MPI programs typically requires four things:
 
   - A special parallel launch program such as `mpirun`, `mpiexec`, `srun` or `aprun`.
   - A specification of how many processes to use in parallel. For example, our parallel program
     may use 256 processes in parallel.
   - A specification of how many parallel processes to use per compute node. For example, if our
-    compute nodes each have 32 cores we often want to specify 32 parallel processes per node.
+    compute nodes each have 32 cores we can specify 32 parallel processes per node.
   - The command and arguments for our parallel program.
 
 ```{r, child=paste(snippets, '/resources/pi-mpi-details.Rmd', sep=''), eval=TRUE}
 ```
 
-To illustrate this process, we will use a simple MPI parallel program that estimates the value of Pi.
-(We will meet this example program in more detail in a later episode.) Here is a job submission
-script that runs the program across two compute nodes on the cluster. Create a file
-(e.g. called: `run-pi-mpi.slurm`) with the contents of this script in it.
+To illustrate this process, we will use a simple MPI parallel program that estimates the value of Pi - 
+_We will meet this example program in more detail in a later episode of this course._ 
+
+Here is a job submission script that runs the program across two compute nodes on the cluster. 
+Create a job submission script (e.g. called: `run-pi-mpi.slurm`) with the following contents: 
 
 ```{r, child=paste(snippets, '/scheduler/parallel-script.Rmd', sep=''), eval=TRUE}
 ```
@@ -410,7 +447,7 @@ The parallel launch line for our program can be seen towards the bottom of the s
 ```{r, child=paste(snippets, '/scheduler/parallel-launch-desc.Rmd', sep=''), eval=TRUE}
 ```
 
-As for our other jobs, we launch using the ``r config$sched$submit$name`` command.
+We can now launch using the ``r config$sched$submit$name`` command.
 
 ```bash
 `r config$remote$prompt_work` `r config$sched$submit$name` run-pi-mpi.slurm
@@ -425,8 +462,10 @@ The program generates no output with all details printed to the job log.
 ```
 
 ::: keypoints
- - "The scheduler handles how compute resources are shared between users."
- - "Everything you do should be run through the scheduler."
- - "A job is just a shell script."
- - "If in doubt, request more resources than you will need."
+ - Schedulers manage fairness and efficiency on HPC systems, deciding which user jobs run and when.
+ - A job is any command or script submitted for execution.
+ - The scheduler handles how compute resources are shared between users.
+ - Jobs should not run on login nodes — they must be submitted to the scheduler.
+ - MPI jobs require special launch commands (srun, mpirun, etc.) and explicit process 
+   counts to utilize multiple cores or nodes effectively.
 :::
