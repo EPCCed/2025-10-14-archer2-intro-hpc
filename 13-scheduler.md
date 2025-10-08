@@ -47,11 +47,11 @@ submission*.
 
 In this case, the job we want to run is just a shell script. Let's create a
 demo shell script to run as a test. The landing pad will have a number of
-terminal-based text editors installed. Use whichever you prefer. Unsure? `nano`
-is a pretty good, basic choice.
+terminal-based text editors installed. Use whichever you prefer. Unsure? `vim` or `nano`
+are pretty good, basic choices.
 
 ```bash
-userid@ln03:~> nano example-job.sh
+userid@ln03:~> vim example-job.sh
 userid@ln03:~> chmod +x example-job.sh
 userid@ln03:~> cat example-job.sh
 ```
@@ -94,9 +94,9 @@ userid@ln03:~> sbatch --partition=standard --qos=short example-job.sh
 ```
 
 ```output
-sbatch: Warning: Your job has no time specification (--time=) and the default time is short. You can cancel your job with 'scancel <JOB_ID>' if you wish to resubmit.
-sbatch: Warning: It appears your working directory may be on the home filesystem. It is /home/ta215/ta215/userid. This is not available from the compute nodes - please check that this is what you intended. You can cancel your job with 'scancel <JOBID>' if you wish to resubmit.
-Submitted batch job 286949
+sbatch: Your job has no time specification (--time=). The maximum time for the short QoS of 20 minutes has been applied.
+sbatch: Warning: It appears your working directory may not be on the work filesystem. It is /home1/home/ta215/ta215/ta215broa1. The home filesystem and RDFaaS are not available from the compute nodes - please check that this is what you intended. You can cancel your job with 'scancel <JOBID>' if you wish to resubmit.
+Submitted batch job 11102066
 ```
 
 Ah! What went wrong here? Slurm is telling us that the file system we are currently on, `/home`, is not available
@@ -112,6 +112,7 @@ userid@ln03:/work/ta215/ta215/userid> sbatch --partition=standard --qos=short ex
 ```
 
 ```output
+sbatch: Your job has no time specification (--time=). The maximum time for the short QoS of 20 minutes has been applied
 Submitted batch job 36855
 ```
 
@@ -129,16 +130,16 @@ Or, we can use:
 userid@ln03:/work/ta215/ta215/userid> squeue --me 
 ```
 
+You have to be quick! If you are, you should see an output that looks like this: 
 
 
 ```output
-JOBID USER         ACCOUNT     NAME           ST REASON START_TIME         T...
-36856 yourUsername yourAccount example-job.sh R  None   2017-07-01T16:47:02 ...
+        JOBID PARTITION     NAME             USER       ST       TIME  NODES NODELIST(REASON)
+    11102103  standard      example-job.sh   ta215bro   R       0:01      1 nid001810
 ```
 
 We can see all the details of our job, most importantly that it is in the `R`
-or `RUNNING` state. Sometimes our jobs might need to wait in a queue
-(`PENDING`) or have an error (`E`).
+or `RUNNING` state. Sometimes our jobs might need to wait in a queue and show the `PD` or `PENDING` state.
 
 The best way to check our job's status is with `squeue`. Of
 course, running `squeue` repeatedly to check on things can be
@@ -211,11 +212,13 @@ userid@ln03:/work/ta215/ta215/userid> squeue -u userid
 
 
 ```output
-JOBID USER         ACCOUNT     NAME     ST REASON   START_TIME TIME TIME_LEFT NODES CPUS
-38191 yourUsername yourAccount new_name PD Priority N/A        0:00 1:00:00   1     1
+        JOBID PARTITION     NAME       USER       ST       TIME  NODES NODELIST(REASON)
+    11102119  standard      new_name   ta215bro   CG       0:02      1 nid004855
 ```
 
 Fantastic, we've successfully changed the name of our job!
+
+We can see also see a new job state. The state is reporting as `CG` which stands for `COMPLETING`. 
 
 ### Resource Requests
 
@@ -285,9 +288,18 @@ Why are the Slurm runtime and `sleep` time not identical?
 :::
 :::
 
+<!-- 
 
-#```{r, child=paste(snippets, '/scheduler/print-sched-variables.Rmd', sep=''), eval=TRUE}
-#```
+::: challenge
+## Job environment variables
+
+When Slurm runs a job, it sets a number of environment variables for the job. One of these will
+let us check our work from the last problem. The `SLURM_CPUS_PER_TASK` variable is set to the
+number of CPUs we requested with `-c`. Using the `SLURM_CPUS_PER_TASK` variable, modify your job
+so that it prints how many CPUs have been allocated.
+
+:::
+--> 
 
 Resource requests are typically binding. If you exceed them, your job will be
 killed. Let's use the walltime as an example. We will request 30 seconds of
@@ -320,13 +332,11 @@ userid@ln03:/work/ta215/ta215/userid> squeue -u userid
 
 
 ```bash
-userid@ln03:/work/ta215/ta215/userid> cat slurm-38193.out
+userid@ln03:/work/ta215/ta215/userid> cat slurm-11102156.out
 ```
 
 ```output
-This job is running on:
-nid001147
-slurmstepd: error: *** JOB 38193 ON cn01 CANCELLED AT 2017-07-02T16:35:48 DUE TO TIME LIMIT ***
+This script is running on slurmstepd: error: *** JOB 11102156 ON nid001142 CANCELLED AT 2025-10-08T10:39:46 DUE TO TIME LIMIT ***
 ```
 
 Our job was killed for exceeding the amount of resources it requested. Although
@@ -369,23 +379,23 @@ userid@ln03:/work/ta215/ta215/userid> squeue -u userid
 
 
 ```output
-Submitted batch job 38759
+Submitted batch job 11102156
 
-JOBID USER         ACCOUNT     NAME           ST REASON   START_TIME TIME TIME_LEFT NODES CPUS
-38759 yourUsername yourAccount example-job.sh PD Priority N/A        0:00 1:00      1     1
+             JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+          11102156  standard example- ta215bro  R       0:18      1 nid001142
 ```
 
 Now cancel the job with its job number (printed in your terminal). Absence of any
 job info indicates that the job has been successfully cancelled.
 
 ```bash
-userid@ln03:/work/ta215/ta215/userid> scancel 38759
+userid@ln03:/work/ta215/ta215/userid> scancel 11102156
 userid@ln03:/work/ta215/ta215/userid> squeue -u userid
 ```
 
 
 ```output
-JOBID  USER  ACCOUNT  NAME  ST  REASON  START_TIME  TIME  TIME_LEFT  NODES  CPUS
+             JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
 ```
 
 
@@ -416,7 +426,9 @@ Let's demonstrate this by running the `hostname` command with `srun`. (We can ca
 ```
 
 ```output
-nid001976
+srun: job 11102176 queued and waiting for resources
+srun: job 11102176 has been allocated resources
+nid001810
 ```
 
 `srun` accepts all of the same options as `sbatch`. However, instead of specifying these in a
@@ -424,17 +436,6 @@ script, these options are specified on the command-line when starting a job.
 
 Typically, the resulting shell environment will be the same as that for
 `sbatch`.
-
-<!-- ```bash
-# srun --partition=standard --qos=short --pty /bin/bash
-#```
-
-#You should be presented with a bash prompt. Note that the prompt may change
-#to reflect your new location, in this case the compute node we are logged on.
-#You can also verify this with `hostname`.
-
-#When you are done with the interactive job, type `exit` to quit your session.
---> 
 
 
 ## Running parallel jobs using MPI
@@ -472,7 +473,7 @@ The program used in this example can be retrieved using wget or a browser and co
 userid@ln03:~> wget https://epcced.github.io/2025-10-14-archer2-intro-hpc/files/pi-mpi.py
 ```
 
-**Using a web browser**:
+**Download via web browser**:
 
 [https://epcced.github.io/2025-10-14-archer2-intro-hpc/files/pi-mpi.py](https://epcced.github.io/2025-10-14-archer2-intro-hpc/files/pi-mpi.py)
 
@@ -481,8 +482,8 @@ userid@ln03:~> wget https://epcced.github.io/2025-10-14-archer2-intro-hpc/files/
 To illustrate this process, we will use a simple MPI parallel program that estimates the value of Pi - 
 _We will meet this example program in more detail in a later episode of this course._ 
 
-Here is a job submission script that runs the program across two compute nodes on the cluster. 
-Create a job submission script (e.g. called: `run-pi-mpi.slurm`) with the following contents: 
+Here is a job submission script that runs the program on 1 compute node, using 16 parallel tasks (or cores) 
+on the cluster. Create a job submission script (e.g. called: `run-pi-mpi.slurm`) with the following contents: 
 
 
 ```bash
@@ -522,8 +523,6 @@ We can now launch using the `sbatch` command.
 ```bash
 userid@ln03:/work/ta215/ta215/userid> sbatch run-pi-mpi.slurm
 ```
-
-The program generates no output with all details printed to the job log.
 
 
 ::: challenge

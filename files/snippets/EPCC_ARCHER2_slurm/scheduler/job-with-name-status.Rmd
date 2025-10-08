@@ -1,4 +1,8 @@
 ```output
-JOBID USER         ACCOUNT     NAME     ST REASON   START_TIME TIME TIME_LEFT NODES CPUS
-38191 yourUsername yourAccount new_name PD Priority N/A        0:00 1:00:00   1     1
+        JOBID PARTITION     NAME       USER       ST       TIME  NODES NODELIST(REASON)
+    11102119  standard      new_name   ta215bro   CG       0:02      1 nid004855
 ```
+
+Fantastic, we've successfully changed the name of our job!
+
+We can see also see a new job state. The state is reporting as `CG` which stands for `COMPLETING`. 

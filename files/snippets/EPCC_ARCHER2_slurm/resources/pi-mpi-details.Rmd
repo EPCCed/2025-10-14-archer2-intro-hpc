@@ -9,7 +9,7 @@ The program used in this example can be retrieved using wget or a browser and co
 `r config$remote$prompt` wget `r config$url``r config$baseurl`/files/pi-mpi.py
 ```
 
-**Using a web browser**:
+**Download via web browser**:
 
 [`r config$url``r config$baseurl`/files/pi-mpi.py](`r config$url``r config$baseurl`/files/pi-mpi.py)
 
