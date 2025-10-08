@@ -426,11 +426,16 @@ can access their data and run jobs anywhere within the cluster.</li>
 </ul></section><section id="13-scheduler"><h2 class="section-heading"><a href="13-scheduler.html">Working with the scheduler</a></h2>
 <hr class="half-width">
 <ul>
-<li>“The scheduler handles how compute resources are shared between
-users.”</li>
-<li>“Everything you do should be run through the scheduler.”</li>
-<li>“A job is just a shell script.”</li>
-<li>“If in doubt, request more resources than you will need.”</li>
+<li>Schedulers manage fairness and efficiency on HPC systems, deciding
+which user jobs run and when.</li>
+<li>A job is any command or script submitted for execution.</li>
+<li>The scheduler handles how compute resources are shared between
+users.</li>
+<li>Jobs should not run on login nodes — they must be submitted to the
+scheduler.</li>
+<li>MPI jobs require special launch commands (srun, mpirun, etc.) and
+explicit process counts to utilize multiple cores or nodes
+effectively.</li>
 </ul></section><section id="14-modules"><h2 class="section-heading"><a href="14-modules.html">Accessing software via Modules</a></h2>
 <hr class="half-width">
 <ul>
@@ -505,8 +510,8 @@ before transferring.”</li>
   "url": "https://EPCCed.github.io/2025-10-14-archer2-intro-hpc/key-points.html",
   "identifier": "https://EPCCed.github.io/2025-10-14-archer2-intro-hpc/key-points.html",
   "dateCreated": "2025-10-14",
-  "dateModified": "2025-10-07",
-  "datePublished": "2025-10-07"
+  "dateModified": "2025-10-08",
+  "datePublished": "2025-10-08"
 }
 
   </script><script>
