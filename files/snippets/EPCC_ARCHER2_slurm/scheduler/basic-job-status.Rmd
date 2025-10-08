@@ -1,8 +1,7 @@
 ```output
-JOBID USER         ACCOUNT     NAME           ST REASON START_TIME         T...
-36856 yourUsername yourAccount example-job.sh R  None   2017-07-01T16:47:02 ...
+        JOBID PARTITION     NAME             USER       ST       TIME  NODES NODELIST(REASON)
+    11102103  standard      example-job.sh   ta215bro   R       0:01      1 nid001810
 ```
 
 We can see all the details of our job, most importantly that it is in the `R`
-or `RUNNING` state. Sometimes our jobs might need to wait in a queue
-(`PENDING`) or have an error (`E`).
+or `RUNNING` state. Sometimes our jobs might need to wait in a queue and show the `PD` or `PENDING` state.

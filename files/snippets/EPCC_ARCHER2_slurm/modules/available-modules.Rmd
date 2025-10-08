@@ -1,26 +1,31 @@
 ```output
------------ /work/y07/shared/archer2-modules/modulefiles-cse-pyvenvs -----------
-tensorflow/2.3.1-py38  torch/1.6.0-py38  
+-------------------------------------------------------------- /opt/cray/pe/lmod/modulefiles/core ---------------------------------------------------------------
+   PrgEnv-amd/8.3.3      (D)      aocc/4.0.0        (D)      cray-cti/2.16.0                    cray-pals/1.2.5      (D)      gdb4hpc/4.14.6         (D)
+   PrgEnv-amd/8.4.0               atp/3.14.16       (D)      cray-cti/2.17.1           (D)      cray-pals/1.2.12              gdb4hpc/4.15.1
+   PrgEnv-aocc/8.3.3     (D)      atp/3.15.1                 cray-cti/2.18.1                    cray-pmi/6.1.8       (D)      iobuf/2.0.10
+   PrgEnv-aocc/8.4.0              cce/15.0.0        (L,D)    cray-dsmml/0.2.2          (L)      cray-pmi/6.1.12               papi/6.0.0.17          (D)
+   PrgEnv-cray-amd/8.3.3          cce/16.0.1                 cray-dyninst/12.1.1       (D)      cray-python/3.9.13.1 (D)      papi/7.0.1.1
+   PrgEnv-cray-amd/8.4.0 (D)      cpe-cuda/22.12    (D)      cray-dyninst/12.3.0                cray-python/3.10.10           perftools-base/22.12.0 (L,D)
+   PrgEnv-cray/8.3.3     (L,D)    cpe-cuda/23.09             cray-libpals/1.2.5        (D)      cray-stat/4.11.13    (D)      perftools-base/23.09.0
+   PrgEnv-cray/8.4.0              cpe/22.12         (D)      cray-libpals/1.2.12                cray-stat/4.12.1              rocm/5.2.3
+   PrgEnv-gnu-amd/8.3.3           cpe/23.09                  cray-libsci/22.12.1.1     (L,D)    craype/2.7.19        (L,D)    sanitizers4hpc/1.0.4   (D)
+   PrgEnv-gnu-amd/8.4.0  (D)      cray-R/4.2.1.1    (D)      cray-libsci/23.09.1.1              craype/2.7.23                 sanitizers4hpc/1.1.1
+   PrgEnv-gnu/8.3.3      (D)      cray-R/4.2.1.2             cray-libsci_acc/22.12.1.1 (D)      craypkg-gen/1.3.28   (D)      valgrind4hpc/2.12.10   (D)
+   PrgEnv-gnu/8.4.0               cray-ccdb/4.12.13 (D)      cray-libsci_acc/23.09.1.1          craypkg-gen/1.3.30            valgrind4hpc/2.13.1
+   amd/5.2.3                      cray-ccdb/5.0.1            cray-mrnet/5.0.4          (D)      gcc/10.3.0
+   aocc/3.2.0                     cray-cti/2.15.14           cray-mrnet/5.1.1                   gcc/11.2.0           (D)
 
------------ /work/y07/shared/archer2-modules/modulefiles-cse-pymods ------------
-python-netCDF4/1.5.5.1  
+----------------------------------------------------- /opt/cray/pe/lmod/modulefiles/craype-targets/default ------------------------------------------------------
+   craype-accel-amd-gfx908    craype-arm-grace        craype-hugepages2G      craype-hugepages64M        craype-x86-genoa          craype-x86-spr
+   craype-accel-amd-gfx90a    craype-hugepages128M    craype-hugepages2M      craype-hugepages8M         craype-x86-milan-x        craype-x86-trento
+   craype-accel-host          craype-hugepages16M     craype-hugepages32M     craype-network-none        craype-x86-milan
+   craype-accel-nvidia70      craype-hugepages1G      craype-hugepages4M      craype-network-ofi  (L)    craype-x86-rome    (L)
+   craype-accel-nvidia80      craype-hugepages256M    craype-hugepages512M    craype-network-ucx         craype-x86-spr-hbm
 
------------- /work/y07/shared/archer2-modules/modulefiles-cse-utils ------------
-bolt/0.7                  ncview/ncview-2.1.7-gcc-10.1.0  vmd/1.9.3-mpi-gcc10  
-cmake/3.18.4              reframe/3.2                     xios/2.5-gcc10       
-ed/1.16-gcc10             tcl/8.4.20-gcc10                xthi/1.0             
-epcc-job-env              tcl/8.5.0-gcc10                 xthi/1.0-gcc10       
-epcc-reframe/0.1          tcl/8.6.0-gcc10                 
-genmaskcpu/1.0            tcl/8.6.10-gcc10(default)       
-gnuplot/5.4.1-gcc-10.1.0  tk/8.5.6-gcc10                  
-lzip/1.20-gcc10           tk/8.6.10-gcc10(default)        
-nco/4.9.6                 visidata/2.1                    
-nco/4.9.6-gcc-10.1.0      vmd/1.9.3-gcc10(default)        
-
------------- /work/y07/shared/archer2-modules/modulefiles-cse-libs -------------
-adios/1.13.1     hypre/2.18.0             mumps/5.2.1     superlu-dist/6.1.1  
-boost/1.72.0     libxml2/2.9.7-gcc-9.3.0  parmetis/4.0.3  superlu/5.2.1       
-glm/0.9.9.6      matio/1.5.18             petsc/3.13.3    trilinos/12.18.1    
-gmp/6.1.2-gcc10  metis/5.1.0              scotch/6.0.10   
 ...
+
+Many more 
+
+... 
+
 ```

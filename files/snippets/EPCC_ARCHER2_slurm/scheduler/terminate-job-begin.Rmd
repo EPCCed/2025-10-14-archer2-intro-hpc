@@ -1,6 +1,6 @@
 ```output
-Submitted batch job 38759
+Submitted batch job 11102156
 
-JOBID USER         ACCOUNT     NAME           ST REASON   START_TIME TIME TIME_LEFT NODES CPUS
-38759 yourUsername yourAccount example-job.sh PD Priority N/A        0:00 1:00      1     1
+             JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+          11102156  standard example- ta215bro  R       0:18      1 nid001142
 ```

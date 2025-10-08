@@ -1,5 +1,3 @@
 ```output
-This job is running on:
-nid001147
-slurmstepd: error: *** JOB 38193 ON cn01 CANCELLED AT 2017-07-02T16:35:48 DUE TO TIME LIMIT ***
+This script is running on slurmstepd: error: *** JOB 11102156 ON nid001142 CANCELLED AT 2025-10-08T10:39:46 DUE TO TIME LIMIT ***
 ```
