@@ -17,6 +17,11 @@ exercises: 15
 ::::::
 
 
+In this workshop, we will connect to ARCHER2 --- an HPC system
+located at the University of Edinburgh. Although it's unlikely that
+every system will be exactly like ARCHER2, it's a very good
+example of what you can expect from an HPC. 
+
 The first step in using a cluster is to establish a connection from our laptop
 to the cluster. When we are sitting at a computer (or standing, or holding it
 in our hands or on our wrists), we have come to expect a visual display with
@@ -160,7 +165,7 @@ $ ls ~/.ssh/
 We can then then generate a new public-private key pair,
 
 ```bash
-$ ssh-keygen -o -a 100 -t rsa -b 4096 -f ~/.ssh/id_ARCHER2_rsa
+$ ssh-keygen -o -a 100 -t rsa -b 4096 -f ~/.ssh/key_ARCHER2_rsa
 ```
 
 - `-o` (no default): use the OpenSSH key format,
@@ -226,7 +231,9 @@ Once you have generated your key pair, you need to add the public part to your A
 6. Click “Add” to associate the public SSH key part with your account
 
 The public SSH key part will now be added to your login account on the ARCHER2 system, so it can actually be used as your
-secure handshake between remote parties. Remember: you can think of the public 
+secure handshake between remote parties. You will recieve an email once this process has been done. 
+
+Remember: you can think of the public 
 key as a "lock" and the private key as the "key". You give the public 'lock' to 
 remote parties to encrypt or 'lock' data. This data is then opened with the 'private' 
 key which you hold in a secure place.
@@ -247,30 +254,25 @@ key which you hold in a secure place.
 
 
 
-
-## Logging onto the system
-
-With all of this in mind, let's finally connect to the remote HPC system. In this
-workshop, we will connect to ARCHER2 --- an HPC system
-located at the University of Edinburgh. Although it's unlikely that
-every system will be exactly like ARCHER2, it's a very good
-example of what you can expect from an HPC. 
-
-
 ### Configure TOTP passwords
 
-ARCHER2 now uses Time-based One-Time Passwords (TOTP) for multi-factor authentication (MFA). 
+ARCHER2 also uses Time-based One-Time Passwords (TOTP) for multi-factor authentication (MFA). 
 One time passwords are a common security measure used by banking, cloud services and apps that 
 create a changing time limited code to verify your identity beyond a password and username.
 
 To setup your MFA TOTP you will need an authenticator application on your phone or laptop. 
-Follow the steps at [the SAFE documentation](https://epcced.github.io/safe-docs/safe-for-users/#how-to-turn-on-mfa-on-your-machine-account), 
-ensuring you create the code for your `ta215` project account.
+
+1. [Login to SAFE](https://safe.epcc.ed.ac.uk)
+2. Go to the Menu “Login accounts” and select the ARCHER2 account you want to add the MFA token to
+3. On the subsequent Login account details page click the "Set MFA-Token"  button
+4. Scan the QR code and enter the verification code
 
 You will only be prompted at login for your TOTP code once a day.
 
 
-### Logging in to ARCHER2
+## Logging in to ARCHER2
+
+Let's finally connect to the remote HPC system.
 
 We've already used SSH protocol to generate an SSH key-pair, now we will use SSH to connect
 (if you are using PuTTY, see above). SSH allows us to connect to UNIX computers remotely, and use them as if they
@@ -305,6 +307,10 @@ first login to ARCHER2 with a new account. When you log into ARCHER2 for the fir
 new account, you will be prompted to change your initial password. This is a three step process:
 
 1. When promoted to enter your ldap password: Enter the password which you retrieve from SAFE
+    1. [Login to SAFE](https://safe.epcc.ed.ac.uk)
+    2. Go to the Menu “Login accounts” and select the ARCHER2 account you want to add the MFA token to
+    3. On the subsequent Login account details page click the "View Login Account Password"  button
+    4. Copy this and enter into ARCHER2 prompt
 2. When prompted to enter your new password: type in a new password
 3. When prompted to re-enter the new password: re-enter the new password
 
