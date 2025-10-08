@@ -21,8 +21,12 @@ snippets <- paste('./files/snippets/', config$snippets, sep='')
 :::
 
 We've touched on all the skills you need to interact with an HPC cluster:
-logging in over SSH, loading software modules, submitting parallel jobs, and
-finding the output. Let's learn about estimating resource usage and why it
+* Logging in over SSH, 
+* Loading software modules, 
+* Submitting parallel jobs, and
+* Finding the output
+
+Let's learn about estimating resource usage and why it
 might matter. To do this we need to understand the basics of *benchmarking*.
 Benchmarking is essentially performing simple experiments to help understand
 how the performance of our work varies as we change the properties of the
@@ -54,13 +58,20 @@ Both of these approaches are equally valid uses of HPC. This example looks at st
 Before we work on benchmarking, it is useful to define some terms for the example we will
 be using
 
-  - **Program** The computer program we are executing (`pi-mpi.py` in the examples below)
-  - **Application** The combination of computer program with particular input parameters
+  - **Program** = The computer program we are executing (`pi-mpi.py` in the examples below)
+  - **Application** = The combination of computer program with particular input parameters
 
 ## Accessing the software and input
 
+We will be returning to the same example used in [lesson 4](13-scheduler.md). If you didn't get a chance to grab the program then, 
+you can do so now by following the below instructions. 
+
 ```{r, child=paste(snippets, '/resources/pi-mpi-details.Rmd', sep=''), eval=TRUE}
 ```
+
+
+
+
 
 ## Baseline: running in serial
 
@@ -88,11 +99,12 @@ application worked or not.
 Output in the job log should look something like:
 
 ```output
-Generating 10000000 samples.
-Rank 0 generating 10000000 samples on host nid001246.
+Generating 100000000 samples.
+Rank 0 generating 100000000 samples on host nid001810.
 Numpy Pi:  3.141592653589793
-My Estimate of Pi:  3.1416708
-1 core(s), 10000000 samples, 228.881836 MiB memory, 0.423903 seconds, -0.002487% error
+My Estimate of Pi:  3.14165996
+1 core(s), 100000000 samples, 2288.818359 MiB memory, 3.789277 seconds, -0.002142% error
+Total run time=3.7914833110000927s
 ```
 :::
 :::
@@ -103,8 +115,8 @@ the bottom of the summary output) and `pi-mpi.py` is no exception. You should se
 lines in the output that look something like:
 
 ```bash
-256 core(s), 100000000 samples, 2288.818359 MiB memory, 0.135041 seconds, -0.004774% error
-Total run time=0.18654435999997077s
+1 core(s), 100000000 samples, 2288.818359 MiB memory, 3.789277 seconds, -0.002142% error
+Total run time=3.7914833110000927s
 ```
 
 You can also get an estimate of the overall run time from the final job statistics. If
@@ -113,7 +125,7 @@ roughly what the runtime was. This can be useful if you want to know quickly if 
 job was faster or not than a previous job (as you do not have to find the output file
 to look up the performance) but the number is not as accurate as the performance recorded
 by the application itself and also includes static overheads from running the job
-(such as loading modules and startup time) that can skew the timings. To do this on
+(such as loading modules and startup time) that can skew the timings. To do this on `Slurm`
 use ``r config$sched$hist` `r config$sched$flag$histdetail`` with the job ID, e.g.:
 
 ```bash
@@ -123,6 +135,12 @@ use ``r config$sched$hist` `r config$sched$flag$histdetail`` with the job ID, e.
 ```{r, child=paste(snippets, '/resources/job-detail.Rmd', sep=''), eval=TRUE}
 ```
 ```
+
+This gives a **lot** of information, so you can trim the output down with some formatting: 
+```bash 
+sacct -j 12345 --format=JobID,Elapsed,ReqCPUFreq,ConsumedEnergy
+```
+
 
 ## Running in parallel and benchmarking performance
 
@@ -177,5 +195,6 @@ Here are a few tips to help you use resources effectively and efficiently on HPC
   core/node counts.
 
 ::: keypoints
- - "The smaller your job, the faster it will schedule."
+ - Benchmarking is an essential practice for understanding your workload and using resources efficiently
+ - Efficient usage is not just about getting the time-to-solution as low as possible 
 :::
