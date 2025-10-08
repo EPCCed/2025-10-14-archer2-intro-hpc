@@ -392,7 +392,7 @@
         
 <section id="aio-10-connecting-hpc"><p>Content from <a href="10-connecting-hpc.html">Connecting to the remote HPC system</a></p>
 <hr>
-<p>Last updated on 2025-10-07 |
+<p>Last updated on 2025-10-08 |
 
         <a href="https://github.com/EPCCed/2025-10-14-archer2-intro-hpc/edit/main/episodes/10-connecting-hpc.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -425,6 +425,10 @@
 </div>
 </div>
 </div>
+<p>In this workshop, we will connect to ARCHER2 — an HPC system located
+at the University of Edinburgh. Although it’s unlikely that every system
+will be exactly like ARCHER2, it’s a very good example of what you can
+expect from an HPC.</p>
 <p>The first step in using a cluster is to establish a connection from
 our laptop to the cluster. When we are sitting at a computer (or
 standing, or holding it in our hands or on our wrists), we have come to
@@ -581,7 +585,7 @@ this:</p>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ex">$</span> ssh-keygen <span class="at">-o</span> <span class="at">-a</span> 100 <span class="at">-t</span> rsa <span class="at">-b</span> 4096 <span class="at">-f</span> ~/.ssh/id_ARCHER2_rsa</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ex">$</span> ssh-keygen <span class="at">-o</span> <span class="at">-a</span> 100 <span class="at">-t</span> rsa <span class="at">-b</span> 4096 <span class="at">-f</span> ~/.ssh/key_ARCHER2_rsa</span></code></pre>
 </div>
 <ul>
 <li>
@@ -665,10 +669,12 @@ account</li>
 </ol>
 <p>The public SSH key part will now be added to your login account on
 the ARCHER2 system, so it can actually be used as your secure handshake
-between remote parties. Remember: you can think of the public key as a
-“lock” and the private key as the “key”. You give the public ‘lock’ to
-remote parties to encrypt or ‘lock’ data. This data is then opened with
-the ‘private’ key which you hold in a secure place.</p>
+between remote parties. You will recieve an email once this process has
+been done.</p>
+<p>Remember: you can think of the public key as a “lock” and the private
+key as the “key”. You give the public ‘lock’ to remote parties to
+encrypt or ‘lock’ data. This data is then opened with the ‘private’ key
+which you hold in a secure place.</p>
 <div id="private-keys-are-private" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
@@ -688,31 +694,30 @@ does.</p>
 </div>
 </div>
 </div>
-</section><section><h2 class="section-heading" id="logging-onto-the-system">Logging onto the system<a class="anchor" aria-label="anchor" href="#logging-onto-the-system"></a>
-</h2>
-<hr class="half-width">
-<p>With all of this in mind, let’s finally connect to the remote HPC
-system. In this workshop, we will connect to ARCHER2 — an HPC system
-located at the University of Edinburgh. Although it’s unlikely that
-every system will be exactly like ARCHER2, it’s a very good example of
-what you can expect from an HPC.</p>
 <div class="section level3">
 <h3 id="configure-totp-passwords">Configure TOTP passwords<a class="anchor" aria-label="anchor" href="#configure-totp-passwords"></a>
 </h3>
-<p>ARCHER2 now uses Time-based One-Time Passwords (TOTP) for
+<p>ARCHER2 also uses Time-based One-Time Passwords (TOTP) for
 multi-factor authentication (MFA). One time passwords are a common
 security measure used by banking, cloud services and apps that create a
 changing time limited code to verify your identity beyond a password and
 username.</p>
 <p>To setup your MFA TOTP you will need an authenticator application on
-your phone or laptop. Follow the steps at <a href="https://epcced.github.io/safe-docs/safe-for-users/#how-to-turn-on-mfa-on-your-machine-account" class="external-link">the
-SAFE documentation</a>, ensuring you create the code for your
-<code>ta215</code> project account.</p>
+your phone or laptop.</p>
+<ol style="list-style-type: decimal">
+<li><a href="https://safe.epcc.ed.ac.uk" class="external-link">Login to SAFE</a></li>
+<li>Go to the Menu “Login accounts” and select the ARCHER2 account you
+want to add the MFA token to</li>
+<li>On the subsequent Login account details page click the “Set
+MFA-Token” button</li>
+<li>Scan the QR code and enter the verification code</li>
+</ol>
 <p>You will only be prompted at login for your TOTP code once a day.</p>
 </div>
-<div class="section level3">
-<h3 id="logging-in-to-archer2">Logging in to ARCHER2<a class="anchor" aria-label="anchor" href="#logging-in-to-archer2"></a>
-</h3>
+</section><section><h2 class="section-heading" id="logging-in-to-archer2">Logging in to ARCHER2<a class="anchor" aria-label="anchor" href="#logging-in-to-archer2"></a>
+</h2>
+<hr class="half-width">
+<p>Let’s finally connect to the remote HPC system.</p>
 <p>We’ve already used SSH protocol to generate an SSH key-pair, now we
 will use SSH to connect (if you are using PuTTY, see above). SSH allows
 us to connect to UNIX computers remotely, and use them as if they were
@@ -754,7 +759,16 @@ will be prompted to change your initial password. This is a three step
 process:</p>
 <ol style="list-style-type: decimal">
 <li>When promoted to enter your ldap password: Enter the password which
-you retrieve from SAFE</li>
+you retrieve from SAFE
+<ol style="list-style-type: decimal">
+<li><a href="https://safe.epcc.ed.ac.uk" class="external-link">Login to SAFE</a></li>
+<li>Go to the Menu “Login accounts” and select the ARCHER2 account you
+want to add the MFA token to</li>
+<li>On the subsequent Login account details page click the “View Login
+Account Password” button</li>
+<li>Copy this and enter into ARCHER2 prompt</li>
+</ol>
+</li>
 <li>When prompted to enter your new password: type in a new
 password</li>
 <li>When prompted to re-enter the new password: re-enter the new
@@ -798,7 +812,6 @@ Configured:   2025-09-16
 ######################################################################################
 ---------------------------------Welcome to ARCHER2-----------------------------------
 ######################################################################################</code></pre>
-</div>
 </div>
 </section><section><h2 class="section-heading" id="telling-the-difference-between-the-local-terminal-and-the-remote-terminal">Telling the Difference between the Local Terminal and the Remote
 Terminal<a class="anchor" aria-label="anchor" href="#telling-the-difference-between-the-local-terminal-and-the-remote-terminal"></a>
@@ -1062,7 +1075,7 @@ results.</p>
   Some Ideas
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <ul>
 <li>
@@ -1284,7 +1297,7 @@ neighbors.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> It’s a Beautiful Day in the Neighborhood </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>The deepest layer should differ: <code>userid</code> is uniquely
 yours. Are there differences in the path at higher levels?</p>
@@ -1428,7 +1441,7 @@ computer cluster, you need to log out first. To do so, type
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>There are several ways to do this. Most operating systems have a
 graphical system monitor, like the Windows Task Manager. More detailed
@@ -1476,7 +1489,7 @@ node.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2637,7 +2650,7 @@ node).</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb15">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3418,7 +3431,7 @@ worked or not.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Creating a file called <code>submit-pi-mpi.slurm</code>:</p>
 <div class="codewrapper sourceCode" id="cb2">
@@ -3606,7 +3619,7 @@ figure for the Calculation core seconds. Is this what you observe?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>The table below shows example timings for runs on ARCHER2</p>
 <table class="table">
@@ -3820,7 +3833,7 @@ choose this option?</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <p>The table below gives example results for ARCHER2 based on the
 example runtimes given in the solution above.</p>
@@ -4100,7 +4113,7 @@ node?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Building software, creating directories, and unpacking software are
 common and acceptable tasks for the login node: options #2
@@ -4331,7 +4344,7 @@ the following would be the best way to transfer them to ARCHER2?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>Lets go through each option</p>
 <ol style="list-style-type: decimal">
