@@ -425,7 +425,7 @@ script, these options are specified on the command-line when starting a job.
 Typically, the resulting shell environment will be the same as that for
 `sbatch`.
 
-#```bash
+<!-- ```bash
 # srun --partition=standard --qos=short --pty /bin/bash
 #```
 
@@ -434,7 +434,7 @@ Typically, the resulting shell environment will be the same as that for
 #You can also verify this with `hostname`.
 
 #When you are done with the interactive job, type `exit` to quit your session.
-
+--> 
 
 
 ## Running parallel jobs using MPI

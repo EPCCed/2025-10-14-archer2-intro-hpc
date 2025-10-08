@@ -288,7 +288,7 @@ userid@ln03:~> df -Th
 :::
 :::
 
- 
+<!--
 #::: discussion
 #The local filesystems (ext, tmp, xfs, zfs) will depend on whether you're
 #on the same login node (or compute node, later on). Networked filesystems
@@ -296,6 +296,7 @@ userid@ln03:~> df -Th
 #userid, depending on how it is [mounted](
 #https://en.wikipedia.org/wiki/Mount_(computing)).
 #:::
+--> 
 
 ::: callout
 ## Shared Filesystems
