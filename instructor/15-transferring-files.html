@@ -347,7 +347,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Transferring files with remote computers</h1>
-        <p>Last updated on 2025-10-01 |
+        <p>Last updated on 2025-10-08 |
 
         <a href="https://github.com/EPCCed/2025-10-14-archer2-intro-hpc/edit/main/episodes/15-transferring-files.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -386,34 +386,13 @@ internet.</li>
 </div>
 </div>
 </div>
-<div id="required-files" class="callout prereq">
-<div class="callout-square">
-<i class="callout-icon" data-feather="check"></i>
-</div>
-<span class="callout-header">Prerequisite</span>
-<div id="required-files" class="callout-inner">
-<h3 class="callout-title">Required Files</h3>
-<div class="callout-content">
-<p>The program used in this example can be retrieved using wget or a
-browser and copied to the remote.</p>
-<p><strong>Using wget</strong>:</p>
-<div class="codewrapper sourceCode" id="cb1">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="ex">userid@ln03:~</span><span class="op">&gt;</span> wget https://epcced.github.io/2025-10-14-archer2-hpc-intro-parasols//files/hpc-intro-data.tar.gz</span></code></pre>
-</div>
-<p><strong>Using a web browser</strong>:</p>
-<p><a href="https://epcced.github.io/2025-10-14-archer2-hpc-intro-parasols//files/hpc-intro-data.tar.gz" class="external-link">https://epcced.github.io/2025-10-14-archer2-hpc-intro-parasols//files/hpc-intro-data.tar.gz</a></p>
-</div>
-</div>
-</div>
-<p>Computing with a remote computer offers very limited use if we cannot
-get files to or from the cluster. There are several options for
-transferring data between computing resources, from command line options
-to GUI programs, which we will cover here.</p>
+<p>A remote computer offers very limited use if we cannot get files to
+or from the cluster. There are several options for transferring data
+between computing resources, from command line options to GUI
+programs.</p>
 <section><h2 class="section-heading" id="download-files-from-the-internet">Download Files From the Internet<a class="anchor" aria-label="anchor" href="#download-files-from-the-internet"></a></h2>
 <hr class="half-width"><p>One of the most straightforward ways to download files is to use
-either <code>curl</code> or <code>wget</code>, one of these is usually
+either <code>curl</code> or <code>wget</code>. One of these is usually
 installed in most Linux shells, on Mac OS terminal and in GitBash. Any
 file that can be downloaded in your web browser through a direct link
 can be downloaded using <code>curl -O</code> or <code>wget</code>. This
@@ -421,18 +400,18 @@ is a quick way to download datasets or source code.</p>
 <p>The syntax for these commands is:
 <code>curl -O https://some/link/to/a/file</code> and
 <code>wget https://some/link/to/a/file</code>. Try it out by downloading
-some material we’ll use later on, from a terminal on your local
-machine.</p>
+some material we’ll use later on, from a terminal on your
+<strong>local</strong> machine.</p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="ex">[user@laptop</span> ~]$ curl <span class="at">-O</span> https://epcced.github.io/2025-10-14-archer2-intro-hpcfiles/hpc-intro-data.tar.gz</span></code></pre>
+</div>
+<p>or</p>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ex">[user@laptop</span> ~]$ curl <span class="at">-O</span> https://epcced.github.io/2025-10-14-archer2-hpc-intro-parasols//files/hpc-intro-data.tar.gz</span></code></pre>
-</div>
-<p>or</p>
-<div class="codewrapper sourceCode" id="cb3">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="ex">[user@laptop</span> ~]$ wget https://epcced.github.io/2025-10-14-archer2-hpc-intro-parasols//files/hpc-intro-data.tar.gz</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ex">[user@laptop</span> ~]$ wget https://epcced.github.io/2025-10-14-archer2-intro-hpcfiles/hpc-intro-data.tar.gz</span></code></pre>
 </div>
 <div id="tar.gz" class="callout discussion">
 <div class="callout-square">
@@ -447,7 +426,7 @@ machine.</p>
 used and supported by default on Linux, which is the operating system
 the majority of HPC cluster machines run. You may also see the extension
 <code>.tgz</code>, which is exactly the same. We’ll talk more about
-“tarballs,” since “tar-dot-g-z” is a mouthful, later on.</p>
+“tarballs” (“tar-dot-g-z” is a mouthful!) later on.</p>
 </div>
 </div>
 </div>
@@ -457,24 +436,42 @@ the majority of HPC cluster machines run. You may also see the extension
 <code>scp</code> (“secure copy”). The syntax can be a little complex for
 new users, but we’ll break it down.</p>
 <p>To <em>upload to</em> another computer:</p>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="ex">[user@laptop</span> ~]$ scp path/to/local/file.txt userid@login.archer2.ac.uk:/path/on/ARCHER2</span></code></pre>
+</div>
+<p>To <em>download from</em> another computer:</p>
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="ex">[user@laptop</span> ~]$ scp path/to/local/file.txt userid@login.archer2.ac.uk:/path/on/ARCHER2</span></code></pre>
-</div>
-<p>To <em>download from</em> another computer:</p>
-<div class="codewrapper sourceCode" id="cb5">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="ex">[user@laptop</span> ~]$ scp userid@login.archer2.ac.uk:/path/on/ARCHER2/file.txt path/to/local/</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="ex">[user@laptop</span> ~]$ scp userid@login.archer2.ac.uk:/path/on/ARCHER2/file.txt path/to/local/</span></code></pre>
 </div>
 <p>Note that everything after the <code>:</code> is relative to our home
 directory on the remote computer. We can leave it at that if we don’t
 care where the file goes.</p>
-<div class="codewrapper sourceCode" id="cb6">
+<div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="ex">[user@laptop</span> ~]$ scp local-file.txt userid@login.archer2.ac.uk:</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="ex">[user@laptop</span> ~]$ scp local-file.txt userid@login.archer2.ac.uk:</span></code></pre>
+</div>
+<div id="why-not-download-on-archer2-directly" class="callout discussion">
+<div class="callout-square">
+<i class="callout-icon" data-feather="message-circle"></i>
+</div>
+<span class="callout-header">Discussion</span>
+<div id="why-not-download-on-archer2-directly" class="callout-inner">
+<h3 class="callout-title">Why Not Download on ARCHER2 Directly?</h3>
+<div class="callout-content">
+<p>Some computer clusters are behind firewalls set to only allow
+transfers initiated from the <em>outside</em>. This means that the
+<code>curl</code> command will fail, as an address outside the firewall
+is unreachable from the inside. To get around this, run the
+<code>curl</code> or <code>wget</code> command from your local machine
+to download the file, then use the <code>scp</code> command (just below
+here) to upload it to the cluster.</p>
+</div>
+</div>
 </div>
 <div id="upload-a-file" class="callout challenge">
 <div class="callout-square">
@@ -496,30 +493,15 @@ directory on ARCHER2.</p>
 </button>
 <div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb7">
+<div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="ex">[user@laptop</span> ~]$ scp hpc-intro-data.tar.gz userid@login.archer2.ac.uk:~/</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="ex">[user@laptop</span> ~]$ scp hpc-intro-data.tar.gz userid@login.archer2.ac.uk:~/</span></code></pre>
 </div>
+<p><strong>Note:</strong> If you need to pass your SSH key to ssh using
+the <code>-i</code> command to login, you may need to also do that
+here.</p>
 </div>
-</div>
-</div>
-</div>
-<div id="why-not-download-on-archer2-directly" class="callout discussion">
-<div class="callout-square">
-<i class="callout-icon" data-feather="message-circle"></i>
-</div>
-<span class="callout-header">Discussion</span>
-<div id="why-not-download-on-archer2-directly" class="callout-inner">
-<h3 class="callout-title">Why Not Download on ARCHER2 Directly?</h3>
-<div class="callout-content">
-<p>Some computer clusters are behind firewalls set to only allow
-transfers initiated from the <em>outside</em>. This means that the
-<code>curl</code> command will fail, as an address outside the firewall
-is unreachable from the inside. To get around this, run the
-<code>curl</code> or <code>wget</code> command from your local machine
-to download the file, then use the <code>scp</code> command (just below
-here) to upload it to the cluster.</p>
 </div>
 </div>
 </div>
@@ -547,13 +529,13 @@ local machine over SSH? Note that it may well fail, and that’s OK!</p>
 <div class="accordion-body">
 <p>Using <code>curl</code> or <code>wget</code> commands like the
 following:</p>
-<div class="codewrapper sourceCode" id="cb8">
+<div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="ex">[user@laptop</span> ~]$ ssh userid@login.archer2.ac.uk</span>
-<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="ex">userid@ln03:~</span><span class="op">&gt;</span> curl <span class="at">-O</span> https://epcced.github.io/2025-10-14-archer2-hpc-intro-parasols//files/hpc-intro-data.tar.gz</span>
-<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="ex">or</span></span>
-<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a><span class="ex">userid@ln03:~</span><span class="op">&gt;</span> wget https://epcced.github.io/2025-10-14-archer2-hpc-intro-parasols//files/hpc-intro-data.tar.gz</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="ex">[user@laptop</span> ~]$ ssh userid@login.archer2.ac.uk</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="ex">userid@ln03:~</span><span class="op">&gt;</span> curl <span class="at">-O</span> https://epcced.github.io/2025-10-14-archer2-intro-hpc/files/hpc-intro-data.tar.gz</span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="ex">or</span></span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="ex">userid@ln03:~</span><span class="op">&gt;</span> wget https://epcced.github.io/2025-10-14-archer2-intro-hpc/files/hpc-intro-data.tar.gz</span></code></pre>
 </div>
 <p>Did it work? If not, what does the terminal output tell you about
 what happened?</p>
@@ -565,10 +547,10 @@ what happened?</p>
 “<strong>r</strong>ecursive”: copy the item specified, and every item
 below it, and every item below those… until it reaches the bottom of the
 directory tree rooted at the folder name you provided.</p>
-<div class="codewrapper sourceCode" id="cb9">
+<div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="ex">[user@laptop</span> ~]$ scp <span class="at">-r</span> some-local-folder userid@login.archer2.ac.uk:target-directory/</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="ex">[user@laptop</span> ~]$ scp <span class="at">-r</span> some-local-folder userid@login.archer2.ac.uk:target-directory/</span></code></pre>
 </div>
 <div id="caution" class="callout">
 <div class="callout-square">
@@ -619,10 +601,10 @@ features for file transfer and is typically faster compared to both
 useful for transferring large and/or many files and creating synced
 backup folders. The syntax is similar to <code>scp</code>. To transfer
 <em>to</em> another computer with commonly used options:</p>
-<div class="codewrapper sourceCode" id="cb10">
+<div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="ex">[user@laptop</span> ~]$ rsync <span class="at">-avzP</span> path/to/local/file.txt userid@login.archer2.ac.uk:directory/path/on/ARCHER2/</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="ex">[user@laptop</span> ~]$ rsync <span class="at">-avzP</span> path/to/local/file.txt userid@login.archer2.ac.uk:directory/path/on/ARCHER2/</span></code></pre>
 </div>
 <p>The <code>a</code> (archive) option preserves file timestamps and
 permissions among other things; the <code>v</code> (verbose) option
@@ -632,10 +614,10 @@ and transfer time; and the <code>P</code> (partial/progress) option
 preserves partially transferred files in case of an interruption and
 also displays the progress of the transfer.</p>
 <p>To recursively copy a directory, we can use the same options:</p>
-<div class="codewrapper sourceCode" id="cb11">
+<div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="ex">[user@laptop</span> ~]$ rsync <span class="at">-avzP</span> path/to/local/dir userid@login.archer2.ac.uk:directory/path/on/ARCHER2/</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="ex">[user@laptop</span> ~]$ rsync <span class="at">-avzP</span> path/to/local/dir userid@login.archer2.ac.uk:directory/path/on/ARCHER2/</span></code></pre>
 </div>
 <p>As written, this will place the local directory and its contents
 under the specified directory on the remote system. If the trailing
@@ -645,10 +627,10 @@ and the contents of the source directory will be copied directly into
 the destination directory.</p>
 <p>The <code>a</code> (archive) option implies recursion.</p>
 <p>To download a file, we simply change the source and destination:</p>
-<div class="codewrapper sourceCode" id="cb12">
+<div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="ex">[user@laptop</span> ~]$ rsync <span class="at">-avzP</span> userid@login.archer2.ac.uk:path/on/ARCHER2/file.txt path/to/local/</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="ex">[user@laptop</span> ~]$ rsync <span class="at">-avzP</span> userid@login.archer2.ac.uk:path/on/ARCHER2/file.txt path/to/local/</span></code></pre>
 </div>
 </div>
 </div>
@@ -668,9 +650,6 @@ custom SSH port is in use, you will have to specify it using the
 appropriate flag, often <code>-p</code>, <code>-P</code>, or
 <code>--port</code>. Check <code>--help</code> or the <code>man</code>
 page if you’re unsure.</p>
-</div>
-</div>
-</div>
 <div id="rsync-port" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -681,10 +660,10 @@ page if you’re unsure.</p>
 <div class="callout-content">
 <p>Say we have to connect <code>rsync</code> through port 768 instead of
 22. How would we modify this command?</p>
-<div class="codewrapper sourceCode" id="cb13">
+<div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="ex">[user@laptop</span> ~]$ rsync test.txt userid@login.archer2.ac.uk:</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="ex">[user@laptop</span> ~]$ rsync test.txt userid@login.archer2.ac.uk:</span></code></pre>
 </div>
 </div>
 </div>
@@ -696,13 +675,16 @@ page if you’re unsure.</p>
 </button>
 <div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb14">
+<div class="codewrapper sourceCode" id="cb13">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="ex">[user@laptop</span> ~]$ rsync <span class="at">--help</span> <span class="kw">|</span> <span class="fu">grep</span> port</span>
-<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a>     <span class="ex">--port=PORT</span>             specify double-colon alternate port number</span>
-<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a><span class="ex">See</span> https://rsync.samba.org/ for updates, bug reports, and answers</span>
-<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a><span class="ex">[user@laptop</span> ~]$ rsync <span class="at">--port</span><span class="op">=</span>768 test.txt userid@login.archer2.ac.uk:</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="ex">[user@laptop</span> ~]$ rsync <span class="at">--help</span> <span class="kw">|</span> <span class="fu">grep</span> port</span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a>     <span class="ex">--port=PORT</span>             specify double-colon alternate port number</span>
+<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a><span class="ex">See</span> https://rsync.samba.org/ for updates, bug reports, and answers</span>
+<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a><span class="ex">[user@laptop</span> ~]$ rsync <span class="at">--port</span><span class="op">=</span>768 test.txt userid@login.archer2.ac.uk:</span></code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -723,52 +705,52 @@ transfer and so speed up the transfer.</p>
 cluster is <code>tar</code>. <code>tar</code> can be used to combine
 files into a single archive file and, optionally, compress it.</p>
 <p>Let’s start with the file we downloaded from the lesson site,
-<code>hpc-lesson-data.tar.gz</code>. The “gz” part stands for
+<code>hpc-intro-data.tar.gz</code>. The “gz” part stands for
 <em>gzip</em>, which is a compression library. Reading this file name,
-it appears somebody took a folder named “hpc-lesson-data,” wrapped up
-all its contents in a single file with <code>tar</code>, then compressed
+it appears somebody took a folder named “hpc-intro-data,” wrapped up all
+its contents in a single file with <code>tar</code>, then compressed
 that archive with <code>gzip</code> to save space. Let’s check using
 <code>tar</code> with the <code>-t</code> flag, which prints the
 “<strong>t</strong>able of contents” without unpacking the file,
 specified by <code>-f &lt;filename&gt;</code>, on the remote computer.
 Note that you can concatenate the two flags, instead of writing
 <code>-t -f</code> separately.</p>
-<div class="codewrapper sourceCode" id="cb15">
+<div class="codewrapper sourceCode" id="cb14">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="ex">[user@laptop</span> ~]$ ssh userid@login.archer2.ac.uk</span>
-<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a><span class="ex">userid@ln03:~</span><span class="op">&gt;</span> tar <span class="at">-tf</span> hpc-lesson-data.tar.gz</span>
-<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a><span class="ex">hpc-intro-data/</span></span>
-<span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/</span></span>
-<span id="cb15-5"><a href="#cb15-5" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/NENE01971Z.txt</span></span>
-<span id="cb15-6"><a href="#cb15-6" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/goostats</span></span>
-<span id="cb15-7"><a href="#cb15-7" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/goodiff</span></span>
-<span id="cb15-8"><a href="#cb15-8" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/NENE02040B.txt</span></span>
-<span id="cb15-9"><a href="#cb15-9" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/NENE01978B.txt</span></span>
-<span id="cb15-10"><a href="#cb15-10" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/NENE02043B.txt</span></span>
-<span id="cb15-11"><a href="#cb15-11" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/NENE02018B.txt</span></span>
-<span id="cb15-12"><a href="#cb15-12" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/NENE01843A.txt</span></span>
-<span id="cb15-13"><a href="#cb15-13" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/NENE01978A.txt</span></span>
-<span id="cb15-14"><a href="#cb15-14" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/NENE01751B.txt</span></span>
-<span id="cb15-15"><a href="#cb15-15" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/NENE01736A.txt</span></span>
-<span id="cb15-16"><a href="#cb15-16" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/NENE01812A.txt</span></span>
-<span id="cb15-17"><a href="#cb15-17" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/NENE02043A.txt</span></span>
-<span id="cb15-18"><a href="#cb15-18" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/NENE01729B.txt</span></span>
-<span id="cb15-19"><a href="#cb15-19" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/NENE02040A.txt</span></span>
-<span id="cb15-20"><a href="#cb15-20" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/NENE01843B.txt</span></span>
-<span id="cb15-21"><a href="#cb15-21" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/NENE01751A.txt</span></span>
-<span id="cb15-22"><a href="#cb15-22" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/NENE01729A.txt</span></span>
-<span id="cb15-23"><a href="#cb15-23" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/NENE02040Z.txt</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="ex">[user@laptop</span> ~]$ ssh userid@login.archer2.ac.uk</span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a><span class="ex">userid@ln03:~</span><span class="op">&gt;</span> tar <span class="at">-tf</span> hpc-intro-data.tar.gz</span>
+<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a><span class="ex">hpc-intro-data/</span></span>
+<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/</span></span>
+<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/NENE01971Z.txt</span></span>
+<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/goostats</span></span>
+<span id="cb14-7"><a href="#cb14-7" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/goodiff</span></span>
+<span id="cb14-8"><a href="#cb14-8" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/NENE02040B.txt</span></span>
+<span id="cb14-9"><a href="#cb14-9" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/NENE01978B.txt</span></span>
+<span id="cb14-10"><a href="#cb14-10" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/NENE02043B.txt</span></span>
+<span id="cb14-11"><a href="#cb14-11" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/NENE02018B.txt</span></span>
+<span id="cb14-12"><a href="#cb14-12" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/NENE01843A.txt</span></span>
+<span id="cb14-13"><a href="#cb14-13" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/NENE01978A.txt</span></span>
+<span id="cb14-14"><a href="#cb14-14" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/NENE01751B.txt</span></span>
+<span id="cb14-15"><a href="#cb14-15" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/NENE01736A.txt</span></span>
+<span id="cb14-16"><a href="#cb14-16" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/NENE01812A.txt</span></span>
+<span id="cb14-17"><a href="#cb14-17" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/NENE02043A.txt</span></span>
+<span id="cb14-18"><a href="#cb14-18" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/NENE01729B.txt</span></span>
+<span id="cb14-19"><a href="#cb14-19" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/NENE02040A.txt</span></span>
+<span id="cb14-20"><a href="#cb14-20" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/NENE01843B.txt</span></span>
+<span id="cb14-21"><a href="#cb14-21" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/NENE01751A.txt</span></span>
+<span id="cb14-22"><a href="#cb14-22" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/NENE01729A.txt</span></span>
+<span id="cb14-23"><a href="#cb14-23" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/NENE02040Z.txt</span></span></code></pre>
 </div>
 <p>This shows a folder containing another folder, which contains a bunch
 of files. If you’ve taken The Carpentries’ Shell lesson recently, these
 might look familiar. Let’s see about that compression, using
 <code>du</code> for “<strong>d</strong>isk <strong>u</strong>sage”.</p>
-<div class="codewrapper sourceCode" id="cb16">
+<div class="codewrapper sourceCode" id="cb15">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="ex">userid@ln03:~</span><span class="op">&gt;</span> du <span class="at">-sh</span> hpc-lesson-data.tar.gz</span>
-<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a><span class="ex">36K</span>     hpc-intro-data.tar.gz</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="ex">userid@ln03:~</span><span class="op">&gt;</span> du <span class="at">-sh</span> hpc-intro-data.tar.gz</span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a><span class="ex">36K</span>     hpc-intro-data.tar.gz</span></code></pre>
 </div>
 <div id="files-occupy-at-least-one-block" class="callout">
 <div class="callout-square">
@@ -817,10 +799,10 @@ flags.</p>
 </button>
 <div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb17">
+<div class="codewrapper sourceCode" id="cb16">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="ex">userid@ln03:~</span><span class="op">&gt;</span> tar <span class="at">-xvzf</span> hpc-lesson-data.tar.gz</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="ex">userid@ln03:~</span><span class="op">&gt;</span> tar <span class="at">-xvzf</span> hpc-intro-data.tar.gz</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -849,11 +831,11 @@ flags.</p>
 </div>
 <p>Note that we did not type out <code>-x -v -z -f</code>, thanks to the
 flag concatenation, though the command works identically either way.</p>
-<div class="codewrapper sourceCode" id="cb19">
+<div class="codewrapper sourceCode" id="cb18">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="ex">userid@ln03:~</span><span class="op">&gt;</span> du <span class="at">-sh</span> hpc-lesson-data</span>
-<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a><span class="ex">144K</span>    hpc-intro-data</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="ex">userid@ln03:~</span><span class="op">&gt;</span> du <span class="at">-sh</span> hpc-intro-data</span>
+<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a><span class="ex">144K</span>    hpc-intro-data</span></code></pre>
 </div>
 </div>
 </div>
@@ -875,10 +857,10 @@ size of the raw data!</p>
 <p>If you want to reverse the process — compressing raw data instead of
 extracting it — set a <code>c</code> flag instead of <code>x</code>, set
 the archive filename, then provide a directory to compress:</p>
-<div class="codewrapper sourceCode" id="cb20">
+<div class="codewrapper sourceCode" id="cb19">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="ex">[user@laptop</span> ~]$ tar <span class="at">-cvzf</span> compressed_data.tar.gz hpc-intro-data</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="ex">[user@laptop</span> ~]$ tar <span class="at">-cvzf</span> compressed_data.tar.gz hpc-intro-data</span></code></pre>
 </div>
 <div id="working-with-windows" class="callout discussion">
 <div class="callout-square">
@@ -914,9 +896,15 @@ of a line. To convert the file, just run <code>dos2unix filename</code>.
 <span class="callout-header">Key Points</span>
 <div class="callout-inner">
 <div class="callout-content">
-<ul><li>“<code>wget</code> and <code>curl -O</code> download a file from the
-internet.”</li>
-<li>“<code>scp</code> transfers files to and from your computer.”</li>
+<ul><li>It is an essential skill to be able to transfer files to and from a
+cluser</li>
+<li>
+<code>wget</code> and <code>curl -O</code> can be used to download a
+file from the internet.</li>
+<li>
+<code>scp</code> transfers files to and from your computer.</li>
+<li>If you have a lot of data to transfer, it is good practice to
+archive and compress the data</li>
 </ul></div>
 </div>
 </div>
@@ -984,7 +972,7 @@ use like [gitbash][gitbash]
   "url": "https://EPCCed.github.io/2025-10-14-archer2-intro-hpc/instructor/15-transferring-files.html",
   "identifier": "https://EPCCed.github.io/2025-10-14-archer2-intro-hpc/instructor/15-transferring-files.html",
   "dateCreated": "2025-10-14",
-  "dateModified": "2025-10-01",
+  "dateModified": "2025-10-08",
   "datePublished": "2025-10-08"
 }
 
