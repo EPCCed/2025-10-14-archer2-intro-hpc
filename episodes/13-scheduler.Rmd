@@ -51,11 +51,11 @@ submission*.
 
 In this case, the job we want to run is just a shell script. Let's create a
 demo shell script to run as a test. The landing pad will have a number of
-terminal-based text editors installed. Use whichever you prefer. Unsure? `nano`
-is a pretty good, basic choice.
+terminal-based text editors installed. Use whichever you prefer. Unsure? `vim` or `nano`
+are pretty good, basic choices.
 
 ```bash
-`r config$remote$prompt` nano example-job.sh
+`r config$remote$prompt` vim example-job.sh
 `r config$remote$prompt` chmod +x example-job.sh
 `r config$remote$prompt` cat example-job.sh
 ```
@@ -98,9 +98,9 @@ We need to submit the job to the scheduler, so we use the ``r config$sched$submi
 ```
 
 ```output
-sbatch: Warning: Your job has no time specification (--time=) and the default time is short. You can cancel your job with 'scancel <JOB_ID>' if you wish to resubmit.
-sbatch: Warning: It appears your working directory may be on the home filesystem. It is `r config$remote$homedir`. This is not available from the compute nodes - please check that this is what you intended. You can cancel your job with 'scancel <JOBID>' if you wish to resubmit.
-Submitted batch job 286949
+sbatch: Your job has no time specification (--time=). The maximum time for the short QoS of 20 minutes has been applied.
+sbatch: Warning: It appears your working directory may not be on the work filesystem. It is /home1/home/ta215/ta215/ta215broa1. The home filesystem and RDFaaS are not available from the compute nodes - please check that this is what you intended. You can cancel your job with 'scancel <JOBID>' if you wish to resubmit.
+Submitted batch job 11102066
 ```
 
 Ah! What went wrong here? Slurm is telling us that the file system we are currently on, `/home`, is not available
@@ -131,6 +131,7 @@ Or, we can use:
 `r config$remote$prompt_work` `r config$sched$status` --me 
 ```
 
+You have to be quick! If you are, you should see an output that looks like this: 
 
 ```{r, child=paste(snippets, '/scheduler/basic-job-status.Rmd', sep=''), eval=TRUE}
 ```
@@ -207,8 +208,6 @@ Submit the job and monitor its status:
 ```{r, child=paste(snippets, '/scheduler/job-with-name-status.Rmd', sep=''), eval=TRUE}
 ```
 
-Fantastic, we've successfully changed the name of our job!
-
 ### Resource Requests
 
 But what about more important changes, such as the number of cores and memory
@@ -273,9 +272,10 @@ Why are the `r config$sched$name` runtime and `sleep` time not identical?
 :::
 :::
 
-
-#```{r, child=paste(snippets, '/scheduler/print-sched-variables.Rmd', sep=''), eval=TRUE}
-#```
+<!-- 
+```{r, child=paste(snippets, '/scheduler/print-sched-variables.Rmd', sep=''), eval=TRUE}
+```
+--> 
 
 Resource requests are typically binding. If you exceed them, your job will be
 killed. Let's use the walltime as an example. We will request 30 seconds of
@@ -356,7 +356,7 @@ Now cancel the job with its job number (printed in your terminal). Absence of an
 job info indicates that the job has been successfully cancelled.
 
 ```bash
-`r config$remote$prompt_work` `r config$sched$del` 38759
+`r config$remote$prompt_work` `r config$sched$del` 11102156
 `r config$remote$prompt_work` `r config$sched$status` `r config$sched$flag$user`
 ```
 
@@ -386,7 +386,9 @@ Let's demonstrate this by running the `hostname` command with ``r config$sched$i
 ```
 
 ```output
-nid001976
+srun: job 11102176 queued and waiting for resources
+srun: job 11102176 has been allocated resources
+nid001810
 ```
 
 `srun` accepts all of the same options as `sbatch`. However, instead of specifying these in a
@@ -394,17 +396,6 @@ script, these options are specified on the command-line when starting a job.
 
 Typically, the resulting shell environment will be the same as that for
 `sbatch`.
-
-<!-- ```bash
-#`r config$host_prompt_work` srun `r config$sched$submit$options` --pty /bin/bash
-#```
-
-#You should be presented with a bash prompt. Note that the prompt may change
-#to reflect your new location, in this case the compute node we are logged on.
-#You can also verify this with `hostname`.
-
-#When you are done with the interactive job, type `exit` to quit your session.
---> 
 
 
 ## Running parallel jobs using MPI
@@ -436,8 +427,8 @@ parallel MPI programs typically requires four things:
 To illustrate this process, we will use a simple MPI parallel program that estimates the value of Pi - 
 _We will meet this example program in more detail in a later episode of this course._ 
 
-Here is a job submission script that runs the program across two compute nodes on the cluster. 
-Create a job submission script (e.g. called: `run-pi-mpi.slurm`) with the following contents: 
+Here is a job submission script that runs the program on 1 compute node, using 16 parallel tasks (or cores) 
+on the cluster. Create a job submission script (e.g. called: `run-pi-mpi.slurm`) with the following contents: 
 
 ```{r, child=paste(snippets, '/scheduler/parallel-script.Rmd', sep=''), eval=TRUE}
 ```
@@ -452,8 +443,6 @@ We can now launch using the ``r config$sched$submit$name`` command.
 ```bash
 `r config$remote$prompt_work` `r config$sched$submit$name` run-pi-mpi.slurm
 ```
-
-The program generates no output with all details printed to the job log.
 
 ```{r, child=paste(snippets, '/scheduler/parallel-challenge.Rmd', sep=''), eval=TRUE}
 ```

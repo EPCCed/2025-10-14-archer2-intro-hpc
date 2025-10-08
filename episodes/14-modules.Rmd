@@ -18,30 +18,29 @@ snippets <- paste('./files/snippets/', config$snippets, sep='')
  - Understand how to load and use a software package.
 :::
 
-On a high-performance computing system, it is seldom the case that the software
-we want to use is available when we log in. It is installed, but we will need
+On a HPC system, it is seldom the case that the software
+we want to use is available when we log in. It may be installed, but we will need
 to "load" it before it can run.
 
 Before we start using individual software packages, however, we should
 understand the reasoning behind this approach. The three biggest factors are:
 
- - software incompatibilities
- - versioning
- - dependencies
-
+### Software incompatibilities
 Software incompatibility is a major headache for programmers. Sometimes the
 presence (or absence) of a software package will break others that depend on
-it. Two of the most famous examples are Python 2 and 3 and C compiler versions.
+it. Two of the most famous examples are Python 2 vs 3 and C compiler versions.
 Python 3 famously provides a `python` command that conflicts with that provided
-by Python 2. Software compiled against a newer version of the C libraries and
-then used when they are not present will result in a nasty `'GLIBCXX_3.4.20' not found` error, for instance.
+by Python 2. And software compiled against a newer version of the C libraries and
+then used when they are not present will result in a nasty `'GLIBCXX_3.4.20' not found` error.
 
+### Versioning
 Software versioning is another common issue. A team might depend on a certain
 package version for their research project - if the software version was to
 change (for instance, if a package was updated), it might affect their results.
-Having access to multiple software versions allow a set of researchers to
+Having access to multiple software versions on the same system helps to
 prevent software versioning issues from affecting their results.
 
+### Dependencies
 Dependencies are where a particular software package (or even a particular
 version) depends on having access to another software package (or even a
 particular version of another software package). For example, the VASP
@@ -90,41 +89,38 @@ message telling you so
 `r config$remote$prompt_work` module list
 ```
 ```output
-Currently Loaded Modulefiles:
- 1) cpe-cray                          8) perftools-base/20.10.0(default)                                  
- 2) cce/10.0.4(default)               9) xpmem/2.2.35-7.0.1.0_1.9__gd50fabf.shasta(default)               
- 3) craype/2.7.2(default)            10) cray-mpich/8.0.16(default)                                       
- 4) craype-x86-rome                  11) cray-libsci/20.10.1.2(default)                                   
- 5) libfabric/1.11.0.0.233(default)  12) bolt/0.7                                                         
- 6) craype-network-ofi               13) /work/y07/shared/archer2-modules/modulefiles-cse/epcc-setup-env  
- 7) cray-dsmml/0.1.2(default)        14) /usr/local/share/epcc-module/epcc-module-loader  
+Currently Loaded Modules:
+  1) craype-x86-rome                         6) cce/15.0.0             11) PrgEnv-cray/8.3.3
+  2) libfabric/1.12.1.2.2.0.0                7) craype/2.7.19          12) bolt/0.8
+  3) craype-network-ofi                      8) cray-dsmml/0.2.2       13) epcc-setup-env
+  4) perftools-base/22.12.0                  9) cray-mpich/8.1.23      14) load-epcc-module
+  5) xpmem/2.5.2-2.4_3.30__gd0f7936.shasta  10) cray-libsci/22.12.1.1
 ```
 
 ## Loading and Unloading Software
 
 To load a software module, use `module load`. Let's say we would like
-to use the NetCDF utility `ncdump`. 
+to use the HDF5 utility `h5dump`. 
 
-On login, `ncdump` is not available. We can test this by using the `which`
+On login, `h5dump` is not available. We can test this by using the `which`
 command. `which` looks for programs the same way that Bash does,
 so we can use it to tell us where a particular piece of software is stored.
 
 ```bash
-`r config$host_prompt` which ncdump
+`r config$host_prompt` which h5dump
 ```
 ```output
-which: no ncdump in (/usr/local/maven/bin:/lus/cls01095/work/y07/shared/bolt/0.7/bin:/work/y07/shared/utils/bin:/opt/cray/pe/perftools/20.10.0/bin:/opt/cray/pe/papi/6.0.0.4/bin:/opt/cray/libfabric/1.11.0.0.233/bin:/opt/cray/pe/craype/2.7.2/bin:/opt/cray/pe/cce/10.0.4/cce-clang/x86_64/bin:/opt/cray/pe/cce/10.0.4/binutils/x86_64/x86_64-pc-linux-gnu/bin:/opt/cray/pe/cce/10.0.4/binutils/cross/x86_64-aarch64/aarch64-linux-gnu/../bin:/opt/cray/pe/cce/10.0.4/utils/x86_64/bin:/usr/local/Modules/bin:/usr/local/bin:/usr/bin:/bin:/opt/cray/pe/bin:/usr/lib/mit/bin)
+which: no h5dump in (/work/y07/shared/utils/core/bolt/0.8/bin:/mnt/lustre/a2fs-work4/work/y07/shared/utils/core/bin:/opt/cray/pe/mpich/8.1.23/ofi/crayclang/10.0/bin:/opt/cray/pe/mpich/8.1.23/bin:/opt/cray/pe/craype/2.7.19/bin:/opt/cray/pe/cce/15.0.0/binutils/x86_64/x86_64-pc-linux-gnu/bin:/opt/cray/pe/cce/15.0.0/binutils/cross/x86_64-aarch64/aarch64-linux-gnu/../bin:/opt/cray/pe/cce/15.0.0/utils/x86_64/bin:/opt/cray/pe/cce/15.0.0/bin:/opt/cray/pe/cce/15.0.0/cce-clang/x86_64/bin:/opt/cray/pe/perftools/22.12.0/bin:/opt/cray/pe/papi/6.0.0.17/bin:/opt/cray/libfabric/1.12.1.2.2.0.0/bin:/usr/local/bin:/usr/bin:/bin:/usr/lib/mit/bin:/opt/cray/pe/bin)
 ```
 
-We can find the `ncdump` command by using `module load`:
+We can find the `h5dump` command by using `module load`:
 
 ```bash
 `r config$host_work` module load cray-hdf5
-`r config$host_work` module load cray-netcdf
-which ncdump
+which h5dump
 ```
 ```output
-/opt/cray/pe/netcdf/4.7.4.2/bin/ncdump
+/opt/cray/pe/hdf5/1.12.2.1/bin/h5dump
 ```
 
 So, what just happened?
@@ -140,7 +136,7 @@ As with all environment variables we can print it out using `echo`.
 `r config$host_work` echo $PATH
 ```
 ```output
-/opt/cray/pe/netcdf/4.7.4.2/bin:/opt/cray/pe/python/3.8.5.0/bin:/lus/cls01095/work/z19/z19/aturner/.local/bin:/lus/cls01095/work/y07/shared/bolt/0.7/bin:/work/y07/shared/utils/bin:/usr/local/maven/bin:/opt/cray/pe/perftools/20.10.0/bin:/opt/cray/pe/papi/6.0.0.4/bin:/opt/cray/libfabric/1.11.0.0.233/bin:/opt/cray/pe/craype/2.7.2/bin:/opt/cray/pe/cce/10.0.4/cce-clang/x86_64/bin:/opt/cray/pe/cce/10.0.4/binutils/x86_64/x86_64-pc-linux-gnu/bin:/opt/cray/pe/cce/10.0.4/binutils/cross/x86_64-aarch64/aarch64-linux-gnu/../bin:/opt/cray/pe/cce/10.0.4/utils/x86_64/bin:/usr/local/Modules/bin:/home/z19/z19/aturner/bin:/usr/local/bin:/usr/bin:/bin:/opt/cray/pe/bin:/usr/lib/mit/bin
+/opt/cray/pe/hdf5/1.12.2.1/bin:/work/y07/shared/utils/core/bolt/0.8/bin:/mnt/lustre/a2fs-work4/work/y07/shared/utils/core/bin:/opt/cray/pe/mpich/8.1.23/ofi/crayclang/10.0/bin:/opt/cray/pe/mpich/8.1.23/bin:/opt/cray/pe/craype/2.7.19/bin:/opt/cray/pe/cce/15.0.0/binutils/x86_64/x86_64-pc-linux-gnu/bin:/opt/cray/pe/cce/15.0.0/binutils/cross/x86_64-aarch64/aarch64-linux-gnu/../bin:/opt/cray/pe/cce/15.0.0/utils/x86_64/bin:/opt/cray/pe/cce/15.0.0/bin:/opt/cray/pe/cce/15.0.0/cce-clang/x86_64/bin:/opt/cray/pe/perftools/22.12.0/bin:/opt/cray/pe/papi/6.0.0.17/bin:/opt/cray/libfabric/1.12.1.2.2.0.0/bin:/usr/local/bin:/usr/bin:/bin:/usr/lib/mit/bin:/opt/cray/pe/bin
 ```
 
 You'll notice a similarity to the output of the `which` command. In this case,
@@ -149,10 +145,11 @@ ran the `module load` command, it added a directory to the beginning of our
 `$PATH`. Let's examine what's there:
 
 ```bash
-`r config$host_work` ls /opt/cray/pe/netcdf/4.7.4.2/bin
+`r config$host_work` ls /opt/cray/pe/hdf5/1.12.2.1/bin/
 ```
 ```output
-nc-config  nccopy  ncdump  ncgen  ncgen3  ncxx4-config  nf-config
+gif2h5	h5c++  h5clear	h5debug  h5dump  h5format_convert  h5jam  h5mkgrp	 h5redeploy  h5repart  h5unjam
+h52gif	h5cc   h5copy	h5diff	 h5fc	 h5import	   h5ls   h5perf_serial  h5repack    h5stat    h5watch
 ```
 
 In summary, `module load` will add software to your `$PATH`.
@@ -162,12 +159,12 @@ To unload a module, use `module unload` with the relevant module name.
 
 ::: challenge
 ## Unload!
-Confirm you can unload the `cray-netcdf` module and check what happens to the `PATH` environment variable.
+Confirm you can unload the `cray-hdf5` module and check what happens to the `PATH` environment variable.
 :::
 
 ## Software versioning
 
-So far, we've learned how to load and unload software packages. This is very useful. However, we
+So far, we've learned how to load and unload software packages. This is very useful, however we
 have not yet addressed the issue of software versioning. At some point or other, you will run into
 issues where only one particular version of some software will be suitable. Perhaps a key bugfix
 only happened in a certain version, or version X broke compatibility with a file format you use. In
@@ -176,59 +173,62 @@ either of these example cases, it helps to be very specific about what software 
 Let's examine the output of `module avail` more closely.
 
 ```bash
-`r config$host_work` module avail cray-netcdf
+`r config$host_work` module avail cray-hdf5
 ```
 ```output
---------------------------- /opt/cray/pe/modulefiles ---------------------------
-cray-netcdf-hdf5parallel/4.7.4.0           cray-netcdf/4.7.4.0           
-cray-netcdf-hdf5parallel/4.7.4.2(default)  cray-netcdf/4.7.4.2(default)  
+------------------------------------------------------- /opt/cray/pe/lmod/modulefiles/mpi/crayclang/14.0/ofi/1.0/cray-mpich/8.0 --------------------------------------------------------
+   cray-hdf5-parallel/1.12.2.1 (D)    cray-hdf5-parallel/1.12.2.7
+
+---------------------------------------------------------------- /opt/cray/pe/lmod/modulefiles/compiler/crayclang/14.0 -----------------------------------------------------------------
+   cray-hdf5/1.12.2.1 (L,D)    cray-hdf5/1.12.2.7
+
+  Where:
+   L:  Module is loaded
+   D:  Default Module
+
 ```
 
-Note that we have two different versions of `cray-netcdf` (and also two
-versions of something else `cray-netcdf-hdf5parallel` which match our
-search).
+Note that we have two different versions of `cray-hdf5`.
 
 ::: challenge
 ## Using `module swap`
-Load module `cray-netcdf` as before. Note that if we do not specifify
+Load module `cray-hdf5` as before. Note that if we do not specifify
 a particular version, we load a default version.
 If we wish to change versions, we can use
 `module swap <old-module> <new-module>`. Try this to obtain
-`cray-netcdf/4.7.4.0`. Check what has happened to the location of
-the `ncdump` utility.
+`cray-hdf5/1.12.2.7`. Check what has happened to the location of
+the `h5dump` utility.
 :::
 
 ::: challenge
 ## Using Software Modules in Scripts
-Create a job that is able to run `ncdump --version`. Running a job
-is just like logging on to the system
-(you should not assume a module loaded on the login node is loaded on a
-compute node).
+Create a job that is able to run `h5dump --version`. 
+Remember, submitting a job is just like logging in to a new remote system. What modules would you
+expect to be there? 
+
 
 ::: solution
 
 ```bash
-`r config$remote$prompt_work` nano ncdump-module.sh
-`r config$remote$prompt_work` cat ncdump-module.sh
+`r config$remote$prompt_work` nano h5dump-module.sh
+`r config$remote$prompt_work` cat h5dump-module.sh
 ```
 ```output
 `r config$remote$bash_shebang`
 `r config$sched$comment` --partition=standard
 `r config$sched$comment` --qos=`r config$sched$qos`
-module load epcc-job-env
-module load cray-netcdf
-ncdump --version
+module load cray-hdf5
+h5dump --version
 ```
 
-```bash
-`r config$remote$prompt_work` `r config$sched$submit.name` python-module.sh
-```
 :::
 :::
 
 ::: keypoints
- - "Load software with `module load softwareName`."
- - "Unload software with `module purge`"
- - "The module system handles software versioning and package conflicts for you
-  automatically."
+ - HPC systems use modules to help deal with software incompatibilities, versioning and dependencies
+- We can see what modules we currently have loaded with `module list`
+- We can see what modules are available with `module avail`
+- We can load a module with `module load softwareName`.
+- We can unload a module with `module unload softwareName`.
+- We can swap modules for different versions with `module swap old-softwareName new-softwareName`.
 :::
