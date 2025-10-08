@@ -15,45 +15,30 @@ exercises: 15
  - `scp` transfers files to and from your computer.
 :::
 
-::: prereq
 
-## Required Files
-
-The program used in this example can be retrieved using wget or a browser and copied to the remote.
-
-**Using wget**: 
-```bash
-userid@ln03:~> wget https://epcced.github.io/2025-10-14-archer2-hpc-intro-parasols//files/hpc-intro-data.tar.gz
-```
-
-**Using a web browser**: 
-
-[https://epcced.github.io/2025-10-14-archer2-hpc-intro-parasols//files/hpc-intro-data.tar.gz](https://epcced.github.io/2025-10-14-archer2-hpc-intro-parasols//files/hpc-intro-data.tar.gz)
-:::
-
-Computing with a remote computer offers very limited use if we cannot get files
+A remote computer offers very limited use if we cannot get files
 to or from the cluster. There are several options for transferring data between
-computing resources, from command line options to GUI programs, which we will
-cover here.
+computing resources, from command line options to GUI programs.
+
 
 ## Download Files From the Internet
 
 One of the most straightforward ways to download files is to use either `curl`
-or `wget`, one of these is usually installed in most Linux shells, on Mac OS
+or `wget`. One of these is usually installed in most Linux shells, on Mac OS
 terminal and in GitBash. Any file that can be downloaded in your web browser 
 through a direct link can be downloaded using `curl -O` or `wget`. This is a 
 quick way to download datasets or source code. 
 
 The syntax for these commands is: `curl -O https://some/link/to/a/file` 
 and `wget https://some/link/to/a/file`. Try it out by downloading
-some material we'll use later on, from a terminal on your local machine.
+some material we'll use later on, from a terminal on your **local** machine.
 
 ```bash
-[user@laptop ~]$ curl -O https://epcced.github.io/2025-10-14-archer2-hpc-intro-parasols//files/hpc-intro-data.tar.gz
+[user@laptop ~]$ curl -O https://epcced.github.io/2025-10-14-archer2-intro-hpcfiles/hpc-intro-data.tar.gz
 ```
 or
 ```bash
-[user@laptop ~]$ wget https://epcced.github.io/2025-10-14-archer2-hpc-intro-parasols//files/hpc-intro-data.tar.gz
+[user@laptop ~]$ wget https://epcced.github.io/2025-10-14-archer2-intro-hpcfiles/hpc-intro-data.tar.gz
 ```
 
 ::: discussion
@@ -61,8 +46,7 @@ or
 This is an archive file format, just like `.zip`, commonly used and supported
 by default on Linux, which is the operating system the majority of HPC
 cluster machines run. You may also see the extension `.tgz`, which is exactly
-the same. We'll talk more about "tarballs," since "tar-dot-g-z" is a
-mouthful, later on.
+the same. We'll talk more about "tarballs" ("tar-dot-g-z" is a mouthful!) later on.
 :::
 
 ## Transferring Single Files and Folders With `scp`
@@ -89,19 +73,6 @@ remote computer. We can leave it at that if we don't care where the file goes.
 [user@laptop ~]$ scp local-file.txt userid@login.archer2.ac.uk:
 ```
 
-::: challenge
-## Upload a File
-Copy the file you just downloaded from the Internet to your home directory on
-ARCHER2.
-
-::: solution
-
-```bash
-[user@laptop ~]$ scp hpc-intro-data.tar.gz userid@login.archer2.ac.uk:~/
-```
-:::
-:::
-
 ::: discussion
 ## Why Not Download on ARCHER2 Directly?
 Some computer clusters are behind firewalls set to only allow transfers
@@ -113,12 +84,30 @@ it to the cluster.
 
 :::
 
+
+::: challenge
+## Upload a File
+Copy the file you just downloaded from the Internet to your home directory on
+ARCHER2.
+
+::: solution
+
+```bash
+[user@laptop ~]$ scp hpc-intro-data.tar.gz userid@login.archer2.ac.uk:~/
+```
+
+**Note:** If you need to pass your SSH key to ssh using the `-i` command to login, you may need to 
+also do that here.
+
+:::
+:::
+
 ::: challenge
 
 ## Can you download from the server directly?
 
-Try downloading the file directly using `curl` or `wget`. Do the commands understand file locations on your local machine over SSH? Note that it may well fail, and that's
-OK!
+Try downloading the file directly using `curl` or `wget`. Do the commands understand file locations 
+on your local machine over SSH? Note that it may well fail, and that's OK!
 
 ::: solution
 
@@ -126,9 +115,9 @@ Using `curl` or `wget` commands like the following:
 
 ```bash
 [user@laptop ~]$ ssh userid@login.archer2.ac.uk
-userid@ln03:~> curl -O https://epcced.github.io/2025-10-14-archer2-hpc-intro-parasols//files/hpc-intro-data.tar.gz
+userid@ln03:~> curl -O https://epcced.github.io/2025-10-14-archer2-intro-hpc/files/hpc-intro-data.tar.gz
 or
-userid@ln03:~> wget https://epcced.github.io/2025-10-14-archer2-hpc-intro-parasols//files/hpc-intro-data.tar.gz
+userid@ln03:~> wget https://epcced.github.io/2025-10-14-archer2-intro-hpc/files/hpc-intro-data.tar.gz
 ```
 
 Did it work? If not, what does the terminal output tell you about what
@@ -221,8 +210,6 @@ transfer files. By default, SSH uses network port 22. If a custom SSH port is
 in use, you will have to specify it using the appropriate flag, often `-p`,
 `-P`, or `--port`. Check `--help` or the `man` page if you're unsure.
 
-:::
-
 ::: challenge
 #### Rsync Port
 
@@ -243,6 +230,8 @@ See https://rsync.samba.org/ for updates, bug reports, and answers
 ```
 :::
 :::
+:::
+
 
 ## Archiving Files
 
@@ -261,9 +250,9 @@ The most common archiving command you will use on a (Linux) HPC cluster is
 optionally, compress it.
 
 Let's start with the file we downloaded from the lesson site,
-`hpc-lesson-data.tar.gz`. The "gz" part stands for *gzip*, which is a
+`hpc-intro-data.tar.gz`. The "gz" part stands for *gzip*, which is a
 compression library. Reading this file name, it appears somebody took a folder
-named "hpc-lesson-data," wrapped up all its contents in a single file with
+named "hpc-intro-data," wrapped up all its contents in a single file with
 `tar`, then compressed that archive with `gzip` to save space. Let's check
 using `tar` with the `-t` flag, which prints the "**t**able of contents"
 without unpacking the file, specified by `-f <filename>`, on the remote
@@ -272,7 +261,7 @@ computer. Note that you can concatenate the two flags, instead of writing
 
 ```bash
 [user@laptop ~]$ ssh userid@login.archer2.ac.uk
-userid@ln03:~> tar -tf hpc-lesson-data.tar.gz
+userid@ln03:~> tar -tf hpc-intro-data.tar.gz
 hpc-intro-data/
 hpc-intro-data/north-pacific-gyre/
 hpc-intro-data/north-pacific-gyre/NENE01971Z.txt
@@ -302,7 +291,7 @@ familiar. Let's see about that compression, using `du` for "**d**isk
 **u**sage".
 
 ```bash
-userid@ln03:~> du -sh hpc-lesson-data.tar.gz
+userid@ln03:~> du -sh hpc-intro-data.tar.gz
 36K     hpc-intro-data.tar.gz
 ```
 
@@ -334,7 +323,7 @@ Hint: `tar` lets you concatenate flags.
 #### Commands
 
 ```bash
-userid@ln03:~> tar -xvzf hpc-lesson-data.tar.gz
+userid@ln03:~> tar -xvzf hpc-intro-data.tar.gz
 ```
 ```output
 hpc-intro-data/
@@ -364,7 +353,7 @@ Note that we did not type out `-x -v -z -f`, thanks to the flag
 concatenation, though the command works identically either way.
 
 ```bash
-userid@ln03:~> du -sh hpc-lesson-data
+userid@ln03:~> du -sh hpc-intro-data
 144K    hpc-intro-data
 ```
 :::
@@ -403,6 +392,8 @@ back to Windows format, you can run `unix2dos filename`.)
 :::
 
 ::: keypoints
- - "`wget` and `curl -O` download a file from the internet."
- - "`scp` transfers files to and from your computer."
+ - It is an essential skill to be able to transfer files to and from a cluser 
+ - `wget` and `curl -O` can be used to download a file from the internet.
+ - `scp` transfers files to and from your computer.
+ - If you have a lot of data to transfer, it is good practice to archive and compress the data 
 :::

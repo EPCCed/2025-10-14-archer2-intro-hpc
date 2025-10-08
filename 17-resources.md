@@ -17,8 +17,12 @@ exercises: 30
 :::
 
 We've touched on all the skills you need to interact with an HPC cluster:
-logging in over SSH, loading software modules, submitting parallel jobs, and
-finding the output. Let's learn about estimating resource usage and why it
+* Logging in over SSH, 
+* Loading software modules, 
+* Submitting parallel jobs, and
+* Finding the output
+
+Let's learn about estimating resource usage and why it
 might matter. To do this we need to understand the basics of *benchmarking*.
 Benchmarking is essentially performing simple experiments to help understand
 how the performance of our work varies as we change the properties of the
@@ -50,10 +54,13 @@ Both of these approaches are equally valid uses of HPC. This example looks at st
 Before we work on benchmarking, it is useful to define some terms for the example we will
 be using
 
-  - **Program** The computer program we are executing (`pi-mpi.py` in the examples below)
-  - **Application** The combination of computer program with particular input parameters
+  - **Program** = The computer program we are executing (`pi-mpi.py` in the examples below)
+  - **Application** = The combination of computer program with particular input parameters
 
 ## Accessing the software and input
+
+We will be returning to the same example used in [lesson 4](13-scheduler.md). If you didn't get a chance to grab the program then, 
+you can do so now by following the below instructions. 
 
 
 ::: prereq
@@ -64,14 +71,18 @@ The program used in this example can be retrieved using wget or a browser and co
 
 **Using wget**: 
 ```bash
-userid@ln03:~> wget https://epcced.github.io/2025-10-14-archer2-hpc-intro-parasols//files/pi-mpi.py
+userid@ln03:~> wget https://epcced.github.io/2025-10-14-archer2-intro-hpc/files/pi-mpi.py
 ```
 
-**Using a web browser**:
+**Download via web browser**:
 
-[https://epcced.github.io/2025-10-14-archer2-hpc-intro-parasols//files/pi-mpi.py](https://epcced.github.io/2025-10-14-archer2-hpc-intro-parasols//files/pi-mpi.py)
+[https://epcced.github.io/2025-10-14-archer2-intro-hpc/files/pi-mpi.py](https://epcced.github.io/2025-10-14-archer2-intro-hpc/files/pi-mpi.py)
 
 :::
+
+
+
+
 
 ## Baseline: running in serial
 
@@ -105,16 +116,18 @@ Creating a file called `submit-pi-mpi.slurm`:
 #SBATCH --nodes=1
 #SBATCH --tasks-per-node=1
 #SBATCH --time=00:15:00
-srun python pi-mpi.py 10000000
+
+module load cray-python 
+srun python pi-mpi.py 100000000
 ```
 
 Run application using a single process (i.e. in serial) with a blocking `srun` command:
 ```bash
 module load cray-python
- srun --partition=standard --qos=short python pi-mpi.py 10000000
+ srun --partition=standard --qos=short python pi-mpi.py 100000000
 ```
 
-Submit with to the batch queue with:
+OR submit with to the batch queue with:
 
 ```bash
   submit-pi-mpi.slurm
@@ -123,11 +136,12 @@ Submit with to the batch queue with:
 Output in the job log should look something like:
 
 ```output
-Generating 10000000 samples.
-Rank 0 generating 10000000 samples on host nid001246.
+Generating 100000000 samples.
+Rank 0 generating 100000000 samples on host nid001810.
 Numpy Pi:  3.141592653589793
-My Estimate of Pi:  3.1416708
-1 core(s), 10000000 samples, 228.881836 MiB memory, 0.423903 seconds, -0.002487% error
+My Estimate of Pi:  3.14165996
+1 core(s), 100000000 samples, 2288.818359 MiB memory, 3.789277 seconds, -0.002142% error
+Total run time=3.7914833110000927s
 ```
 :::
 :::
@@ -138,8 +152,8 @@ the bottom of the summary output) and `pi-mpi.py` is no exception. You should se
 lines in the output that look something like:
 
 ```bash
-256 core(s), 100000000 samples, 2288.818359 MiB memory, 0.135041 seconds, -0.004774% error
-Total run time=0.18654435999997077s
+1 core(s), 100000000 samples, 2288.818359 MiB memory, 3.789277 seconds, -0.002142% error
+Total run time=3.7914833110000927s
 ```
 
 You can also get an estimate of the overall run time from the final job statistics. If
@@ -148,17 +162,23 @@ roughly what the runtime was. This can be useful if you want to know quickly if 
 job was faster or not than a previous job (as you do not have to find the output file
 to look up the performance) but the number is not as accurate as the performance recorded
 by the application itself and also includes static overheads from running the job
-(such as loading modules and startup time) that can skew the timings. To do this on
+(such as loading modules and startup time) that can skew the timings. To do this on `Slurm`
 use `sacct -l -j` with the job ID, e.g.:
 
 ```bash
-userid@ln03:/work/ta180/ta180/userid> sacct -l -j 12345
+userid@ln03:/work/ta215/ta215/userid> sacct -l -j 12345
 ```
 ```output
 
 JOBID USER         ACCOUNT     NAME           ST REASON START_TIME         T...
 36856 yourUsername yourAccount example-job.sh R  None   2017-07-01T16:47:02 ...
 ```
+
+This gives a **lot** of information, so you can trim the output down with some formatting: 
+```bash 
+sacct -j 12345 --format=JobID,Elapsed,ReqCPUFreq,ConsumedEnergy
+```
+
 
 ## Running in parallel and benchmarking performance
 
@@ -240,7 +260,7 @@ effective use of resources.
 
 ::: challenge
 ## Computing the speedup and parallel efficiency
-Use your *Overall run times* from above to fill in a table like the one below.
+Use your *overall run times* from above to fill in a table like the one below.
 
 | Cores      | Overall run time (s) | Actual speedup  | Ideal speedup | Parallel efficiency |
 |------------|----------------------|-----------------|----------------|---------------------|
@@ -280,19 +300,24 @@ runtimes given in the solution above.
 |        256 |                0.187 |         21.077 |       256.000 |               0.082 |
 
 ### What is the core count where you get the **most** efficient use of resources?
+
 Just using a single core is the cheapest (and always will be unless your speedup is better
 than perfect – “super-linear” speedup). However, it may not be possible to run on small
 numbers of cores depending on how much memory you need or other technical constraints.
+
 **Note:** on most high-end systems, nodes are not shared between users. This means you are
 charged for all the CPU-cores on a node regardless of whether you actually use them. Typically
 we would be running on many hundreds of CPU-cores not a few tens, so the real question in
 practice is: what is the optimal number of nodes to use?
+
 ### What is the core count where you get the fastest solution, irrespective of efficiency?
+
 256 cores gives the fastest time to solution.
 The fastest time to solution does not often make the most efficient use of resources so 
 to use this option, you may end up wasting your resources. Sometimes, when there is 
 time pressure to run the calculations, this may be a valid approach to running 
 applications.
+
 ### What do you think a good core count choice would be for this application to use?
 
 8 cores is probably a good number of cores to use with a parallel efficiency of 86%.
@@ -325,5 +350,6 @@ Here are a few tips to help you use resources effectively and efficiently on HPC
   core/node counts.
 
 ::: keypoints
- - "The smaller your job, the faster it will schedule."
+ - Benchmarking is an essential practice for understanding your workload and using resources efficiently
+ - Efficient usage is not just about getting the time-to-solution as low as possible 
 :::
