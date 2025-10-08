@@ -1284,7 +1284,7 @@ neighbors.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> It’s a Beautiful Day in the Neighborhood </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>The deepest layer should differ: <code>userid</code> is uniquely
 yours. Are there differences in the path at higher levels?</p>
@@ -1428,7 +1428,7 @@ computer cluster, you need to log out first. To do so, type
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>There are several ways to do this. Most operating systems have a
 graphical system monitor, like the Windows Task Manager. More detailed
@@ -1476,7 +1476,7 @@ node.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1507,11 +1507,15 @@ what kind of filesystem each resource is.</p>
 </div>
 </div>
 </div>
-<p>#::: discussion #The local filesystems (ext, tmp, xfs, zfs) will
-depend on whether you’re #on the same login node (or compute node, later
-on). Networked filesystems #(beegfs, cifs, gpfs, nfs, pvfs) will be
-similar — but may include #userid, depending on how it is <a href="#https://en.wikipedia.org/wiki/Mount_(computing)" class="external-link">mounted</a>.
-#:::</p>
+<!--
+#::: discussion
+#The local filesystems (ext, tmp, xfs, zfs) will depend on whether you're
+#on the same login node (or compute node, later on). Networked filesystems
+#(beegfs, cifs, gpfs, nfs, pvfs) will be similar --- but may include
+#userid, depending on how it is [mounted](
+#https://en.wikipedia.org/wiki/Mount_(computing)).
+#:::
+-->
 <div id="shared-filesystems" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
@@ -2115,12 +2119,16 @@ with <code>Ctrl-c</code>.)</p>
 these options are specified on the command-line when starting a job.</p>
 <p>Typically, the resulting shell environment will be the same as that
 for <code>sbatch</code>.</p>
-<p>#<code>bash # srun --partition=standard --qos=short --pty /bin/bash #</code></p>
-<p>#You should be presented with a bash prompt. Note that the prompt may
-change #to reflect your new location, in this case the compute node we
-are logged on. #You can also verify this with <code>hostname</code>.</p>
-<p>#When you are done with the interactive job, type <code>exit</code>
-to quit your session.</p>
+<!-- ```bash
+# srun --partition=standard --qos=short --pty /bin/bash
+#```
+
+#You should be presented with a bash prompt. Note that the prompt may change
+#to reflect your new location, in this case the compute node we are logged on.
+#You can also verify this with `hostname`.
+
+#When you are done with the interactive job, type `exit` to quit your session.
+-->
 </section><section><h2 class="section-heading" id="running-parallel-jobs-using-mpi">Running parallel jobs using MPI<a class="anchor" aria-label="anchor" href="#running-parallel-jobs-using-mpi"></a>
 </h2>
 <hr class="half-width">
@@ -4092,7 +4100,7 @@ node?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Building software, creating directories, and unpacking software are
 common and acceptable tasks for the login node: options #2
@@ -4323,7 +4331,7 @@ the following would be the best way to transfer them to ARCHER2?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>Lets go through each option</p>
 <ol style="list-style-type: decimal">

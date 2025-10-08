@@ -861,12 +861,16 @@ with <code>Ctrl-c</code>.)</p>
 these options are specified on the command-line when starting a job.</p>
 <p>Typically, the resulting shell environment will be the same as that
 for <code>sbatch</code>.</p>
-<p>#<code>bash # srun --partition=standard --qos=short --pty /bin/bash #</code></p>
-<p>#You should be presented with a bash prompt. Note that the prompt may
-change #to reflect your new location, in this case the compute node we
-are logged on. #You can also verify this with <code>hostname</code>.</p>
-<p>#When you are done with the interactive job, type <code>exit</code>
-to quit your session.</p>
+<!-- ```bash
+# srun --partition=standard --qos=short --pty /bin/bash
+#```
+
+#You should be presented with a bash prompt. Note that the prompt may change
+#to reflect your new location, in this case the compute node we are logged on.
+#You can also verify this with `hostname`.
+
+#When you are done with the interactive job, type `exit` to quit your session.
+-->
 </section><section><h2 class="section-heading" id="running-parallel-jobs-using-mpi">Running parallel jobs using MPI<a class="anchor" aria-label="anchor" href="#running-parallel-jobs-using-mpi"></a></h2>
 <hr class="half-width"><p>The power of HPC systems comes from <em>parallelism</em>. That is,
 connecting many processors, disks, and other components to work
