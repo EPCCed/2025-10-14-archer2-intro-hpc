@@ -55,11 +55,9 @@ common networking and storage to support common compute intensive tasks.
 
 ## Logging In
 
-![Connect to cluster](fig/connect-to-remote.svg){alt="Connect to cluster"}
-
-Go ahead and open your terminal or graphical SSH client, then log in to the
-cluster using your username and the remote computer you can reach from the
-outside world, `r config$remote$location`.
+Go ahead and open your terminal and log in to ARCHER2. 
+Remember, we are opening a terminal on our local laptop to connect to a remote 
+system which is physically at EPCC in Edinburgh. 
 
 ```bash
 `r config$local$prompt` ssh `r config$remote$user`@`r config$remote$login`
@@ -72,7 +70,7 @@ supplied by the instructors.
 
 ## Want to refresh your memory on the log in process? 
 
-This was covered in [lesson 1](10-connecting-hpc.Rmd), and you can find a QuickStart 
+This was covered in [lesson 1](10-connecting-hpc.Rmd) or you can find a QuickStart 
 guide in the [set-up section](../index.md). Ask an instructor if you need help! 
 
 :::
@@ -85,7 +83,7 @@ installation as one giant, magical machine. Sometimes, people will assume that
 the computer they've logged onto is the entire computing cluster. So what's
 really happening? What computer have we logged on to? 
 
-The name of the current computer we are logged onto can be checked with the `hostname` command. (You
+We can check where we are in the system with the `hostname` command. (You
 may also notice that the current hostname is also part of our prompt!)
 
 ```bash
@@ -95,12 +93,15 @@ may also notice that the current hostname is also part of our prompt!)
 
 ::: challenge
 
-## What's in Your Home Directory?
+## Where are we when we login? 
+
+Take a look around and see what you can find.
 
 The system administrators may have configured your home directory with some
 helpful files, folders, and links (shortcuts) to space reserved for you on
-other filesystems. Take a look around and see what you can find.
-*Hint:* The shell commands `pwd` and `ls` may come in handy.
+other filesystems. 
+
+*Hint:* The shell commands `pwd`, `cd` and `ls` may come in handy.
 Home directory contents vary from user to user. Please discuss any
 differences you spot with your neighbors.
 
@@ -149,10 +150,10 @@ point to the cluster.
 
 As a gateway, it is well suited for uploading and downloading files, setting up
 software, and running quick tests. Generally speaking, the login node should
-not be used for time-consuming or resource-intensive tasks. You should be alert
+**not** be used for time-consuming or resource-intensive tasks. You should be alert
 to this, and check with your site's operators or documentation for details of
 what is and isn't allowed. In these lessons, we will avoid running jobs on the
-head node.
+head node (because we will get in trouble otherwise).
 
 ::: callout
 ## Specialised nodes 
@@ -206,8 +207,7 @@ or desktop: *CPUs* (sometimes also called *processors* or *cores*), *memory*
 (or *RAM*), and *disk* space. CPUs are a computer's tool for actually running
 programs and calculations. Information about a current task is stored in the
 computer's memory. Disk refers to all storage that can be accessed like a file
-system. This is generally storage that can hold data permanently, i.e. data is
-still there even if the computer has been restarted. While this storage can be
+system. While this storage can be
 local (a hard drive installed inside of it), it is more common for nodes to
 connect to a shared, remote fileserver or cluster of servers.
 
@@ -298,8 +298,8 @@ each resource is.
 ::: callout
 ## Shared Filesystems
 
-This is an important point to remember: files saved on one node
-(computer) are often available everywhere on the cluster!
+This is an important point to remember: files saved on one login node are available 
+in `/home` regardless of which login node you are on.
 
 :::
 
