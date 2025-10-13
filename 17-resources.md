@@ -17,6 +17,7 @@ exercises: 30
 :::
 
 We've touched on all the skills you need to interact with an HPC cluster:
+
 - Logging in over SSH, 
 - Loading software modules, 
 - Submitting parallel jobs, and
@@ -322,9 +323,12 @@ runtimes given in the solution above.
 |        128 |                0.170 |         23.122 |       128.000 |               0.181 |
 |        256 |                0.187 |         21.077 |       256.000 |               0.082 |
 
-#### What is the core count where you get the **most** efficient use of resources?
+
 
 ::: solution
+
+#### What is the core count where you get the **most** efficient use of resources?
+
 Just using a single core is the cheapest in terms of resources costs and is the most efficient 
 (and always will be unless your speedup is better than perfect – “super-linear” speedup). 
 
@@ -337,9 +341,11 @@ we would be running on many hundreds of CPU-cores not a few tens, so the real qu
 practice is: *what is the optimal number of nodes to use?*
 :::
 
-#### What is the core count where you get the fastest solution, irrespective of efficiency?
 
 ::: solution
+
+#### What is the core count where you get the fastest solution, irrespective of efficiency?
+
 128 cores gives the fastest time to solution.
 
 The fastest time to solution does not often make the most efficient use of resources so 
@@ -348,9 +354,11 @@ time pressure to run the calculations, this may be a valid approach to running
 applications.
 :::
 
-#### What do you think a good core count choice would be for this application to use?
 
 ::: solution
+
+#### What do you think a good core count choice would be for this application to use?
+
 8 cores is probably a good number of cores to use with a parallel efficiency of 86%.
 
 Usually, the best choice is one that delivers good parallel efficiency with an acceptable
