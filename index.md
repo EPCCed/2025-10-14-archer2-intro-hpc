@@ -14,11 +14,12 @@ tools available and how to use them effectively.
 ::: keypoints
 
 By the end of this lesson, students will know how to:
- * Identify problems an HPC system can help solve
- * Use the UNIX shell (also known as terminal or command line) to operate a
-   computer, connect to an HPC system, and write simple shell scripts.
- * Submit and manage jobs on an HPC system using a scheduler, transfer files,
-   and use software through environment modules.
+
+- Identify problems an HPC system can help solve
+- Use the UNIX shell (also known as terminal or command line) to operate a
+  computer, connect to an HPC system, and write simple shell scripts.
+- Submit and manage jobs on an HPC system using a scheduler, transfer files,
+  and use software through environment modules.
 :::
 
 ### Schedule
