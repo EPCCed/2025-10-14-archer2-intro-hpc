@@ -246,6 +246,7 @@
         <ul><li><a href="#job-scheduler">Job Scheduler</a></li>
 <li><a href="#running-a-batch-job">Running a Batch Job</a></li>
 <li><a href="#customising-a-job">Customising a Job</a></li>
+<li><a href="#what-else-affects-a-jobs-resources">What else affects a job’s resources?</a></li>
 <li><a href="#cancelling-a-job">Cancelling a Job</a></li>
 <li><a href="#other-types-of-jobs">Other Types of Jobs</a></li>
 <li><a href="#running-parallel-jobs-using-mpi">Running parallel jobs using MPI</a></li>
@@ -582,12 +583,8 @@ comments differ from scheduler to scheduler, Slurm’s special comment is
 comment is interpreted as an instruction to the scheduler.</p>
 <p>Let’s illustrate this by example. By default, a job’s name is the
 name of the script, but the <code>--job-name</code> option can be used
-to change the name of a job. Add an option to the script:</p>
-<div class="codewrapper sourceCode" id="cb13">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="ex">userid@ln03:/work/ta215/ta215/userid</span><span class="op">&gt;</span> cat example-job.sh</span></code></pre>
-</div>
+to change the name of a job. Add an option to the
+<code>example-job.sh</code> script:</p>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -599,11 +596,11 @@ hostname
 echo "This script has finished successfully."</code></pre>
 </div>
 <p>Submit the job and monitor its status:</p>
-<div class="codewrapper sourceCode" id="cb15">
+<div class="codewrapper sourceCode" id="cb14">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="ex">userid@ln03:/work/ta215/ta215/userid</span><span class="op">&gt;</span> sbatch <span class="at">--partition</span><span class="op">=</span>standard <span class="at">--qos</span><span class="op">=</span>short example-job.sh</span>
-<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a><span class="ex">userid@ln03:/work/ta215/ta215/userid</span><span class="op">&gt;</span> squeue <span class="at">-u</span> userid</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="ex">userid@ln03:/work/ta215/ta215/userid</span><span class="op">&gt;</span> sbatch <span class="at">--partition</span><span class="op">=</span>standard <span class="at">--qos</span><span class="op">=</span>short example-job.sh</span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a><span class="ex">userid@ln03:/work/ta215/ta215/userid</span><span class="op">&gt;</span> squeue <span class="at">-u</span> userid</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -684,10 +681,10 @@ options we have been specifying on the command line
 </button>
 <div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb17">
+<div class="codewrapper sourceCode" id="cb16">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="ex">userid@ln03:/work/ta215/ta215/userid</span><span class="op">&gt;</span> cat example-job.sh</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="ex">userid@ln03:/work/ta215/ta215/userid</span><span class="op">&gt;</span> cat example-job.sh</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -701,10 +698,10 @@ sleep 60 # time in seconds
 hostname
 echo "This script has finished successfully."</code></pre>
 </div>
-<div class="codewrapper sourceCode" id="cb19">
+<div class="codewrapper sourceCode" id="cb18">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="ex">userid@ln03:~</span><span class="op">&gt;</span> sbatch example-job.sh</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="ex">userid@ln03:~</span><span class="op">&gt;</span> sbatch example-job.sh</span></code></pre>
 </div>
 <p>Why do we not make the Slurm time and <code>sleep</code> time
 identical?</p>
@@ -715,10 +712,10 @@ identical?</p>
 <p>Resource requests are typically binding. If you exceed them, your job
 will be killed. Let’s use the walltime as an example. We will request 30
 seconds of walltime, and attempt to run a job for two minutes.</p>
-<div class="codewrapper sourceCode" id="cb20">
+<div class="codewrapper sourceCode" id="cb19">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="ex">userid@ln03:/work/ta215/ta215/userid</span><span class="op">&gt;</span> cat example-job.sh</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="ex">userid@ln03:/work/ta215/ta215/userid</span><span class="op">&gt;</span> cat example-job.sh</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -736,16 +733,16 @@ echo "This script has finished successfully."</code></pre>
 </div>
 <p>Submit the job and wait for it to finish. Once it is has finished,
 check the log file.</p>
+<div class="codewrapper sourceCode" id="cb21">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="ex">userid@ln03:/work/ta215/ta215/userid</span><span class="op">&gt;</span> sbatch example-job.sh</span>
+<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a><span class="ex">userid@ln03:/work/ta215/ta215/userid</span><span class="op">&gt;</span> squeue <span class="at">-u</span> userid</span></code></pre>
+</div>
 <div class="codewrapper sourceCode" id="cb22">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="ex">userid@ln03:/work/ta215/ta215/userid</span><span class="op">&gt;</span> sbatch example-job.sh</span>
-<span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a><span class="ex">userid@ln03:/work/ta215/ta215/userid</span><span class="op">&gt;</span> squeue <span class="at">-u</span> userid</span></code></pre>
-</div>
-<div class="codewrapper sourceCode" id="cb23">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="ex">userid@ln03:/work/ta215/ta215/userid</span><span class="op">&gt;</span> cat slurm-11102156.out</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="ex">userid@ln03:/work/ta215/ta215/userid</span><span class="op">&gt;</span> cat slurm-11102156.out</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -763,7 +760,140 @@ requested resources or kill the job outright. Other jobs on the node
 will be unaffected. This means that one user cannot mess up the
 experience of others, the only jobs affected by a mistake in scheduling
 will be their own.</p>
-<div id="but-how-much-does-it-cost" class="callout">
+</div>
+</section><section><h2 class="section-heading" id="what-else-affects-a-jobs-resources">What else affects a job’s resources?<a class="anchor" aria-label="anchor" href="#what-else-affects-a-jobs-resources"></a></h2>
+<hr class="half-width"><p>As well as resources that you specifically request in your job
+script, ARCHER2’s resource limits are also definied by two arguments
+that must be passed to <code>sbatch</code>: <code>--partition</code> and
+<code>--qos</code>.</p>
+<p>The <strong>partition</strong> specifies the nodes that are eligible
+to run your job, and the <strong>Quality of Service (QoS)</strong>
+specifies the job limits that apply.</p>
+<p>The reason for the partition is so that users can ask for more
+memory, run in serial or run with GPUs. Helps to accommodate different
+types of workloads, all running on the same machine.</p>
+<p>The reason for the QoS is so that user’s are restricted to certain
+time limits or certain numbers of jobs, to help ensure fair and shared
+use of the machine. This is a difficult balance to make as we want to
+ensure that reearchers can use the full computational power of the
+machine, but also want to ensure that many researchers can do science
+all at the same time.</p>
+<div class="section level3">
+<h3 id="partitions">Partitions<a class="anchor" aria-label="anchor" href="#partitions"></a></h3>
+<table class="table"><thead><tr class="header"><th>Partition</th>
+<th>Description</th>
+<th>Max nodes available</th>
+</tr></thead><tbody><tr class="odd"><td>standard</td>
+<td>CPU nodes 256/512 GB memory</td>
+<td>5860</td>
+</tr><tr class="even"><td>highmem</td>
+<td>CPU nodes 512 GB memory</td>
+<td>584</td>
+</tr><tr class="odd"><td>serial</td>
+<td>CPU nodes 512 GB memory</td>
+<td>2</td>
+</tr><tr class="even"><td>gpu</td>
+<td>GPU nodes 512 GB memory</td>
+<td>4</td>
+</tr></tbody></table></div>
+<div class="section level3">
+<h3 id="qos">QoS<a class="anchor" aria-label="anchor" href="#qos"></a></h3>
+<table class="table"><colgroup><col width="12%"><col width="21%"><col width="15%"><col width="13%"><col width="15%"><col width="15%"><col width="7%"></colgroup><thead><tr class="header"><th>QoS</th>
+<th>Max Nodes Per Job</th>
+<th>Max Walltime</th>
+<th>Jobs Queued</th>
+<th>Jobs Running</th>
+<th>Partition(s)</th>
+<th>Notes</th>
+</tr></thead><tbody><tr class="odd"><td>standard</td>
+<td>1024</td>
+<td>24 hrs</td>
+<td>64</td>
+<td>16</td>
+<td>standard</td>
+<td>Maximum of 1024 nodes in use by any one user at any time</td>
+</tr><tr class="even"><td>highmem</td>
+<td>256</td>
+<td>24 hrs</td>
+<td>16</td>
+<td>16</td>
+<td>highmem</td>
+<td>Maximum of 256 nodes in use by any one user at any time</td>
+</tr><tr class="odd"><td>taskfarm</td>
+<td>16</td>
+<td>24 hrs</td>
+<td>128</td>
+<td>32</td>
+<td>standard</td>
+<td>Maximum of 256 nodes in use by any one user at any time</td>
+</tr><tr class="even"><td>short</td>
+<td>32</td>
+<td>20 mins</td>
+<td>16</td>
+<td>4</td>
+<td>standard</td>
+<td></td>
+</tr><tr class="odd"><td>long</td>
+<td>64</td>
+<td>96 hrs</td>
+<td>16</td>
+<td>16</td>
+<td>standard</td>
+<td>Minimum walltime of 24 hrs, maximum 512 nodes in use by any one user
+at any time, maximum of 2048 nodes in use by QoS</td>
+</tr><tr class="even"><td>largescale</td>
+<td>5860</td>
+<td>12 hrs</td>
+<td>8</td>
+<td>1</td>
+<td>standard</td>
+<td>Minimum job size of 1025 nodes</td>
+</tr><tr class="odd"><td>lowpriority</td>
+<td>2048</td>
+<td>24 hrs</td>
+<td>16</td>
+<td>16</td>
+<td>standard</td>
+<td>Jobs not charged but requires at least 1 CU in budget to use.</td>
+</tr><tr class="even"><td>serial</td>
+<td>32 cores and/or 128 GB memory</td>
+<td>24 hrs</td>
+<td>32</td>
+<td>4</td>
+<td>serial</td>
+<td>Jobs not charged but requires at least 1 CU in budget to use.
+Maximum of 32 cores and/or 128 GB in use by any one user at any
+time.</td>
+</tr><tr class="odd"><td>reservation</td>
+<td>Size of reservation</td>
+<td>Length of reservation</td>
+<td>No limit</td>
+<td>no limit</td>
+<td>standard</td>
+<td></td>
+</tr><tr class="even"><td>capabilityday</td>
+<td>At least 4096 nodes</td>
+<td>3 hrs</td>
+<td>8</td>
+<td>2</td>
+<td>standard</td>
+<td>Minimum job size of 512 nodes. Jobs only run during <a href="#capability-days">Capability Days</a>
+</td>
+</tr><tr class="odd"><td>gpu-shd</td>
+<td>1</td>
+<td>12 hrs</td>
+<td>2</td>
+<td>1</td>
+<td>gpu</td>
+<td>GPU nodes potentially shared with other users</td>
+</tr><tr class="even"><td>gpu-exc</td>
+<td>2</td>
+<td>12 hrs</td>
+<td>2</td>
+<td>1</td>
+<td>gpu</td>
+<td>GPU node exclusive node access</td>
+</tr></tbody></table><div id="but-how-much-does-it-cost" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
@@ -789,11 +919,11 @@ been run earlier in the gaps between other users’ jobs.</p>
 done with the <code>scancel</code> command. Let’s submit a job and then
 cancel it using its job number (remember to change the walltime so that
 it runs long enough for you to cancel it before it is killed!).</p>
-<div class="codewrapper sourceCode" id="cb25">
+<div class="codewrapper sourceCode" id="cb24">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a><span class="ex">userid@ln03:/work/ta215/ta215/userid</span><span class="op">&gt;</span> sbatch example-job.sh</span>
-<span id="cb25-2"><a href="#cb25-2" tabindex="-1"></a><span class="ex">userid@ln03:/work/ta215/ta215/userid</span><span class="op">&gt;</span> squeue <span class="at">-u</span> userid</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a><span class="ex">userid@ln03:/work/ta215/ta215/userid</span><span class="op">&gt;</span> sbatch example-job.sh</span>
+<span id="cb24-2"><a href="#cb24-2" tabindex="-1"></a><span class="ex">userid@ln03:/work/ta215/ta215/userid</span><span class="op">&gt;</span> squeue <span class="at">-u</span> userid</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -806,11 +936,11 @@ it runs long enough for you to cancel it before it is killed!).</p>
 <p>Now cancel the job with its job number (printed in your terminal).
 Absence of any job info indicates that the job has been successfully
 cancelled.</p>
-<div class="codewrapper sourceCode" id="cb27">
+<div class="codewrapper sourceCode" id="cb26">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a><span class="ex">userid@ln03:/work/ta215/ta215/userid</span><span class="op">&gt;</span> scancel 11102156</span>
-<span id="cb27-2"><a href="#cb27-2" tabindex="-1"></a><span class="ex">userid@ln03:/work/ta215/ta215/userid</span><span class="op">&gt;</span> squeue <span class="at">-u</span> userid</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a><span class="ex">userid@ln03:/work/ta215/ta215/userid</span><span class="op">&gt;</span> scancel 11102156</span>
+<span id="cb26-2"><a href="#cb26-2" tabindex="-1"></a><span class="ex">userid@ln03:/work/ta215/ta215/userid</span><span class="op">&gt;</span> squeue <span class="at">-u</span> userid</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -846,10 +976,10 @@ node, but writing an entire job script is overkill.</p>
 exits. Let’s demonstrate this by running the <code>hostname</code>
 command with <code>srun</code>. (We can cancel an <code>srun</code> job
 with <code>Ctrl-c</code>.)</p>
-<div class="codewrapper sourceCode" id="cb29">
+<div class="codewrapper sourceCode" id="cb28">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a> <span class="ex">srun</span> <span class="at">--partition</span><span class="op">=</span>standard <span class="at">--qos</span><span class="op">=</span>short <span class="at">--time</span><span class="op">=</span>00:01:00 hostname</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a> <span class="ex">srun</span> <span class="at">--partition</span><span class="op">=</span>standard <span class="at">--qos</span><span class="op">=</span>short <span class="at">--time</span><span class="op">=</span>00:01:00 hostname</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -897,10 +1027,10 @@ specify 32 parallel processes per node.</li>
 <p>The program used in this example can be retrieved using wget or a
 browser and copied to the remote.</p>
 <p><strong>Using wget</strong>:</p>
-<div class="codewrapper sourceCode" id="cb31">
+<div class="codewrapper sourceCode" id="cb30">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" tabindex="-1"></a><span class="ex">userid@ln03:~</span><span class="op">&gt;</span> wget https://epcced.github.io/2025-10-14-archer2-intro-hpc/files/pi-mpi.py</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a><span class="ex">userid@ln03:~</span><span class="op">&gt;</span> wget https://epcced.github.io/2025-10-14-archer2-intro-hpc/files/pi-mpi.py</span></code></pre>
 </div>
 <p><strong>Download via web browser</strong>:</p>
 <p><a href="https://epcced.github.io/2025-10-14-archer2-intro-hpc/files/pi-mpi.py" class="external-link">https://epcced.github.io/2025-10-14-archer2-intro-hpc/files/pi-mpi.py</a></p>
@@ -914,28 +1044,28 @@ in more detail in a later episode of this course.</em></p>
 node, using 16 parallel tasks (or cores) on the cluster. Create a job
 submission script (e.g. called: <code>run-pi-mpi.slurm</code>) with the
 following contents:</p>
-<div class="codewrapper sourceCode" id="cb32">
+<div class="codewrapper sourceCode" id="cb31">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
-<span id="cb32-2"><a href="#cb32-2" tabindex="-1"></a></span>
-<span id="cb32-3"><a href="#cb32-3" tabindex="-1"></a><span class="co">#SBATCH --partition=standard</span></span>
-<span id="cb32-4"><a href="#cb32-4" tabindex="-1"></a><span class="co">#SBATCH --qos=short</span></span>
-<span id="cb32-5"><a href="#cb32-5" tabindex="-1"></a><span class="co">#SBATCH --time=00:05:00</span></span>
-<span id="cb32-6"><a href="#cb32-6" tabindex="-1"></a></span>
-<span id="cb32-7"><a href="#cb32-7" tabindex="-1"></a><span class="co">#SBATCH --nodes=1</span></span>
-<span id="cb32-8"><a href="#cb32-8" tabindex="-1"></a><span class="co">#SBATCH --ntasks-per-node=16</span></span>
-<span id="cb32-9"><a href="#cb32-9" tabindex="-1"></a></span>
-<span id="cb32-10"><a href="#cb32-10" tabindex="-1"></a><span class="ex">module</span> load cray-python</span>
-<span id="cb32-11"><a href="#cb32-11" tabindex="-1"></a></span>
-<span id="cb32-12"><a href="#cb32-12" tabindex="-1"></a><span class="ex">srun</span> python pi-mpi.py 10000000</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb31-2"><a href="#cb31-2" tabindex="-1"></a></span>
+<span id="cb31-3"><a href="#cb31-3" tabindex="-1"></a><span class="co">#SBATCH --partition=standard</span></span>
+<span id="cb31-4"><a href="#cb31-4" tabindex="-1"></a><span class="co">#SBATCH --qos=short</span></span>
+<span id="cb31-5"><a href="#cb31-5" tabindex="-1"></a><span class="co">#SBATCH --time=00:05:00</span></span>
+<span id="cb31-6"><a href="#cb31-6" tabindex="-1"></a></span>
+<span id="cb31-7"><a href="#cb31-7" tabindex="-1"></a><span class="co">#SBATCH --nodes=1</span></span>
+<span id="cb31-8"><a href="#cb31-8" tabindex="-1"></a><span class="co">#SBATCH --ntasks-per-node=16</span></span>
+<span id="cb31-9"><a href="#cb31-9" tabindex="-1"></a></span>
+<span id="cb31-10"><a href="#cb31-10" tabindex="-1"></a><span class="ex">module</span> load cray-python</span>
+<span id="cb31-11"><a href="#cb31-11" tabindex="-1"></a></span>
+<span id="cb31-12"><a href="#cb31-12" tabindex="-1"></a><span class="ex">srun</span> python pi-mpi.py 10000000</span></code></pre>
 </div>
 <p>The parallel launch line for our program can be seen towards the
 bottom of the script:</p>
-<div class="codewrapper sourceCode" id="cb33">
+<div class="codewrapper sourceCode" id="cb32">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" tabindex="-1"></a><span class="ex">srun</span> python pi-mpi.py 10000000</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1" tabindex="-1"></a><span class="ex">srun</span> python pi-mpi.py 10000000</span></code></pre>
 </div>
 <p>And this corresponds to the four required items we described
 above:</p>
@@ -950,10 +1080,10 @@ because we specified 1 node and 16 parallel processes per node.</li>
 <li>Our program and arguments: in this case this is
 <code>python pi-mpi.py 10000000</code>.</li>
 </ol><p>We can now launch using the <code>sbatch</code> command.</p>
-<div class="codewrapper sourceCode" id="cb34">
+<div class="codewrapper sourceCode" id="cb33">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb34-1"><a href="#cb34-1" tabindex="-1"></a><span class="ex">userid@ln03:/work/ta215/ta215/userid</span><span class="op">&gt;</span> sbatch run-pi-mpi.slurm</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" tabindex="-1"></a><span class="ex">userid@ln03:/work/ta215/ta215/userid</span><span class="op">&gt;</span> sbatch run-pi-mpi.slurm</span></code></pre>
 </div>
 <div id="running-parallel-jobs" class="callout challenge">
 <div class="callout-square">
@@ -977,20 +1107,20 @@ of cores in parallel for the calculation.</p>
 <div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <p>Here is a modified script</p>
-<div class="codewrapper sourceCode" id="cb35">
+<div class="codewrapper sourceCode" id="cb34">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb35-1"><a href="#cb35-1" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
-<span id="cb35-2"><a href="#cb35-2" tabindex="-1"></a></span>
-<span id="cb35-3"><a href="#cb35-3" tabindex="-1"></a><span class="co">#SBATCH --partition=standard</span></span>
-<span id="cb35-4"><a href="#cb35-4" tabindex="-1"></a><span class="co">#SBATCH --qos=short</span></span>
-<span id="cb35-5"><a href="#cb35-5" tabindex="-1"></a><span class="co">#SBATCH --time=00:00:30</span></span>
-<span id="cb35-6"><a href="#cb35-6" tabindex="-1"></a></span>
-<span id="cb35-7"><a href="#cb35-7" tabindex="-1"></a><span class="co">#SBATCH --nodes=1</span></span>
-<span id="cb35-8"><a href="#cb35-8" tabindex="-1"></a><span class="co">#SBATCH --ntasks-per-node=128</span></span>
-<span id="cb35-9"><a href="#cb35-9" tabindex="-1"></a></span>
-<span id="cb35-10"><a href="#cb35-10" tabindex="-1"></a><span class="ex">module</span> load cray-python</span>
-<span id="cb35-11"><a href="#cb35-11" tabindex="-1"></a><span class="ex">srun</span> python pi-mpi.py 10000000</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb34-1"><a href="#cb34-1" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb34-2"><a href="#cb34-2" tabindex="-1"></a></span>
+<span id="cb34-3"><a href="#cb34-3" tabindex="-1"></a><span class="co">#SBATCH --partition=standard</span></span>
+<span id="cb34-4"><a href="#cb34-4" tabindex="-1"></a><span class="co">#SBATCH --qos=short</span></span>
+<span id="cb34-5"><a href="#cb34-5" tabindex="-1"></a><span class="co">#SBATCH --time=00:00:30</span></span>
+<span id="cb34-6"><a href="#cb34-6" tabindex="-1"></a></span>
+<span id="cb34-7"><a href="#cb34-7" tabindex="-1"></a><span class="co">#SBATCH --nodes=1</span></span>
+<span id="cb34-8"><a href="#cb34-8" tabindex="-1"></a><span class="co">#SBATCH --ntasks-per-node=128</span></span>
+<span id="cb34-9"><a href="#cb34-9" tabindex="-1"></a></span>
+<span id="cb34-10"><a href="#cb34-10" tabindex="-1"></a><span class="ex">module</span> load cray-python</span>
+<span id="cb34-11"><a href="#cb34-11" tabindex="-1"></a><span class="ex">srun</span> python pi-mpi.py 10000000</span></code></pre>
 </div>
 </div>
 </div>
@@ -1020,20 +1150,20 @@ output file to ensure that you understand the job distribution.</p>
 </button>
 <div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
 <div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb36">
+<div class="codewrapper sourceCode" id="cb35">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb36-1"><a href="#cb36-1" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
-<span id="cb36-2"><a href="#cb36-2" tabindex="-1"></a></span>
-<span id="cb36-3"><a href="#cb36-3" tabindex="-1"></a><span class="co">#SBATCH --partition=standard</span></span>
-<span id="cb36-4"><a href="#cb36-4" tabindex="-1"></a><span class="co">#SBATCH --qos=short</span></span>
-<span id="cb36-5"><a href="#cb36-5" tabindex="-1"></a><span class="co">#SBATCH --time=00:00:30</span></span>
-<span id="cb36-6"><a href="#cb36-6" tabindex="-1"></a></span>
-<span id="cb36-7"><a href="#cb36-7" tabindex="-1"></a><span class="co">#SBATCH --nodes=2</span></span>
-<span id="cb36-8"><a href="#cb36-8" tabindex="-1"></a><span class="co">#SBATCH --ntasks-per-node=8</span></span>
-<span id="cb36-9"><a href="#cb36-9" tabindex="-1"></a></span>
-<span id="cb36-10"><a href="#cb36-10" tabindex="-1"></a><span class="ex">module</span> load cray-python</span>
-<span id="cb36-11"><a href="#cb36-11" tabindex="-1"></a><span class="ex">srun</span> python pi-mpi.py 10000000</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb35-1"><a href="#cb35-1" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb35-2"><a href="#cb35-2" tabindex="-1"></a></span>
+<span id="cb35-3"><a href="#cb35-3" tabindex="-1"></a><span class="co">#SBATCH --partition=standard</span></span>
+<span id="cb35-4"><a href="#cb35-4" tabindex="-1"></a><span class="co">#SBATCH --qos=short</span></span>
+<span id="cb35-5"><a href="#cb35-5" tabindex="-1"></a><span class="co">#SBATCH --time=00:00:30</span></span>
+<span id="cb35-6"><a href="#cb35-6" tabindex="-1"></a></span>
+<span id="cb35-7"><a href="#cb35-7" tabindex="-1"></a><span class="co">#SBATCH --nodes=2</span></span>
+<span id="cb35-8"><a href="#cb35-8" tabindex="-1"></a><span class="co">#SBATCH --ntasks-per-node=8</span></span>
+<span id="cb35-9"><a href="#cb35-9" tabindex="-1"></a></span>
+<span id="cb35-10"><a href="#cb35-10" tabindex="-1"></a><span class="ex">module</span> load cray-python</span>
+<span id="cb35-11"><a href="#cb35-11" tabindex="-1"></a><span class="ex">srun</span> python pi-mpi.py 10000000</span></code></pre>
 </div>
 </div>
 </div>
