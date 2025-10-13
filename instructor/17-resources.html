@@ -409,9 +409,16 @@ options and resources used.</p>
 <h3 class="callout-title">Our example</h3>
 <div class="callout-content">
 <p>In the rest of this episode, we will use an example parallel
-application that calculates an estimate of the value of Pi. Although
-this is a toy problem, it exhibits all the properties of a full parallel
-application that we are interested in for this course.</p>
+application that calculates an estimate of the value of Pi.</p>
+<ul><li>We can estimate π by randomly picking points inside a square and
+seeing how many land inside the circle.</li>
+<li>The fraction that fall inside the circle tells us π.</li>
+<li>Each point check is independent, so we can do many checks at the
+same time to speed it up.</li>
+<li>Nice gif here -&gt; <a href="https://en.wikipedia.org/wiki/Monte_Carlo_method" class="external-link">https://en.wikipedia.org/wiki/Monte_Carlo_method</a>
+</li>
+</ul><p>Although this is a toy problem, it exhibits all the properties of a
+full parallel application that we are interested in for this course.</p>
 <p>The main resource we will consider here is the use of compute core
 time as this is the resource you are usually charged for on HPC
 resources. However, other resources - such as memory use - may also have
