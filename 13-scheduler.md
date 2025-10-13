@@ -189,11 +189,7 @@ instruction to the scheduler.
 
 Let's illustrate this by example. By default, a job's name is the name of the
 script, but the `--job-name` option can be used to change the
-name of a job. Add an option to the script:
-
-```bash
-userid@ln03:/work/ta215/ta215/userid> cat example-job.sh
-```
+name of a job. Add an option to the `example-job.sh` script:
 
 ```output
 #!/bin/bash
@@ -337,6 +333,53 @@ restrain their job to the requested resources or kill the job outright. Other
 jobs on the node will be unaffected. This means that one user cannot mess up
 the experience of others, the only jobs affected by a mistake in scheduling
 will be their own.
+
+## What else affects a job's resources? 
+
+As well as resources that you specifically request in your job script, ARCHER2's 
+resource limits are also definied by two arguments that must be passed to `sbatch`: 
+`--partition` and `--qos`. 
+
+The **partition** specifies the nodes that are eligible to run your job, and
+the **Quality of Service (QoS)** specifies the job limits that apply.
+
+The reason for the partition is so that users can ask for more memory, run in 
+serial or run with GPUs. Helps to accommodate different types of workloads, all running 
+on the same machine. 
+
+The reason for the QoS is so that user's are restricted to certain time limits or certain numbers of jobs, 
+to help ensure fair and shared use of the machine. This is a difficult balance to make as we want to ensure that 
+reearchers can use the full computational power of the machine, but also want to ensure that many 
+researchers can do science all at the same time. 
+
+### Partitions 
+
+| Partition | Description     | Max nodes available |
+| --------- | --------------- | ------------------- |
+| standard  | CPU nodes 256/512 GB memory | 5860    |
+| highmem   | CPU nodes 512 GB memory | 584     |
+| serial    | CPU nodes 512 GB memory | 2       |
+| gpu  | GPU nodes 512 GB memory | 4    |
+
+### QoS 
+
+| QoS        | Max Nodes Per Job | Max Walltime | Jobs Queued | Jobs Running | Partition(s) | Notes |
+| ---------- | ----------------- | ------------ | ----------- | ------------ | ------------ | ------|
+| standard   | 1024               | 24 hrs       | 64          | 16           | standard     | Maximum of 1024 nodes in use by any one user at any time |
+| highmem   | 256               | 24 hrs       | 16          | 16           | highmem     | Maximum of 256 nodes in use by any one user at any time |
+| taskfarm   | 16               | 24 hrs       | 128          | 32           | standard     | Maximum of 256 nodes in use by any one user at any time |
+| short      | 32                 | 20 mins      | 16           | 4            | standard     | |
+| long       | 64                | 96 hrs       | 16          | 16           | standard     | Minimum walltime of 24 hrs, maximum 512 nodes in use by any one user at any time, maximum of 2048 nodes in use by QoS |
+| largescale | 5860               | 12 hrs        | 8           | 1            | standard     | Minimum job size of 1025 nodes |
+| lowpriority | 2048               | 24 hrs        | 16           | 16            | standard     | Jobs not charged but requires at least 1 CU in budget to use. |
+| serial | 32 cores and/or 128 GB memory   | 24 hrs        | 32           | 4            | serial    | Jobs not charged but requires at least 1 CU in budget to use. Maximum of 32 cores and/or 128 GB in use by any one user at any time. |
+| reservation | Size of reservation  | Length of reservation       | No limit           | no limit           | standard   |  |
+| capabilityday | At least 4096 nodes  | 3 hrs        | 8           | 2            | standard     | Minimum job size of 512 nodes. Jobs only run during [Capability Days](#capability-days) |
+| gpu-shd    | 1               | 12 hrs      | 2          | 1           | gpu    | GPU nodes potentially shared with other users |
+| gpu-exc    | 2               | 12 hrs      | 2          | 1           | gpu    | GPU node exclusive node access |
+
+
+
 
 ::: callout
 ## But how much does it cost?
