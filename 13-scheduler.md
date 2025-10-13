@@ -102,7 +102,9 @@ Submitted batch job 11102066
 Ah! What went wrong here? Slurm is telling us that the file system we are currently on, `/home`, is not available
 on the compute nodes and that we are getting the default, short runtime. We will deal with the runtime 
 later, but we need to move to a different file system to submit the job and have it visible to the 
-compute nodes. On ARCHER2, this is the `/work` file system. The path is similar to home but with 
+compute nodes. 
+
+On ARCHER2, this is the `/work` file system. The path is similar to home but with 
 `/work` at the start. Lets move there now, copy our job script across and resubmit:
 
 ```bash
@@ -141,15 +143,21 @@ You have to be quick! If you are, you should see an output that looks like this:
 We can see all the details of our job, most importantly that it is in the `R`
 or `RUNNING` state. Sometimes our jobs might need to wait in a queue and show the `PD` or `PENDING` state.
 
+::: discussion
+## Where's the Output?
+On the login node, this script printed output to the terminal but now there's nothing. Where'd it go?
+HPC job output is typically redirected to a file in the directory you
+launched it from. Use `ls` to find and read the file.
+:::
+
+
 The best way to check our job's status is with `squeue`. Of
 course, running `squeue` repeatedly to check on things can be
 a little tiresome. To see a real-time view of our jobs, we can use the `watch`
 command. `watch` reruns a given command at 2-second intervals. This is too
 frequent for a large machine like ARCHER2 and **will upset your system administrator.** 
 You can change the interval to a more reasonable value with the `-n seconds`
-parameter. ARCHER2 system administration recommmend this to be set for 60 seconfs or longer. 
-
-Let's try using it to monitor another job.
+parameter. ARCHER2 system administration recommmend this to be set for 60 seconds or longer. 
 
 ```bash
 userid@ln03:/work/ta215/ta215/userid> sbatch --partition=standard --qos=short example-job.sh
@@ -160,13 +168,6 @@ You should see an auto-updating display of your job's status. When it finishes,
 it will disappear from the queue. Press `Ctrl-c` when you want to stop the
 `watch` command.
 
-::: discussion
-## Where's the Output?
-On the login node, this script printed output to the terminal --- but
-when we exit `watch`, there's nothing. Where'd it go?
-HPC job output is typically redirected to a file in the directory you
-launched it from. Use `ls` to find and read the file.
-:::
 
 ## Customising a Job
 
@@ -284,22 +285,9 @@ echo "This script has finished successfully."
 userid@ln03:~> sbatch example-job.sh
 ```
 
-Why are the Slurm runtime and `sleep` time not identical?
+Why do we not make the Slurm time and `sleep` time identical?
 :::
 :::
-
-<!-- 
-
-::: challenge
-## Job environment variables
-
-When Slurm runs a job, it sets a number of environment variables for the job. One of these will
-let us check our work from the last problem. The `SLURM_CPUS_PER_TASK` variable is set to the
-number of CPUs we requested with `-c`. Using the `SLURM_CPUS_PER_TASK` variable, modify your job
-so that it prints how many CPUs have been allocated.
-
-:::
---> 
 
 Resource requests are typically binding. If you exceed them, your job will be
 killed. Let's use the walltime as an example. We will request 30 seconds of
