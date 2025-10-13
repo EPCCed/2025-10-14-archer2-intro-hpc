@@ -347,7 +347,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Using shared resources responsibly</h1>
-        <p>Last updated on 2025-10-08 |
+        <p>Last updated on 2025-10-13 |
 
         <a href="https://github.com/EPCCed/2025-10-14-archer2-intro-hpc/edit/main/episodes/18-responsibility.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -404,12 +404,12 @@ unusable for everyone. While the machine is meant to be used, be sure to
 do so responsibly — in ways that will not adversely impact other users’
 experience.</p>
 <p>Login nodes are used to launch jobs. Cluster policies vary, but they
-may also be used for proving out workflows, and in some cases, may host
+may also be used for figuring out workflows, and in some cases, may host
 advanced cluster-specific debugging or development tools. The cluster
 may have modules that need to be loaded, possibly in a certain order,
 and paths or library versions that differ from your laptop, and doing an
 interactive test run on the head node is a quick and reliable way to
-discover and fix these issues, however …</p>
+discover and fix these issues.</p>
 <div id="login-nodes-are-a-shared-resource" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
@@ -459,7 +459,7 @@ node?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Building software, creating directories, and unpacking software are
 common and acceptable tasks for the login node: options #2
@@ -551,7 +551,7 @@ the project.</p>
 <p>On ARCHER2, the home file systems are backed up so you can restore
 data you deleted by mistake. A copy of the data on home file system is
 also kept off site for disaster recovery purposes. The work file systems
-are not backed up in any way.</p>
+<strong>are not backed up in any way.</strong></p>
 </div>
 </div>
 </div>
@@ -559,23 +559,24 @@ are not backed up in any way.</p>
 <hr class="half-width"><p>As mentioned earlier, many users run into the challenge of
 transferring large amounts of data off HPC systems at some point (this
 is more often in transferring data off than onto systems but the advice
-below applies in either case). Data transfer speed may be limited by
-many different factors so the best data transfer mechanism to use
-depends on the type of data being transferred and where the data is
-going.</p>
-<p>The components between your data’s source and destination have
-varying levels of performance, and in particular, may have different
-capabilities with respect to <strong>bandwidth</strong> and
-<strong>latency</strong>.</p>
-<p><strong>Bandwidth</strong> is generally the raw amount of data per
+below applies in either case).</p>
+<p>Data transfer speed may be limited by many different factors so the
+best data transfer mechanism to use depends on the type of data being
+transferred and where the data is going. The components between your
+data’s source and destination have varying levels of performance, and in
+particular, may have different capabilities with respect to
+<strong>bandwidth</strong> and <strong>latency</strong>.</p>
+<ul><li>
+<strong>Bandwidth</strong> is generally the raw amount of data per
 unit time a device is capable of transmitting or receiving. It’s a
-common and generally well-understood metric.</p>
-<p><strong>Latency</strong> is a bit more subtle. For data transfers, it
-may be thought of as the amount of time it takes to get data out of
+common and generally well-understood metric.</li>
+<li>
+<strong>Latency</strong> is a bit more subtle. For data transfers,
+it may be thought of as the amount of time it takes to get data out of
 storage and into a transmittable form. Latency issues are the reason
 it’s advisable to execute data transfers by moving a small number of
-large files, rather than the converse.</p>
-<p>Some of the key components and their associated issues are:</p>
+large files, rather than the converse.</li>
+</ul><p>Some of the key components and their associated issues are:</p>
 <ul><li>
 <strong>Disk speed</strong>: File systems on HPC systems are often
 highly parallel, consisting of a very large number of high performance
@@ -609,12 +610,12 @@ research network that needs to support high volume data transfers. If
 you are trying to transfer data to or from a host on a general purpose
 network you may find the firewall for that network will limit the
 transfer rate you can achieve.</li>
-</ul><p>As mentioned above, if you have related data that consists of a large
-number of small files it is strongly recommended to pack the files into
-a larger <em>archive</em> file for long term storage and transfer. A
-single large file makes more efficient use of the file system and is
-easier to move, copy and transfer because significantly fewer metadata
-operations are required.</p>
+</ul><p>As discussed in a previous episode, if you have related data that
+consists of a large number of small files it is strongly recommended to
+pack the files into a larger <em>archive</em> file for long term storage
+and transfer. A single large file makes more efficient use of the file
+system and is easier to move, copy and transfer because significantly
+fewer metadata operations are required.</p>
 <p>Archive files can be created using tools like <code>tar</code> and
 <code>zip</code>. We have already met <code>tar</code> when we talked
 about data transfer earlier.</p>
@@ -674,7 +675,7 @@ the following would be the best way to transfer them to ARCHER2?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>Lets go through each option</p>
 <ol style="list-style-type: decimal"><li>
@@ -781,7 +782,7 @@ use like [gitbash][gitbash]
   "url": "https://EPCCed.github.io/2025-10-14-archer2-intro-hpc/18-responsibility.html",
   "identifier": "https://EPCCed.github.io/2025-10-14-archer2-intro-hpc/18-responsibility.html",
   "dateCreated": "2025-10-14",
-  "dateModified": "2025-10-08",
+  "dateModified": "2025-10-13",
   "datePublished": "2025-10-13"
 }
 

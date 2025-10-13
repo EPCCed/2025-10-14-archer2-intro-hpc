@@ -455,7 +455,7 @@ node?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -681,7 +681,7 @@ options we have been specifying on the command line
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb16">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -768,12 +768,8 @@ will be their own.</p>
 script, ARCHER2’s resource limits are also definied by two arguments
 that must be passed to <code>sbatch</code>: <code>--partition</code> and
 <code>--qos</code>.</p>
-<p>The <strong>partition</strong> specifies the nodes that are eligible
-to run your job, and the <strong>Quality of Service (QoS)</strong>
-specifies the job limits that apply.</p>
-<p>The reason for the partition is so that users can ask for more
-memory, run in serial or run with GPUs. Helps to accommodate different
-types of workloads, all running on the same machine.</p>
+<p>the <strong>Quality of Service (QoS)</strong> specifies the job
+limits that apply.</p>
 <p>The reason for the QoS is so that user’s are restricted to certain
 time limits or certain numbers of jobs, to help ensure fair and shared
 use of the machine. This is a difficult balance to make as we want to
@@ -782,6 +778,10 @@ machine, but also want to ensure that many researchers can do science
 all at the same time.</p>
 <div class="section level3">
 <h3 id="partitions">Partitions<a class="anchor" aria-label="anchor" href="#partitions"></a></h3>
+<p>The <strong>partition</strong> specifies the nodes that are eligible
+to run your job. This is so that users can ask for more memory, run in
+serial or run with GPUs. The partitions help to accommodate different
+types of workloads, all running on the same machine.</p>
 <table class="table"><thead><tr class="header"><th>Partition</th>
 <th>Description</th>
 <th>Max nodes available</th>
@@ -800,6 +800,13 @@ all at the same time.</p>
 </tr></tbody></table></div>
 <div class="section level3">
 <h3 id="qos">QoS<a class="anchor" aria-label="anchor" href="#qos"></a></h3>
+<p>The <strong>Quality of Service (QoS)</strong> specifies the job
+limits that apply. This is so that users are restricted to certain time
+limits or certain numbers of jobs, to help ensure fair and shared use of
+the machine. This is a difficult balance to make as we want to ensure
+that reearchers can use the full computational power of the machine, but
+also want to ensure that many researchers can do science all at the same
+time.</p>
 <table class="table"><colgroup><col width="12%"><col width="21%"><col width="15%"><col width="13%"><col width="15%"><col width="15%"><col width="7%"></colgroup><thead><tr class="header"><th>QoS</th>
 <th>Max Nodes Per Job</th>
 <th>Max Walltime</th>
@@ -813,21 +820,21 @@ all at the same time.</p>
 <td>64</td>
 <td>16</td>
 <td>standard</td>
-<td>Maximum of 1024 nodes in use by any one user at any time</td>
+<td>Max 1024 nodes</td>
 </tr><tr class="even"><td>highmem</td>
 <td>256</td>
 <td>24 hrs</td>
 <td>16</td>
 <td>16</td>
 <td>highmem</td>
-<td>Maximum of 256 nodes in use by any one user at any time</td>
+<td>Max 256 nodes</td>
 </tr><tr class="odd"><td>taskfarm</td>
 <td>16</td>
 <td>24 hrs</td>
 <td>128</td>
 <td>32</td>
 <td>standard</td>
-<td>Maximum of 256 nodes in use by any one user at any time</td>
+<td>Max 256 nodes</td>
 </tr><tr class="even"><td>short</td>
 <td>32</td>
 <td>20 mins</td>
@@ -841,31 +848,29 @@ all at the same time.</p>
 <td>16</td>
 <td>16</td>
 <td>standard</td>
-<td>Minimum walltime of 24 hrs, maximum 512 nodes in use by any one user
-at any time, maximum of 2048 nodes in use by QoS</td>
+<td>Min 24hr walltime, max 512 nodes</td>
 </tr><tr class="even"><td>largescale</td>
 <td>5860</td>
 <td>12 hrs</td>
 <td>8</td>
 <td>1</td>
 <td>standard</td>
-<td>Minimum job size of 1025 nodes</td>
+<td>Min 1025 nodes</td>
 </tr><tr class="odd"><td>lowpriority</td>
 <td>2048</td>
 <td>24 hrs</td>
 <td>16</td>
 <td>16</td>
 <td>standard</td>
-<td>Jobs not charged but requires at least 1 CU in budget to use.</td>
+<td>Jobs not charged, requires &lt;= 1 CU in budget.</td>
 </tr><tr class="even"><td>serial</td>
 <td>32 cores and/or 128 GB memory</td>
 <td>24 hrs</td>
 <td>32</td>
 <td>4</td>
 <td>serial</td>
-<td>Jobs not charged but requires at least 1 CU in budget to use.
-Maximum of 32 cores and/or 128 GB in use by any one user at any
-time.</td>
+<td>Jobs not charged, requires &lt;= 1 CU in budget. Max 32 cores and/or
+128 GB.</td>
 </tr><tr class="odd"><td>reservation</td>
 <td>Size of reservation</td>
 <td>Length of reservation</td>
@@ -879,22 +884,21 @@ time.</td>
 <td>8</td>
 <td>2</td>
 <td>standard</td>
-<td>Minimum job size of 512 nodes. Jobs only run during <a href="#capability-days">Capability Days</a>
-</td>
+<td>Min 512 nodes. Only Capability Days</td>
 </tr><tr class="odd"><td>gpu-shd</td>
 <td>1</td>
 <td>12 hrs</td>
 <td>2</td>
 <td>1</td>
 <td>gpu</td>
-<td>GPU nodes potentially shared with other users</td>
+<td>potentially shared with other users</td>
 </tr><tr class="even"><td>gpu-exc</td>
 <td>2</td>
 <td>12 hrs</td>
 <td>2</td>
 <td>1</td>
 <td>gpu</td>
-<td>GPU node exclusive node access</td>
+<td>exclusive node access</td>
 </tr></tbody></table><div id="but-how-much-does-it-cost" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
@@ -919,8 +923,8 @@ been run earlier in the gaps between other users’ jobs.</p>
 </section><section><h2 class="section-heading" id="cancelling-a-job">Cancelling a Job<a class="anchor" aria-label="anchor" href="#cancelling-a-job"></a></h2>
 <hr class="half-width"><p>Sometimes we’ll make a mistake and need to cancel a job. This can be
 done with the <code>scancel</code> command. Let’s submit a job and then
-cancel it using its job number (remember to change the walltime so that
-it runs long enough for you to cancel it before it is killed!).</p>
+cancel it using its job ID number (remember to change the walltime so
+that it runs long enough for you to cancel it before it is killed!).</p>
 <div class="codewrapper sourceCode" id="cb24">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -966,12 +970,12 @@ jobs and then cancelling them all with
 </div>
 </div>
 </section><section><h2 class="section-heading" id="other-types-of-jobs">Other Types of Jobs<a class="anchor" aria-label="anchor" href="#other-types-of-jobs"></a></h2>
-<hr class="half-width"><p>Up to this point, we’ve focused on running jobs in batch mode. Slurm
-also provides the ability to start an interactive session.</p>
-<p>There are very frequently tasks that need to be done interactively.
-For example, when we want to debug something that went wrong with a
-previous job. The amount of resources needed is too much for a login
-node, but writing an entire job script is overkill.</p>
+<hr class="half-width"><p>Up to this point we’ve focused on running jobs in batch mode, but
+Slurm also provides the ability to start an interactive session. There
+are very frequently tasks that need to be done interactively. For
+example, when we want to debug something that went wrong with a previous
+job. The amount of resources needed is too much for a login node, but
+writing an entire job script is overkill.</p>
 <p>In this instance, we can run these types of tasks as a one-off with
 <code>srun</code>.</p>
 <p><code>srun</code> runs a single command in the queue system and then
@@ -1005,18 +1009,18 @@ program that has been built to use the MPI (Message Passing Interface)
 parallel library for parallel computing. MPI enables programs to take
 advantage of multiple processing cores in parallel, allowing researchers
 to run large simulations or models more quickly.</p>
-<p>The details of how MPI works, or even using MPI-based programs, is
-not important for this course. However, it’s important to know that MPI
-programs are launched differently from serial programs, and you’ll need
-to submit them correctly in your job submission scrips. Specifically,
-launching parallel MPI programs typically requires four things:</p>
+<p>The details of how MPI works is not important for this course.
+However, it’s important to know that MPI programs are launched
+differently from serial programs, and you’ll need to submit them
+correctly in your job submission scrips. Specifically, launching
+parallel MPI programs typically requires four things:</p>
 <ul><li>A special parallel launch program such as <code>mpirun</code>,
 <code>mpiexec</code>, <code>srun</code> or <code>aprun</code>.</li>
 <li>A specification of how many processes to use in parallel. For
 example, our parallel program may use 256 processes in parallel.</li>
 <li>A specification of how many parallel processes to use per compute
 node. For example, if our compute nodes each have 32 cores we can
-specify 32 parallel processes per node.</li>
+specify up to 32 parallel processes per node.</li>
 <li>The command and arguments for our parallel program.</li>
 </ul><div id="required-files" class="callout prereq">
 <div class="callout-square">
@@ -1106,7 +1110,7 @@ of cores in parallel for the calculation.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <p>Here is a modified script</p>
 <div class="codewrapper sourceCode" id="cb34">
@@ -1139,8 +1143,8 @@ of cores in parallel for the calculation.</p>
 <p>You will see in the job output that information is displayed about
 where each MPI process is running, in particular which node it is
 on.</p>
-<p>Modify the pi-mpi-run script that you run a total of 2 nodes and 16
-processes; but to use only 8 tasks on each of two nodes. Check the
+<p>Modify the pi-mpi-run script so that you run with 2 nodes and a total
+of 16 processes; but use only 8 tasks on each of two nodes. Check the
 output file to ensure that you understand the job distribution.</p>
 </div>
 </div>
@@ -1150,7 +1154,7 @@ output file to ensure that you understand the job distribution.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4"> Show me the solution </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb35">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1181,10 +1185,11 @@ output file to ensure that you understand the job distribution.</p>
 <ul><li>Schedulers manage fairness and efficiency on HPC systems, deciding
 which user jobs run and when.</li>
 <li>A job is any command or script submitted for execution.</li>
-<li>The scheduler handles how compute resources are shared between
-users.</li>
 <li>Jobs should not run on login nodes — they must be submitted to the
 scheduler.</li>
+<li>The scheduler handles how compute resources are shared between
+users, on ARCHER2 this is through the <code>partition</code> and
+<code>qos</code> options.</li>
 <li>MPI jobs require special launch commands (srun, mpirun, etc.) and
 explicit process counts to utilize multiple cores or nodes
 effectively.</li>

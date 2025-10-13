@@ -270,7 +270,8 @@
 
     <div id="flush-collapsecurrent" class="accordion-collapse collapse show" aria-labelledby="flush-headingcurrent" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
-        <ul><li><a href="#accessing-the-software-and-input">Accessing the software and input</a></li>
+        <ul><li><a href="#the-basics-of-benchmarking">The Basics of Benchmarking</a></li>
+<li><a href="#accessing-the-software-and-input">Accessing the software and input</a></li>
 <li><a href="#baseline-running-in-serial">Baseline: running in serial</a></li>
 <li><a href="#running-in-parallel-and-benchmarking-performance">Running in parallel and benchmarking performance</a></li>
 <li><a href="#understanding-the-performance">Understanding the performance</a></li>
@@ -348,7 +349,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Using resources effectively</h1>
-        <p>Last updated on 2025-10-08 |
+        <p>Last updated on 2025-10-13 |
 
         <a href="https://github.com/EPCCed/2025-10-14-archer2-intro-hpc/edit/main/episodes/17-resources.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -384,11 +385,13 @@
 </div>
 </div>
 <p>We’ve touched on all the skills you need to interact with an HPC
-cluster: * Logging in over SSH, * Loading software modules, * Submitting
-parallel jobs, and * Finding the output</p>
-<p>Let’s learn about estimating resource usage and why it might matter.
-To do this we need to understand the basics of <em>benchmarking</em>.
-Benchmarking is essentially performing simple experiments to help
+cluster: - Logging in over SSH, - Loading software modules, - Submitting
+parallel jobs, and - Finding the output</p>
+<p>Now, let’s learn about estimating resource usage and why it might
+matter. To do this we need to understand the basics of
+<em>benchmarking</em>.</p>
+<section><h2 class="section-heading" id="the-basics-of-benchmarking">The Basics of Benchmarking<a class="anchor" aria-label="anchor" href="#the-basics-of-benchmarking"></a></h2>
+<hr class="half-width"><p>Benchmarking is essentially performing simple experiments to help
 understand how the performance of our work varies as we change the
 properties of the jobs on the cluster - including input parameters, job
 options and resources used.</p>
@@ -430,7 +433,7 @@ the example we will be using</p>
 <li>
 <strong>Application</strong> = The combination of computer program
 with particular input parameters</li>
-</ul><section><h2 class="section-heading" id="accessing-the-software-and-input">Accessing the software and input<a class="anchor" aria-label="anchor" href="#accessing-the-software-and-input"></a></h2>
+</ul></section><section><h2 class="section-heading" id="accessing-the-software-and-input">Accessing the software and input<a class="anchor" aria-label="anchor" href="#accessing-the-software-and-input"></a></h2>
 <hr class="half-width"><p>We will be returning to the same example used in <a href="13-scheduler.html">lesson 4</a>. If you didn’t get a chance to
 grab the program then, you can do so now by following the below
 instructions.</p>
@@ -475,10 +478,10 @@ so that is where we will start</p>
 <h3 class="callout-title">Run a single core job</h3>
 <div class="callout-content">
 <p>Write a job submission script that runs the <code>pi-mpi.py</code>
-application on a single core. You will need to take an initial guess as
-to the walltime to request to give the job time to complete. Submit the
-job and check the contents of the STDOUT file to see if the application
-worked or not.</p>
+application on a single core. You will need to take an initial guess for
+how much walltime to request to give the job time to complete.</p>
+<p>Submit the job and check the contents of the STDOUT file to see if
+the application worked or not.</p>
 </div>
 </div>
 </div>
@@ -505,19 +508,19 @@ worked or not.</p>
 <span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a><span class="ex">module</span> load cray-python </span>
 <span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a><span class="ex">srun</span> python pi-mpi.py 100000000</span></code></pre>
 </div>
-<p>Run application using a single process (i.e. in serial) with a
-blocking <code>srun</code> command:</p>
+<p>Submit with to the batch queue with:</p>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="ex">module</span> load cray-python</span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a> <span class="ex">srun</span> <span class="at">--partition</span><span class="op">=</span>standard <span class="at">--qos</span><span class="op">=</span>short python pi-mpi.py 100000000</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="ex">sbatch</span> submit-pi-mpi.slurm</span></code></pre>
 </div>
-<p>OR submit with to the batch queue with:</p>
+<p>OR run application using a single process (i.e. in serial) with a
+blocking <code>srun</code> command:</p>
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>  <span class="ex">submit-pi-mpi.slurm</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="ex">module</span> load cray-python</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="ex">srun</span> <span class="at">--partition</span><span class="op">=</span>standard <span class="at">--qos</span><span class="op">=</span>short <span class="at">--time</span><span class="op">=</span>00:15:00 python pi-mpi.py 100000000</span></code></pre>
 </div>
 <p>Output in the job log should look something like:</p>
 <div class="codewrapper">
@@ -534,11 +537,11 @@ Total run time=3.7914833110000927s</code></pre>
 </div>
 </div>
 </div>
-<p>Once your job has run, you should look in the output to identify the
-performance. Most HPC programs should print out timing or performance
-information (usually somewhere near the bottom of the summary output)
-and <code>pi-mpi.py</code> is no exception. You should see two lines in
-the output that look something like:</p>
+<p>Once your job has run, look at the output to identify any performance
+information. Most HPC programs should print out timing or performance
+(usually somewhere near the bottom of the summary output) and
+<code>pi-mpi.py</code> is no exception. You should see two lines in the
+output that look something like:</p>
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -546,15 +549,16 @@ the output that look something like:</p>
 <span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="ex">Total</span> run time=3.7914833110000927s</span></code></pre>
 </div>
 <p>You can also get an estimate of the overall run time from the final
-job statistics. If we look at how long the finished job ran for, this
-will provide a quick way to see roughly what the runtime was. This can
-be useful if you want to know quickly if a job was faster or not than a
-previous job (as you do not have to find the output file to look up the
-performance) but the number is not as accurate as the performance
-recorded by the application itself and also includes static overheads
-from running the job (such as loading modules and startup time) that can
-skew the timings. To do this on <code>Slurm</code> use
-<code>sacct -l -j</code> with the job ID, e.g.:</p>
+job statistics from Slurm. This can be a quick way to see roughly what
+the runtime was, useful if you want to know quickly if a job was faster
+or not than a previous job (as you do not have to find the output file
+to look up the performance).</p>
+<p>However, the number is not as accurate as the performance recorded by
+the application itself and also includes static overheads from running
+the job (such as loading modules and startup time) that can skew the
+timings.</p>
+<p>To do this on <code>Slurm</code> use <code>sacct -l -j</code> with
+the job ID, e.g.:</p>
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -592,19 +596,26 @@ varies with core count.</p>
 <div class="callout-content">
 <p>Modify your job script to run on multiple cores and evaluate the
 performance of <code>pi-mpi.py</code> on a variety of different core
-counts and use multiple runs to complete a table like the one below. If
-you examine the log file you will see that it contains two timings: the
-total time taken by the entire program and the time taken solely by the
-calculation. The calculation of Pi from the Monte-Carlo counts is not
-parallelised so this is a serial overhead, performed by a single
-processor. The calculation part is, in theory, perfectly parallel (each
-processor operates on independent sets of unique random numbers ) so
-this should get faster on more cores. The Calculation core seconds is
-the <em>calculation time</em> multiplied by the number of cores.</p>
+counts and use multiple runs to complete a table like the one below.</p>
+<p>If you examine the log file you will see that it contains two
+timings:</p>
+<ul><li>Total time taken by the entire program</li>
+<li>Time taken solely by the calculation i.e. measures only the time
+spent performing the main computation..</li>
+</ul><p>The final step, calculation Pi from the Monte-Carlo counts, is not
+parallelised, meaning it runs on a single processor. This creates a
+serial overhead that does not speed up when more cores are used.</p>
+<p>In contracts, the Monte Carlo calculation itself is perfectly
+parallel <em>in theory</em>, since each processor works independently on
+its own set of random numbers. Therefore, as you increase the number of
+cores, this part should ideally run faster.</p>
+<p>You can work out <strong>Calculation core</strong> time by
+multiplying <strong>Calculation time</strong> by the number of
+cores.</p>
 <table class="table"><colgroup><col width="14%"><col width="26%"><col width="26%"><col width="31%"></colgroup><thead><tr class="header"><th>Cores</th>
 <th>Overall run time (s)</th>
 <th>Calculation time (s)</th>
-<th>Calculation core seconds</th>
+<th>Calculation core (s)</th>
 </tr></thead><tbody><tr class="odd"><td>1 (serial)</td>
 <td></td>
 <td></td>
@@ -641,10 +652,14 @@ the <em>calculation time</em> multiplied by the number of cores.</p>
 <td></td>
 <td></td>
 <td></td>
-</tr></tbody></table><p>Look at your results – do they make sense? Given the structure of the
-code, you would expect the performance of the calculation to increase
-linearly with the number of cores: this would give a roughly constant
-figure for the Calculation core seconds. Is this what you observe?</p>
+</tr></tbody></table><p>Look at your results – do they make sense?</p>
+<p>Based on how the code is structured, you would expect the calculation
+performance to scale linearly with the number of cores. In other words,
+as you add more cores, the calculation should finish proportionally
+faster.</p>
+<p>If that’s true, the Calculation core time should stay roughly
+constant.</p>
+<p>Do your results show this expected behaviour?</p>
 </div>
 </div>
 </div>
@@ -696,7 +711,8 @@ figure for the Calculation core seconds. Is this what you observe?</p>
 <td align="right">0.187</td>
 <td align="right">0.135</td>
 <td align="right">34.560</td>
-</tr></tbody></table></div>
+</tr></tbody></table><p>Was our prediction correct?</p>
+</div>
 </div>
 </div>
 </div>
@@ -706,23 +722,22 @@ need to try and draw some useful conclusions as to what the most
 efficient set of resources are to use for our jobs. To do this we
 introduce two metrics:</p>
 <ul><li>
-<strong>Actual speedup</strong> The ratio of the baseline runtime
+<strong>Actual speedup:</strong> The ratio of the baseline runtime
 (or runtime on the lowest core count) to the runtime at the specified
-core count. i.e. baseline runtime divided by runtime at the specified
-core count.</li>
+core count. <em>(i.e. baseline runtime divided by runtime at the
+specified core count)</em>.</li>
 <li>
-<strong>Ideal speedup</strong> The expected speedup if the
+<strong>Ideal speedup:</strong> The expected speedup if the
 application showed perfect scaling. i.e. if you double the number of
 cores, the application should run twice as fast.</li>
 <li>
-<strong>Parallel efficiency</strong> The fraction of <em>ideal
-speedup</em> actually obtained for a given core count. This gives an
-indication of how well you are exploiting the additional resources you
-are using.</li>
-</ul><p>We will now use our performance results to compute these two metrics
-for the sharpen application and use the metrics to evaluate the
-performance and make some decisions about the most effective use of
-resources.</p>
+<strong>Parallel efficiency:</strong> The fraction of ideal speedup
+actually obtained for a given core count. This gives an indication of
+how well you are exploiting the additional resources you are using.</li>
+</ul><p>We will now use our performance results to compute these three
+metrics for the <code>pi-mpi.py</code> application and use the metrics
+to evaluate the performance and make some decisions about the most
+effective use of resources.</p>
 <div id="computing-the-speedup-and-parallel-efficiency" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -795,12 +810,12 @@ choose this option?</li>
 </ol></div>
 </div>
 </div>
-<div id="accordionSolution3" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution6" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
-  <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution6" aria-expanded="false" aria-controls="collapseSolution6">
+  <h4 class="accordion-header" id="headingSolution6"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
 <div class="accordion-body">
 <p>The table below gives example results for ARCHER2 based on the
 example runtimes given in the solution above.</p>
@@ -854,41 +869,79 @@ example runtimes given in the solution above.</p>
 <td align="right">21.077</td>
 <td align="right">256.000</td>
 <td align="right">0.082</td>
-</tr></tbody></table><div class="section level3">
-<h3 id="what-is-the-core-count-where-you-get-the-most-efficient-use-of-resources">What is the core count where you get the <strong>most</strong>
-efficient use of resources?<a class="anchor" aria-label="anchor" href="#what-is-the-core-count-where-you-get-the-most-efficient-use-of-resources"></a></h3>
-<p>Just using a single core is the cheapest (and always will be unless
-your speedup is better than perfect – “super-linear” speedup). However,
-it may not be possible to run on small numbers of cores depending on how
-much memory you need or other technical constraints.</p>
-<p><strong>Note:</strong> on most high-end systems, nodes are not shared
-between users. This means you are charged for all the CPU-cores on a
-node regardless of whether you actually use them. Typically we would be
-running on many hundreds of CPU-cores not a few tens, so the real
-question in practice is: what is the optimal number of nodes to use?</p>
+</tr></tbody></table><div class="section level4">
+<h4 id="what-is-the-core-count-where-you-get-the-most-efficient-use-of-resources">What is the core count where you get the <strong>most</strong>
+efficient use of resources?<a class="anchor" aria-label="anchor" href="#what-is-the-core-count-where-you-get-the-most-efficient-use-of-resources"></a></h4>
+<div id="accordionSolution3" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
+  <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
+</button>
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div class="accordion-body">
+<p>Just using a single core is the cheapest in terms of resources costs
+and is the most efficient (and always will be unless your speedup is
+better than perfect – “super-linear” speedup).</p>
+<p>However, it may not be possible to run on small numbers of cores
+depending on how much memory you need or other technical constraints,
+and will often be slow!</p>
+<p><strong>Note:</strong> On most high-end systems, nodes are not shared
+between users. This means you are charged for <strong>all</strong> the
+CPU-cores on a node regardless of whether you actually use them.
+Typically we would be running on many hundreds of CPU-cores not a few
+tens, so the real question in practice is: <em>what is the optimal
+number of nodes to use?</em></p>
 </div>
-<div class="section level3">
-<h3 id="what-is-the-core-count-where-you-get-the-fastest-solution-irrespective-of-efficiency">What is the core count where you get the fastest solution,
-irrespective of efficiency?<a class="anchor" aria-label="anchor" href="#what-is-the-core-count-where-you-get-the-fastest-solution-irrespective-of-efficiency"></a></h3>
-<p>256 cores gives the fastest time to solution. The fastest time to
-solution does not often make the most efficient use of resources so to
-use this option, you may end up wasting your resources. Sometimes, when
-there is time pressure to run the calculations, this may be a valid
-approach to running applications.</p>
 </div>
-<div class="section level3">
-<h3 id="what-do-you-think-a-good-core-count-choice-would-be-for-this-application-to-use">What do you think a good core count choice would be for this
-application to use?<a class="anchor" aria-label="anchor" href="#what-do-you-think-a-good-core-count-choice-would-be-for-this-application-to-use"></a></h3>
+</div>
+</div>
+</div>
+<div class="section level4">
+<h4 id="what-is-the-core-count-where-you-get-the-fastest-solution-irrespective-of-efficiency">What is the core count where you get the fastest solution,
+irrespective of efficiency?<a class="anchor" aria-label="anchor" href="#what-is-the-core-count-where-you-get-the-fastest-solution-irrespective-of-efficiency"></a></h4>
+<div id="accordionSolution4" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
+  <h4 class="accordion-header" id="headingSolution4"> Show me the solution </h4>
+</button>
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div class="accordion-body">
+<p>128 cores gives the fastest time to solution.</p>
+<p>The fastest time to solution does not often make the most efficient
+use of resources so to use this option, you may end up wasting your
+resources. Occasionally, when there is time pressure to run the
+calculations, this may be a valid approach to running applications.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section level4">
+<h4 id="what-do-you-think-a-good-core-count-choice-would-be-for-this-application-to-use">What do you think a good core count choice would be for this
+application to use?<a class="anchor" aria-label="anchor" href="#what-do-you-think-a-good-core-count-choice-would-be-for-this-application-to-use"></a></h4>
+<div id="accordionSolution5" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
+  <h4 class="accordion-header" id="headingSolution5"> Show me the solution </h4>
+</button>
+<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
+<div class="accordion-body">
 <p>8 cores is probably a good number of cores to use with a parallel
-efficiency of 86%. Usually, the best choice is one that delivers good
-parallel efficiency with an acceptable time to solution. Note that
-<em>acceptable time to solution</em> differs depending on circumstances
-so this is something that the individual researcher will have to assess.
-Good parallel efficiency is often considered to be 70% or greater though
-many researchers will be happy to run in a regime with parallel
+efficiency of 86%.</p>
+<p>Usually, the best choice is one that delivers good parallel
+efficiency with an acceptable time to solution.</p>
+<p>Note that <em>acceptable time to solution</em> differs depending on
+circumstances so this is something that the individual researcher will
+have to assess.</p>
+<p>Good parallel efficiency is often considered to be 70% or greater
+though many researchers will be happy to run in a regime with parallel
 efficiency greater than 60%. As noted above, running with worse parallel
 efficiency may also be useful if the time to solution is an overriding
 factor.</p>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -992,7 +1045,7 @@ use like [gitbash][gitbash]
   "url": "https://EPCCed.github.io/2025-10-14-archer2-intro-hpc/17-resources.html",
   "identifier": "https://EPCCed.github.io/2025-10-14-archer2-intro-hpc/17-resources.html",
   "dateCreated": "2025-10-14",
-  "dateModified": "2025-10-08",
+  "dateModified": "2025-10-13",
   "datePublished": "2025-10-13"
 }
 

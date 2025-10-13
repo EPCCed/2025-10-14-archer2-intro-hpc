@@ -431,10 +431,11 @@ can access their data and run jobs anywhere within the cluster.</li>
 <li>Schedulers manage fairness and efficiency on HPC systems, deciding
 which user jobs run and when.</li>
 <li>A job is any command or script submitted for execution.</li>
-<li>The scheduler handles how compute resources are shared between
-users.</li>
 <li>Jobs should not run on login nodes — they must be submitted to the
 scheduler.</li>
+<li>The scheduler handles how compute resources are shared between
+users, on ARCHER2 this is through the <code>partition</code> and
+<code>qos</code> options.</li>
 <li>MPI jobs require special launch commands (srun, mpirun, etc.) and
 explicit process counts to utilize multiple cores or nodes
 effectively.</li>
@@ -442,13 +443,11 @@ effectively.</li>
 <hr class="half-width">
 <ul>
 <li>HPC systems use modules to help deal with software
-incompatibilities, versioning and dependencies</li>
+incompatibilities, versioning and dependencies.</li>
 <li>We can see what modules we currently have loaded with
-<code>module list</code>
-</li>
+<code>module list</code>.</li>
 <li>We can see what modules are available with
-<code>module avail</code>
-</li>
+<code>module avail</code>.</li>
 <li>We can load a module with
 <code>module load softwareName</code>.</li>
 <li>We can unload a module with

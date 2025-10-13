@@ -14,14 +14,14 @@ module load cray-python
 srun python pi-mpi.py 100000000
 ```
 
-Run application using a single process (i.e. in serial) with a blocking `srun` command:
+Submit with to the batch queue with:
+
 ```bash
-module load cray-python
-`r config$sched$prompt_work` srun --partition=`r config$sched$partition` --qos=`r config$sched$qos` python pi-mpi.py 100000000
+sbatch submit-pi-mpi.slurm
 ```
 
-OR submit with to the batch queue with:
-
+OR run application using a single process (i.e. in serial) with a blocking `srun` command:
 ```bash
-`r config$sched$prompt_work` `r config$sched$submit.name` submit-pi-mpi.slurm
+module load cray-python
+srun --partition=standard --qos=short --time=00:15:00 python pi-mpi.py 100000000
 ```

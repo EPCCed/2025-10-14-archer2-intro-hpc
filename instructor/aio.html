@@ -1079,7 +1079,7 @@ results.</p>
   Some Ideas
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <ul>
 <li>
@@ -1297,7 +1297,7 @@ neighbors.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> It’s a Beautiful Day in the Neighborhood </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>The deepest layer should differ: <code>userid</code> is uniquely
 yours. Are there differences in the path at higher levels?</p>
@@ -1440,7 +1440,7 @@ computer cluster, you need to log out first. To do so, type
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>There are several ways to do this. Most operating systems have a
 graphical system monitor, like the Windows Task Manager. More detailed
@@ -1488,7 +1488,7 @@ node.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1717,7 +1717,7 @@ node?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1948,7 +1948,7 @@ options we have been specifying on the command line
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb16">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2037,12 +2037,8 @@ will be their own.</p>
 script, ARCHER2’s resource limits are also definied by two arguments
 that must be passed to <code>sbatch</code>: <code>--partition</code> and
 <code>--qos</code>.</p>
-<p>The <strong>partition</strong> specifies the nodes that are eligible
-to run your job, and the <strong>Quality of Service (QoS)</strong>
-specifies the job limits that apply.</p>
-<p>The reason for the partition is so that users can ask for more
-memory, run in serial or run with GPUs. Helps to accommodate different
-types of workloads, all running on the same machine.</p>
+<p>the <strong>Quality of Service (QoS)</strong> specifies the job
+limits that apply.</p>
 <p>The reason for the QoS is so that user’s are restricted to certain
 time limits or certain numbers of jobs, to help ensure fair and shared
 use of the machine. This is a difficult balance to make as we want to
@@ -2052,6 +2048,10 @@ all at the same time.</p>
 <div class="section level3">
 <h3 id="partitions">Partitions<a class="anchor" aria-label="anchor" href="#partitions"></a>
 </h3>
+<p>The <strong>partition</strong> specifies the nodes that are eligible
+to run your job. This is so that users can ask for more memory, run in
+serial or run with GPUs. The partitions help to accommodate different
+types of workloads, all running on the same machine.</p>
 <table class="table">
 <thead><tr class="header">
 <th>Partition</th>
@@ -2085,6 +2085,13 @@ all at the same time.</p>
 <div class="section level3">
 <h3 id="qos">QoS<a class="anchor" aria-label="anchor" href="#qos"></a>
 </h3>
+<p>The <strong>Quality of Service (QoS)</strong> specifies the job
+limits that apply. This is so that users are restricted to certain time
+limits or certain numbers of jobs, to help ensure fair and shared use of
+the machine. This is a difficult balance to make as we want to ensure
+that reearchers can use the full computational power of the machine, but
+also want to ensure that many researchers can do science all at the same
+time.</p>
 <table class="table">
 <colgroup>
 <col width="12%">
@@ -2112,7 +2119,7 @@ all at the same time.</p>
 <td>64</td>
 <td>16</td>
 <td>standard</td>
-<td>Maximum of 1024 nodes in use by any one user at any time</td>
+<td>Max 1024 nodes</td>
 </tr>
 <tr class="even">
 <td>highmem</td>
@@ -2121,7 +2128,7 @@ all at the same time.</p>
 <td>16</td>
 <td>16</td>
 <td>highmem</td>
-<td>Maximum of 256 nodes in use by any one user at any time</td>
+<td>Max 256 nodes</td>
 </tr>
 <tr class="odd">
 <td>taskfarm</td>
@@ -2130,7 +2137,7 @@ all at the same time.</p>
 <td>128</td>
 <td>32</td>
 <td>standard</td>
-<td>Maximum of 256 nodes in use by any one user at any time</td>
+<td>Max 256 nodes</td>
 </tr>
 <tr class="even">
 <td>short</td>
@@ -2148,8 +2155,7 @@ all at the same time.</p>
 <td>16</td>
 <td>16</td>
 <td>standard</td>
-<td>Minimum walltime of 24 hrs, maximum 512 nodes in use by any one user
-at any time, maximum of 2048 nodes in use by QoS</td>
+<td>Min 24hr walltime, max 512 nodes</td>
 </tr>
 <tr class="even">
 <td>largescale</td>
@@ -2158,7 +2164,7 @@ at any time, maximum of 2048 nodes in use by QoS</td>
 <td>8</td>
 <td>1</td>
 <td>standard</td>
-<td>Minimum job size of 1025 nodes</td>
+<td>Min 1025 nodes</td>
 </tr>
 <tr class="odd">
 <td>lowpriority</td>
@@ -2167,7 +2173,7 @@ at any time, maximum of 2048 nodes in use by QoS</td>
 <td>16</td>
 <td>16</td>
 <td>standard</td>
-<td>Jobs not charged but requires at least 1 CU in budget to use.</td>
+<td>Jobs not charged, requires &lt;= 1 CU in budget.</td>
 </tr>
 <tr class="even">
 <td>serial</td>
@@ -2176,9 +2182,8 @@ at any time, maximum of 2048 nodes in use by QoS</td>
 <td>32</td>
 <td>4</td>
 <td>serial</td>
-<td>Jobs not charged but requires at least 1 CU in budget to use.
-Maximum of 32 cores and/or 128 GB in use by any one user at any
-time.</td>
+<td>Jobs not charged, requires &lt;= 1 CU in budget. Max 32 cores and/or
+128 GB.</td>
 </tr>
 <tr class="odd">
 <td>reservation</td>
@@ -2196,8 +2201,7 @@ time.</td>
 <td>8</td>
 <td>2</td>
 <td>standard</td>
-<td>Minimum job size of 512 nodes. Jobs only run during <a href="#capability-days">Capability Days</a>
-</td>
+<td>Min 512 nodes. Only Capability Days</td>
 </tr>
 <tr class="odd">
 <td>gpu-shd</td>
@@ -2206,7 +2210,7 @@ time.</td>
 <td>2</td>
 <td>1</td>
 <td>gpu</td>
-<td>GPU nodes potentially shared with other users</td>
+<td>potentially shared with other users</td>
 </tr>
 <tr class="even">
 <td>gpu-exc</td>
@@ -2215,7 +2219,7 @@ time.</td>
 <td>2</td>
 <td>1</td>
 <td>gpu</td>
-<td>GPU node exclusive node access</td>
+<td>exclusive node access</td>
 </tr>
 </tbody>
 </table>
@@ -2245,8 +2249,8 @@ been run earlier in the gaps between other users’ jobs.</p>
 <hr class="half-width">
 <p>Sometimes we’ll make a mistake and need to cancel a job. This can be
 done with the <code>scancel</code> command. Let’s submit a job and then
-cancel it using its job number (remember to change the walltime so that
-it runs long enough for you to cancel it before it is killed!).</p>
+cancel it using its job ID number (remember to change the walltime so
+that it runs long enough for you to cancel it before it is killed!).</p>
 <div class="codewrapper sourceCode" id="cb24">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -2294,12 +2298,12 @@ jobs and then cancelling them all with
 </section><section><h2 class="section-heading" id="other-types-of-jobs">Other Types of Jobs<a class="anchor" aria-label="anchor" href="#other-types-of-jobs"></a>
 </h2>
 <hr class="half-width">
-<p>Up to this point, we’ve focused on running jobs in batch mode. Slurm
-also provides the ability to start an interactive session.</p>
-<p>There are very frequently tasks that need to be done interactively.
-For example, when we want to debug something that went wrong with a
-previous job. The amount of resources needed is too much for a login
-node, but writing an entire job script is overkill.</p>
+<p>Up to this point we’ve focused on running jobs in batch mode, but
+Slurm also provides the ability to start an interactive session. There
+are very frequently tasks that need to be done interactively. For
+example, when we want to debug something that went wrong with a previous
+job. The amount of resources needed is too much for a login node, but
+writing an entire job script is overkill.</p>
 <p>In this instance, we can run these types of tasks as a one-off with
 <code>srun</code>.</p>
 <p><code>srun</code> runs a single command in the queue system and then
@@ -2335,11 +2339,11 @@ program that has been built to use the MPI (Message Passing Interface)
 parallel library for parallel computing. MPI enables programs to take
 advantage of multiple processing cores in parallel, allowing researchers
 to run large simulations or models more quickly.</p>
-<p>The details of how MPI works, or even using MPI-based programs, is
-not important for this course. However, it’s important to know that MPI
-programs are launched differently from serial programs, and you’ll need
-to submit them correctly in your job submission scrips. Specifically,
-launching parallel MPI programs typically requires four things:</p>
+<p>The details of how MPI works is not important for this course.
+However, it’s important to know that MPI programs are launched
+differently from serial programs, and you’ll need to submit them
+correctly in your job submission scrips. Specifically, launching
+parallel MPI programs typically requires four things:</p>
 <ul>
 <li>A special parallel launch program such as <code>mpirun</code>,
 <code>mpiexec</code>, <code>srun</code> or <code>aprun</code>.</li>
@@ -2347,7 +2351,7 @@ launching parallel MPI programs typically requires four things:</p>
 example, our parallel program may use 256 processes in parallel.</li>
 <li>A specification of how many parallel processes to use per compute
 node. For example, if our compute nodes each have 32 cores we can
-specify 32 parallel processes per node.</li>
+specify up to 32 parallel processes per node.</li>
 <li>The command and arguments for our parallel program.</li>
 </ul>
 <div id="required-files" class="callout prereq">
@@ -2440,7 +2444,7 @@ of cores in parallel for the calculation.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <p>Here is a modified script</p>
 <div class="codewrapper sourceCode" id="cb34">
@@ -2473,8 +2477,8 @@ of cores in parallel for the calculation.</p>
 <p>You will see in the job output that information is displayed about
 where each MPI process is running, in particular which node it is
 on.</p>
-<p>Modify the pi-mpi-run script that you run a total of 2 nodes and 16
-processes; but to use only 8 tasks on each of two nodes. Check the
+<p>Modify the pi-mpi-run script so that you run with 2 nodes and a total
+of 16 processes; but use only 8 tasks on each of two nodes. Check the
 output file to ensure that you understand the job distribution.</p>
 </div>
 </div>
@@ -2484,7 +2488,7 @@ output file to ensure that you understand the job distribution.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4"> Show me the solution </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb35">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2516,10 +2520,11 @@ output file to ensure that you understand the job distribution.</p>
 <li>Schedulers manage fairness and efficiency on HPC systems, deciding
 which user jobs run and when.</li>
 <li>A job is any command or script submitted for execution.</li>
-<li>The scheduler handles how compute resources are shared between
-users.</li>
 <li>Jobs should not run on login nodes — they must be submitted to the
 scheduler.</li>
+<li>The scheduler handles how compute resources are shared between
+users, on ARCHER2 this is through the <code>partition</code> and
+<code>qos</code> options.</li>
 <li>MPI jobs require special launch commands (srun, mpirun, etc.) and
 explicit process counts to utilize multiple cores or nodes
 effectively.</li>
@@ -2535,7 +2540,7 @@ use like [gitbash][gitbash]
  -->
 </section></section><section id="aio-14-modules"><p>Content from <a href="14-modules.html">Accessing software via Modules</a></p>
 <hr>
-<p>Last updated on 2025-10-08 |
+<p>Last updated on 2025-10-13 |
 
         <a href="https://github.com/EPCCed/2025-10-14-archer2-intro-hpc/edit/main/episodes/14-modules.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 45 minutes</p>
@@ -2579,9 +2584,9 @@ factors are:</p>
 <p>Software incompatibility is a major headache for programmers.
 Sometimes the presence (or absence) of a software package will break
 others that depend on it. Two of the most famous examples are Python 2
-vs 3 and C compiler versions. Python 3 famously provides a
+vs 3 and C compiler versions: - Python 3 famously provides a
 <code>python</code> command that conflicts with that provided by Python
-2. And software compiled against a newer version of the C libraries and
+2. - Software compiled against a newer version of the C libraries and
 then used when they are not present will result in a nasty
 <code>'GLIBCXX_3.4.20' not found</code> error.</p>
 </div>
@@ -2603,13 +2608,14 @@ particular version) depends on having access to another software package
 (or even a particular version of another software package). For example,
 the VASP materials science software may depend on having a particular
 version of the FFTW (Fastest Fourier Transform in the West) software
-library available for it to work.</p>
+library available for it to work. Therefore, it is useful to have
+multiple versions available for multiple use cases.</p>
 </div>
 <section><h2 class="section-heading" id="environment-modules">Environment Modules<a class="anchor" aria-label="anchor" href="#environment-modules"></a>
 </h2>
 <hr class="half-width">
 <p>Environment modules are the solution to these problems. A
-<em>module</em> is a self-contained description of a software package —
+<em>module</em> is a self-contained description of a software package -
 it contains the settings required to run a software package and,
 usually, encodes required dependencies on other software packages.</p>
 <p>There are a number of different environment module implementations
@@ -2716,7 +2722,7 @@ a particular piece of software is stored.</p>
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a> <span class="ex">module</span> load cray-hdf5</span>
-<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="fu">which</span> h5dump</span></code></pre>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a> <span class="fu">which</span> h5dump</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2795,10 +2801,10 @@ closely.</p>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code>------------------------------------------------------- /opt/cray/pe/lmod/modulefiles/mpi/crayclang/14.0/ofi/1.0/cray-mpich/8.0 --------------------------------------------------------
+<pre class="output" tabindex="0"><code>---------------- /opt/cray/pe/lmod/modulefiles/mpi/crayclang/14.0/ofi/1.0/cray-mpich/8.0 ----------------
    cray-hdf5-parallel/1.12.2.1 (D)    cray-hdf5-parallel/1.12.2.7
 
----------------------------------------------------------------- /opt/cray/pe/lmod/modulefiles/compiler/crayclang/14.0 -----------------------------------------------------------------
+---------------- /opt/cray/pe/lmod/modulefiles/compiler/crayclang/14.0 ----------------------------------
    cray-hdf5/1.12.2.1 (L,D)    cray-hdf5/1.12.2.7
 
   Where:
@@ -2845,14 +2851,8 @@ system. What modules would you expect to be there?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb15">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="ex">userid@ln03:/work/ta215/ta215/userid</span><span class="op">&gt;</span> nano h5dump-module.sh</span>
-<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a><span class="ex">userid@ln03:/work/ta215/ta215/userid</span><span class="op">&gt;</span> cat h5dump-module.sh</span></code></pre>
-</div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -2875,13 +2875,11 @@ h5dump --version</code></pre>
 <div class="callout-content">
 <ul>
 <li>HPC systems use modules to help deal with software
-incompatibilities, versioning and dependencies</li>
+incompatibilities, versioning and dependencies.</li>
 <li>We can see what modules we currently have loaded with
-<code>module list</code>
-</li>
+<code>module list</code>.</li>
 <li>We can see what modules are available with
-<code>module avail</code>
-</li>
+<code>module avail</code>.</li>
 <li>We can load a module with
 <code>module load softwareName</code>.</li>
 <li>We can unload a module with
@@ -2900,7 +2898,7 @@ use like [gitbash][gitbash]
  -->
 </section></section><section id="aio-15-transferring-files"><p>Content from <a href="15-transferring-files.html">Transferring files with remote computers</a></p>
 <hr>
-<p>Last updated on 2025-10-08 |
+<p>Last updated on 2025-10-13 |
 
         <a href="https://github.com/EPCCed/2025-10-14-archer2-intro-hpc/edit/main/episodes/15-transferring-files.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 30 minutes</p>
@@ -2957,13 +2955,13 @@ some material we’ll use later on, from a terminal on your
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="ex">[user@laptop</span> ~]$ curl <span class="at">-O</span> https://epcced.github.io/2025-10-14-archer2-intro-hpcfiles/hpc-intro-data.tar.gz</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="ex">[user@laptop</span> ~]$ curl <span class="at">-O</span> https://epcced.github.io/2025-10-14-archer2-intro-hpc/files/hpc-intro-data.tar.gz</span></code></pre>
 </div>
 <p>or</p>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ex">[user@laptop</span> ~]$ wget https://epcced.github.io/2025-10-14-archer2-intro-hpcfiles/hpc-intro-data.tar.gz</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ex">[user@laptop</span> ~]$ wget https://epcced.github.io/2025-10-14-archer2-intro-hpc/files/hpc-intro-data.tar.gz</span></code></pre>
 </div>
 <div id="tar.gz" class="callout discussion">
 <div class="callout-square">
@@ -2987,8 +2985,8 @@ the majority of HPC cluster machines run. You may also see the extension
 </h2>
 <hr class="half-width">
 <p>To copy a single file to or from the cluster, we can use
-<code>scp</code> (“secure copy”). The syntax can be a little complex for
-new users, but we’ll break it down.</p>
+<code>scp</code> (“secure copy”). The syntax can be a little complex,
+but we’ll break it down.</p>
 <p>To <em>upload to</em> another computer:</p>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3003,7 +3001,7 @@ new users, but we’ll break it down.</p>
 </div>
 <p>Note that everything after the <code>:</code> is relative to our home
 directory on the remote computer. We can leave it at that if we don’t
-care where the file goes.</p>
+care where the file goes:</p>
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -3022,8 +3020,8 @@ transfers initiated from the <em>outside</em>. This means that the
 <code>curl</code> command will fail, as an address outside the firewall
 is unreachable from the inside. To get around this, run the
 <code>curl</code> or <code>wget</code> command from your local machine
-to download the file, then use the <code>scp</code> command (just below
-here) to upload it to the cluster.</p>
+to download the file, then use the <code>scp</code> command to upload it
+to the cluster.</p>
 </div>
 </div>
 </div>
@@ -3045,7 +3043,7 @@ directory on ARCHER2.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3079,7 +3077,7 @@ local machine over SSH? Note that it may well fail, and that’s OK!</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>Using <code>curl</code> or <code>wget</code> commands like the
 following:</p>
@@ -3188,6 +3186,23 @@ the destination directory.</p>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="ex">[user@laptop</span> ~]$ rsync <span class="at">-avzP</span> userid@login.archer2.ac.uk:path/on/ARCHER2/file.txt path/to/local/</span></code></pre>
 </div>
+<div id="callout2" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<span class="callout-header">Callout</span>
+<div class="callout-inner">
+<div class="callout-content">
+<p>If If you need to pass your SSH key to ssh using the <code>-i</code>
+command to login, you may need to also do that here:</p>
+<div class="codewrapper sourceCode" id="cb12">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="fu">rsync</span> <span class="at">-avzP</span> <span class="at">-e</span> <span class="st">"ssh -i ~/.ssh/key_for_remote_computer"</span> path/to/local/dir userid@login.archer2.ac.uk:directory/path/on/ARCHER2/</span></code></pre>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -3216,10 +3231,10 @@ page if you’re unsure.</p>
 <div class="callout-content">
 <p>Say we have to connect <code>rsync</code> through port 768 instead of
 22. How would we modify this command?</p>
-<div class="codewrapper sourceCode" id="cb12">
+<div class="codewrapper sourceCode" id="cb13">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="ex">[user@laptop</span> ~]$ rsync test.txt userid@login.archer2.ac.uk:</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="ex">[user@laptop</span> ~]$ rsync test.txt userid@login.archer2.ac.uk:</span></code></pre>
 </div>
 </div>
 </div>
@@ -3229,15 +3244,15 @@ page if you’re unsure.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb13">
+<div class="codewrapper sourceCode" id="cb14">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="ex">[user@laptop</span> ~]$ rsync <span class="at">--help</span> <span class="kw">|</span> <span class="fu">grep</span> port</span>
-<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a>     <span class="ex">--port=PORT</span>             specify double-colon alternate port number</span>
-<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a><span class="ex">See</span> https://rsync.samba.org/ for updates, bug reports, and answers</span>
-<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a><span class="ex">[user@laptop</span> ~]$ rsync <span class="at">--port</span><span class="op">=</span>768 test.txt userid@login.archer2.ac.uk:</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="ex">[user@laptop</span> ~]$ rsync <span class="at">--help</span> <span class="kw">|</span> <span class="fu">grep</span> port</span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a>     <span class="ex">--port=PORT</span>             specify double-colon alternate port number</span>
+<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a><span class="ex">See</span> https://rsync.samba.org/ for updates, bug reports, and answers</span>
+<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a><span class="ex">[user@laptop</span> ~]$ rsync <span class="at">--port</span><span class="op">=</span>768 test.txt userid@login.archer2.ac.uk:</span></code></pre>
 </div>
 </div>
 </div>
@@ -3273,55 +3288,42 @@ that archive with <code>gzip</code> to save space. Let’s check using
 specified by <code>-f &lt;filename&gt;</code>, on the remote computer.
 Note that you can concatenate the two flags, instead of writing
 <code>-t -f</code> separately.</p>
-<div class="codewrapper sourceCode" id="cb14">
+<div class="codewrapper sourceCode" id="cb15">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="ex">[user@laptop</span> ~]$ ssh userid@login.archer2.ac.uk</span>
-<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a><span class="ex">userid@ln03:~</span><span class="op">&gt;</span> tar <span class="at">-tf</span> hpc-intro-data.tar.gz</span>
-<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a><span class="ex">hpc-intro-data/</span></span>
-<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/</span></span>
-<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/NENE01971Z.txt</span></span>
-<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/goostats</span></span>
-<span id="cb14-7"><a href="#cb14-7" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/goodiff</span></span>
-<span id="cb14-8"><a href="#cb14-8" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/NENE02040B.txt</span></span>
-<span id="cb14-9"><a href="#cb14-9" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/NENE01978B.txt</span></span>
-<span id="cb14-10"><a href="#cb14-10" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/NENE02043B.txt</span></span>
-<span id="cb14-11"><a href="#cb14-11" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/NENE02018B.txt</span></span>
-<span id="cb14-12"><a href="#cb14-12" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/NENE01843A.txt</span></span>
-<span id="cb14-13"><a href="#cb14-13" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/NENE01978A.txt</span></span>
-<span id="cb14-14"><a href="#cb14-14" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/NENE01751B.txt</span></span>
-<span id="cb14-15"><a href="#cb14-15" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/NENE01736A.txt</span></span>
-<span id="cb14-16"><a href="#cb14-16" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/NENE01812A.txt</span></span>
-<span id="cb14-17"><a href="#cb14-17" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/NENE02043A.txt</span></span>
-<span id="cb14-18"><a href="#cb14-18" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/NENE01729B.txt</span></span>
-<span id="cb14-19"><a href="#cb14-19" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/NENE02040A.txt</span></span>
-<span id="cb14-20"><a href="#cb14-20" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/NENE01843B.txt</span></span>
-<span id="cb14-21"><a href="#cb14-21" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/NENE01751A.txt</span></span>
-<span id="cb14-22"><a href="#cb14-22" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/NENE01729A.txt</span></span>
-<span id="cb14-23"><a href="#cb14-23" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/NENE02040Z.txt</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="ex">[user@laptop</span> ~]$ ssh userid@login.archer2.ac.uk</span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a><span class="ex">userid@ln03:~</span><span class="op">&gt;</span> tar <span class="at">-tf</span> hpc-intro-data.tar.gz</span>
+<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a><span class="ex">hpc-intro-data/</span></span>
+<span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/</span></span>
+<span id="cb15-5"><a href="#cb15-5" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/NENE01971Z.txt</span></span>
+<span id="cb15-6"><a href="#cb15-6" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/goostats</span></span>
+<span id="cb15-7"><a href="#cb15-7" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/goodiff</span></span>
+<span id="cb15-8"><a href="#cb15-8" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/NENE02040B.txt</span></span>
+<span id="cb15-9"><a href="#cb15-9" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/NENE01978B.txt</span></span>
+<span id="cb15-10"><a href="#cb15-10" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/NENE02043B.txt</span></span>
+<span id="cb15-11"><a href="#cb15-11" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/NENE02018B.txt</span></span>
+<span id="cb15-12"><a href="#cb15-12" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/NENE01843A.txt</span></span>
+<span id="cb15-13"><a href="#cb15-13" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/NENE01978A.txt</span></span>
+<span id="cb15-14"><a href="#cb15-14" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/NENE01751B.txt</span></span>
+<span id="cb15-15"><a href="#cb15-15" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/NENE01736A.txt</span></span>
+<span id="cb15-16"><a href="#cb15-16" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/NENE01812A.txt</span></span>
+<span id="cb15-17"><a href="#cb15-17" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/NENE02043A.txt</span></span>
+<span id="cb15-18"><a href="#cb15-18" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/NENE01729B.txt</span></span>
+<span id="cb15-19"><a href="#cb15-19" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/NENE02040A.txt</span></span>
+<span id="cb15-20"><a href="#cb15-20" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/NENE01843B.txt</span></span>
+<span id="cb15-21"><a href="#cb15-21" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/NENE01751A.txt</span></span>
+<span id="cb15-22"><a href="#cb15-22" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/NENE01729A.txt</span></span>
+<span id="cb15-23"><a href="#cb15-23" tabindex="-1"></a><span class="ex">hpc-intro-data/north-pacific-gyre/NENE02040Z.txt</span></span></code></pre>
 </div>
 <p>This shows a folder containing another folder, which contains a bunch
 of files. If you’ve taken The Carpentries’ Shell lesson recently, these
 might look familiar. Let’s see about that compression, using
 <code>du</code> for “<strong>d</strong>isk <strong>u</strong>sage”.</p>
-<div class="codewrapper sourceCode" id="cb15">
+<div class="codewrapper sourceCode" id="cb16">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="ex">userid@ln03:~</span><span class="op">&gt;</span> du <span class="at">-sh</span> hpc-intro-data.tar.gz</span>
-<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a><span class="ex">36K</span>     hpc-intro-data.tar.gz</span></code></pre>
-</div>
-<div id="files-occupy-at-least-one-block" class="callout">
-<div class="callout-square">
-<i class="callout-icon" data-feather="bell"></i>
-</div>
-<span class="callout-header">Callout</span>
-<div id="files-occupy-at-least-one-block" class="callout-inner">
-<h3 class="callout-title">Files Occupy at Least One “Block”</h3>
-<div class="callout-content">
-<p>If the filesystem block size is larger than 36 KB, you’ll see a
-larger number: files cannot be smaller than one block.</p>
-</div>
-</div>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="ex">userid@ln03:~</span><span class="op">&gt;</span> du <span class="at">-sh</span> hpc-intro-data.tar.gz</span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a><span class="ex">36K</span>     hpc-intro-data.tar.gz</span></code></pre>
 </div>
 <p>Now let’s unpack the archive. We’ll run <code>tar</code> with a few
 common flags:</p>
@@ -3357,12 +3359,12 @@ flags.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4"> Commands </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb16">
+<div class="codewrapper sourceCode" id="cb17">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="ex">userid@ln03:~</span><span class="op">&gt;</span> tar <span class="at">-xvzf</span> hpc-intro-data.tar.gz</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="ex">userid@ln03:~</span><span class="op">&gt;</span> tar <span class="at">-xvzf</span> hpc-intro-data.tar.gz</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3391,11 +3393,11 @@ flags.</p>
 </div>
 <p>Note that we did not type out <code>-x -v -z -f</code>, thanks to the
 flag concatenation, though the command works identically either way.</p>
-<div class="codewrapper sourceCode" id="cb18">
+<div class="codewrapper sourceCode" id="cb19">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="ex">userid@ln03:~</span><span class="op">&gt;</span> du <span class="at">-sh</span> hpc-intro-data</span>
-<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a><span class="ex">144K</span>    hpc-intro-data</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="ex">userid@ln03:~</span><span class="op">&gt;</span> du <span class="at">-sh</span> hpc-intro-data</span>
+<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a><span class="ex">144K</span>    hpc-intro-data</span></code></pre>
 </div>
 </div>
 </div>
@@ -3417,10 +3419,10 @@ size of the raw data!</p>
 <p>If you want to reverse the process — compressing raw data instead of
 extracting it — set a <code>c</code> flag instead of <code>x</code>, set
 the archive filename, then provide a directory to compress:</p>
-<div class="codewrapper sourceCode" id="cb19">
+<div class="codewrapper sourceCode" id="cb20">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="ex">[user@laptop</span> ~]$ tar <span class="at">-cvzf</span> compressed_data.tar.gz hpc-intro-data</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="ex">[user@laptop</span> ~]$ tar <span class="at">-cvzf</span> compressed_data.tar.gz hpc-intro-data</span></code></pre>
 </div>
 <div id="working-with-windows" class="callout discussion">
 <div class="callout-square">
@@ -3436,16 +3438,17 @@ encodes its files slightly different than Unix, and adds an extra
 character to every line. On a Unix system, every line in a file ends
 with a <code>\n</code> (newline). On Windows, every line in a file ends
 with a <code>\r\n</code> (carriage return + newline). This causes
-problems sometimes. Though most modern programming languages and
-software handles this correctly, in some rare instances, you may run
-into an issue. The solution is to convert a file from Windows to Unix
-encoding with the <code>dos2unix</code> command. You can identify if a
-file has Windows line endings with <code>cat -A filename</code>. A file
-with Windows line endings will have <code>^M$</code> at the end of every
-line. A file with Unix line endings will have <code>$</code> at the end
-of a line. To convert the file, just run <code>dos2unix filename</code>.
-(Conversely, to convert back to Windows format, you can run
-<code>unix2dos filename</code>.)</p>
+problems sometimes.</p>
+<p>Though most modern programming languages and software handles this
+correctly, in some rare instances, you may run into an issue. The
+solution is to convert a file from Windows to Unix encoding with the
+<code>dos2unix</code> command.</p>
+<p>You can identify if a file has Windows line endings with
+<code>cat -A filename</code>. A file with Windows line endings will have
+<code>^M$</code> at the end of every line. A file with Unix line endings
+will have <code>$</code> at the end of a line. To convert the file, just
+run <code>dos2unix filename</code>. (Conversely, to convert back to
+Windows format, you can run <code>unix2dos filename</code>.)</p>
 </div>
 </div>
 </div>
@@ -3478,7 +3481,7 @@ use like [gitbash][gitbash]
  -->
 </section></section><section id="aio-17-resources"><p>Content from <a href="17-resources.html">Using resources effectively</a></p>
 <hr>
-<p>Last updated on 2025-10-08 |
+<p>Last updated on 2025-10-13 |
 
         <a href="https://github.com/EPCCed/2025-10-14-archer2-intro-hpc/edit/main/episodes/17-resources.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 40 minutes</p>
@@ -3513,11 +3516,15 @@ use like [gitbash][gitbash]
 </div>
 </div>
 <p>We’ve touched on all the skills you need to interact with an HPC
-cluster: * Logging in over SSH, * Loading software modules, * Submitting
-parallel jobs, and * Finding the output</p>
-<p>Let’s learn about estimating resource usage and why it might matter.
-To do this we need to understand the basics of <em>benchmarking</em>.
-Benchmarking is essentially performing simple experiments to help
+cluster: - Logging in over SSH, - Loading software modules, - Submitting
+parallel jobs, and - Finding the output</p>
+<p>Now, let’s learn about estimating resource usage and why it might
+matter. To do this we need to understand the basics of
+<em>benchmarking</em>.</p>
+<section><h2 class="section-heading" id="the-basics-of-benchmarking">The Basics of Benchmarking<a class="anchor" aria-label="anchor" href="#the-basics-of-benchmarking"></a>
+</h2>
+<hr class="half-width">
+<p>Benchmarking is essentially performing simple experiments to help
 understand how the performance of our work varies as we change the
 properties of the jobs on the cluster - including input parameters, job
 options and resources used.</p>
@@ -3562,8 +3569,7 @@ the example we will be using</p>
 <li>
 <strong>Application</strong> = The combination of computer program
 with particular input parameters</li>
-</ul>
-<section><h2 class="section-heading" id="accessing-the-software-and-input">Accessing the software and input<a class="anchor" aria-label="anchor" href="#accessing-the-software-and-input"></a>
+</ul></section><section><h2 class="section-heading" id="accessing-the-software-and-input">Accessing the software and input<a class="anchor" aria-label="anchor" href="#accessing-the-software-and-input"></a>
 </h2>
 <hr class="half-width">
 <p>We will be returning to the same example used in <a href="13-scheduler.html">lesson 4</a>. If you didn’t get a chance to
@@ -3612,10 +3618,10 @@ so that is where we will start</p>
 <h3 class="callout-title">Run a single core job</h3>
 <div class="callout-content">
 <p>Write a job submission script that runs the <code>pi-mpi.py</code>
-application on a single core. You will need to take an initial guess as
-to the walltime to request to give the job time to complete. Submit the
-job and check the contents of the STDOUT file to see if the application
-worked or not.</p>
+application on a single core. You will need to take an initial guess for
+how much walltime to request to give the job time to complete.</p>
+<p>Submit the job and check the contents of the STDOUT file to see if
+the application worked or not.</p>
 </div>
 </div>
 </div>
@@ -3642,19 +3648,19 @@ worked or not.</p>
 <span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a><span class="ex">module</span> load cray-python </span>
 <span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a><span class="ex">srun</span> python pi-mpi.py 100000000</span></code></pre>
 </div>
-<p>Run application using a single process (i.e. in serial) with a
-blocking <code>srun</code> command:</p>
+<p>Submit with to the batch queue with:</p>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="ex">module</span> load cray-python</span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a> <span class="ex">srun</span> <span class="at">--partition</span><span class="op">=</span>standard <span class="at">--qos</span><span class="op">=</span>short python pi-mpi.py 100000000</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="ex">sbatch</span> submit-pi-mpi.slurm</span></code></pre>
 </div>
-<p>OR submit with to the batch queue with:</p>
+<p>OR run application using a single process (i.e. in serial) with a
+blocking <code>srun</code> command:</p>
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>  <span class="ex">submit-pi-mpi.slurm</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="ex">module</span> load cray-python</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="ex">srun</span> <span class="at">--partition</span><span class="op">=</span>standard <span class="at">--qos</span><span class="op">=</span>short <span class="at">--time</span><span class="op">=</span>00:15:00 python pi-mpi.py 100000000</span></code></pre>
 </div>
 <p>Output in the job log should look something like:</p>
 <div class="codewrapper">
@@ -3671,11 +3677,11 @@ Total run time=3.7914833110000927s</code></pre>
 </div>
 </div>
 </div>
-<p>Once your job has run, you should look in the output to identify the
-performance. Most HPC programs should print out timing or performance
-information (usually somewhere near the bottom of the summary output)
-and <code>pi-mpi.py</code> is no exception. You should see two lines in
-the output that look something like:</p>
+<p>Once your job has run, look at the output to identify any performance
+information. Most HPC programs should print out timing or performance
+(usually somewhere near the bottom of the summary output) and
+<code>pi-mpi.py</code> is no exception. You should see two lines in the
+output that look something like:</p>
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -3683,15 +3689,16 @@ the output that look something like:</p>
 <span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="ex">Total</span> run time=3.7914833110000927s</span></code></pre>
 </div>
 <p>You can also get an estimate of the overall run time from the final
-job statistics. If we look at how long the finished job ran for, this
-will provide a quick way to see roughly what the runtime was. This can
-be useful if you want to know quickly if a job was faster or not than a
-previous job (as you do not have to find the output file to look up the
-performance) but the number is not as accurate as the performance
-recorded by the application itself and also includes static overheads
-from running the job (such as loading modules and startup time) that can
-skew the timings. To do this on <code>Slurm</code> use
-<code>sacct -l -j</code> with the job ID, e.g.:</p>
+job statistics from Slurm. This can be a quick way to see roughly what
+the runtime was, useful if you want to know quickly if a job was faster
+or not than a previous job (as you do not have to find the output file
+to look up the performance).</p>
+<p>However, the number is not as accurate as the performance recorded by
+the application itself and also includes static overheads from running
+the job (such as loading modules and startup time) that can skew the
+timings.</p>
+<p>To do this on <code>Slurm</code> use <code>sacct -l -j</code> with
+the job ID, e.g.:</p>
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -3731,15 +3738,24 @@ varies with core count.</p>
 <div class="callout-content">
 <p>Modify your job script to run on multiple cores and evaluate the
 performance of <code>pi-mpi.py</code> on a variety of different core
-counts and use multiple runs to complete a table like the one below. If
-you examine the log file you will see that it contains two timings: the
-total time taken by the entire program and the time taken solely by the
-calculation. The calculation of Pi from the Monte-Carlo counts is not
-parallelised so this is a serial overhead, performed by a single
-processor. The calculation part is, in theory, perfectly parallel (each
-processor operates on independent sets of unique random numbers ) so
-this should get faster on more cores. The Calculation core seconds is
-the <em>calculation time</em> multiplied by the number of cores.</p>
+counts and use multiple runs to complete a table like the one below.</p>
+<p>If you examine the log file you will see that it contains two
+timings:</p>
+<ul>
+<li>Total time taken by the entire program</li>
+<li>Time taken solely by the calculation i.e. measures only the time
+spent performing the main computation..</li>
+</ul>
+<p>The final step, calculation Pi from the Monte-Carlo counts, is not
+parallelised, meaning it runs on a single processor. This creates a
+serial overhead that does not speed up when more cores are used.</p>
+<p>In contracts, the Monte Carlo calculation itself is perfectly
+parallel <em>in theory</em>, since each processor works independently on
+its own set of random numbers. Therefore, as you increase the number of
+cores, this part should ideally run faster.</p>
+<p>You can work out <strong>Calculation core</strong> time by
+multiplying <strong>Calculation time</strong> by the number of
+cores.</p>
 <table class="table">
 <colgroup>
 <col width="14%">
@@ -3751,7 +3767,7 @@ the <em>calculation time</em> multiplied by the number of cores.</p>
 <th>Cores</th>
 <th>Overall run time (s)</th>
 <th>Calculation time (s)</th>
-<th>Calculation core seconds</th>
+<th>Calculation core (s)</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
@@ -3810,10 +3826,14 @@ the <em>calculation time</em> multiplied by the number of cores.</p>
 </tr>
 </tbody>
 </table>
-<p>Look at your results – do they make sense? Given the structure of the
-code, you would expect the performance of the calculation to increase
-linearly with the number of cores: this would give a roughly constant
-figure for the Calculation core seconds. Is this what you observe?</p>
+<p>Look at your results – do they make sense?</p>
+<p>Based on how the code is structured, you would expect the calculation
+performance to scale linearly with the number of cores. In other words,
+as you add more cores, the calculation should finish proportionally
+faster.</p>
+<p>If that’s true, the Calculation core time should stay roughly
+constant.</p>
+<p>Do your results show this expected behaviour?</p>
 </div>
 </div>
 </div>
@@ -3895,6 +3915,7 @@ figure for the Calculation core seconds. Is this what you observe?</p>
 </tr>
 </tbody>
 </table>
+<p>Was our prediction correct?</p>
 </div>
 </div>
 </div>
@@ -3908,24 +3929,23 @@ efficient set of resources are to use for our jobs. To do this we
 introduce two metrics:</p>
 <ul>
 <li>
-<strong>Actual speedup</strong> The ratio of the baseline runtime
+<strong>Actual speedup:</strong> The ratio of the baseline runtime
 (or runtime on the lowest core count) to the runtime at the specified
-core count. i.e. baseline runtime divided by runtime at the specified
-core count.</li>
+core count. <em>(i.e. baseline runtime divided by runtime at the
+specified core count)</em>.</li>
 <li>
-<strong>Ideal speedup</strong> The expected speedup if the
+<strong>Ideal speedup:</strong> The expected speedup if the
 application showed perfect scaling. i.e. if you double the number of
 cores, the application should run twice as fast.</li>
 <li>
-<strong>Parallel efficiency</strong> The fraction of <em>ideal
-speedup</em> actually obtained for a given core count. This gives an
-indication of how well you are exploiting the additional resources you
-are using.</li>
+<strong>Parallel efficiency:</strong> The fraction of ideal speedup
+actually obtained for a given core count. This gives an indication of
+how well you are exploiting the additional resources you are using.</li>
 </ul>
-<p>We will now use our performance results to compute these two metrics
-for the sharpen application and use the metrics to evaluate the
-performance and make some decisions about the most effective use of
-resources.</p>
+<p>We will now use our performance results to compute these three
+metrics for the <code>pi-mpi.py</code> application and use the metrics
+to evaluate the performance and make some decisions about the most
+effective use of resources.</p>
 <div id="computing-the-speedup-and-parallel-efficiency" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -4031,12 +4051,12 @@ choose this option?</li>
 </div>
 </div>
 </div>
-<div id="accordionSolution3" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution6" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
-  <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution6" aria-expanded="false" aria-controls="collapseSolution6">
+  <h4 class="accordion-header" id="headingSolution6"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
 <div class="accordion-body">
 <p>The table below gives example results for ARCHER2 based on the
 example runtimes given in the solution above.</p>
@@ -4121,44 +4141,82 @@ example runtimes given in the solution above.</p>
 </tr>
 </tbody>
 </table>
-<div class="section level3">
-<h3 id="what-is-the-core-count-where-you-get-the-most-efficient-use-of-resources">What is the core count where you get the <strong>most</strong>
+<div class="section level4">
+<h4 id="what-is-the-core-count-where-you-get-the-most-efficient-use-of-resources">What is the core count where you get the <strong>most</strong>
 efficient use of resources?<a class="anchor" aria-label="anchor" href="#what-is-the-core-count-where-you-get-the-most-efficient-use-of-resources"></a>
-</h3>
-<p>Just using a single core is the cheapest (and always will be unless
-your speedup is better than perfect – “super-linear” speedup). However,
-it may not be possible to run on small numbers of cores depending on how
-much memory you need or other technical constraints.</p>
-<p><strong>Note:</strong> on most high-end systems, nodes are not shared
-between users. This means you are charged for all the CPU-cores on a
-node regardless of whether you actually use them. Typically we would be
-running on many hundreds of CPU-cores not a few tens, so the real
-question in practice is: what is the optimal number of nodes to use?</p>
+</h4>
+<div id="accordionSolution3" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
+  <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
+</button>
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div class="accordion-body">
+<p>Just using a single core is the cheapest in terms of resources costs
+and is the most efficient (and always will be unless your speedup is
+better than perfect – “super-linear” speedup).</p>
+<p>However, it may not be possible to run on small numbers of cores
+depending on how much memory you need or other technical constraints,
+and will often be slow!</p>
+<p><strong>Note:</strong> On most high-end systems, nodes are not shared
+between users. This means you are charged for <strong>all</strong> the
+CPU-cores on a node regardless of whether you actually use them.
+Typically we would be running on many hundreds of CPU-cores not a few
+tens, so the real question in practice is: <em>what is the optimal
+number of nodes to use?</em></p>
 </div>
-<div class="section level3">
-<h3 id="what-is-the-core-count-where-you-get-the-fastest-solution-irrespective-of-efficiency">What is the core count where you get the fastest solution,
+</div>
+</div>
+</div>
+</div>
+<div class="section level4">
+<h4 id="what-is-the-core-count-where-you-get-the-fastest-solution-irrespective-of-efficiency">What is the core count where you get the fastest solution,
 irrespective of efficiency?<a class="anchor" aria-label="anchor" href="#what-is-the-core-count-where-you-get-the-fastest-solution-irrespective-of-efficiency"></a>
-</h3>
-<p>256 cores gives the fastest time to solution. The fastest time to
-solution does not often make the most efficient use of resources so to
-use this option, you may end up wasting your resources. Sometimes, when
-there is time pressure to run the calculations, this may be a valid
-approach to running applications.</p>
+</h4>
+<div id="accordionSolution4" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
+  <h4 class="accordion-header" id="headingSolution4"> Show me the solution </h4>
+</button>
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div class="accordion-body">
+<p>128 cores gives the fastest time to solution.</p>
+<p>The fastest time to solution does not often make the most efficient
+use of resources so to use this option, you may end up wasting your
+resources. Occasionally, when there is time pressure to run the
+calculations, this may be a valid approach to running applications.</p>
 </div>
-<div class="section level3">
-<h3 id="what-do-you-think-a-good-core-count-choice-would-be-for-this-application-to-use">What do you think a good core count choice would be for this
+</div>
+</div>
+</div>
+</div>
+<div class="section level4">
+<h4 id="what-do-you-think-a-good-core-count-choice-would-be-for-this-application-to-use">What do you think a good core count choice would be for this
 application to use?<a class="anchor" aria-label="anchor" href="#what-do-you-think-a-good-core-count-choice-would-be-for-this-application-to-use"></a>
-</h3>
+</h4>
+<div id="accordionSolution5" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
+  <h4 class="accordion-header" id="headingSolution5"> Show me the solution </h4>
+</button>
+<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
+<div class="accordion-body">
 <p>8 cores is probably a good number of cores to use with a parallel
-efficiency of 86%. Usually, the best choice is one that delivers good
-parallel efficiency with an acceptable time to solution. Note that
-<em>acceptable time to solution</em> differs depending on circumstances
-so this is something that the individual researcher will have to assess.
-Good parallel efficiency is often considered to be 70% or greater though
-many researchers will be happy to run in a regime with parallel
+efficiency of 86%.</p>
+<p>Usually, the best choice is one that delivers good parallel
+efficiency with an acceptable time to solution.</p>
+<p>Note that <em>acceptable time to solution</em> differs depending on
+circumstances so this is something that the individual researcher will
+have to assess.</p>
+<p>Good parallel efficiency is often considered to be 70% or greater
+though many researchers will be happy to run in a regime with parallel
 efficiency greater than 60%. As noted above, running with worse parallel
 efficiency may also be useful if the time to solution is an overriding
 factor.</p>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -4212,7 +4270,7 @@ use like [gitbash][gitbash]
  -->
 </section></section><section id="aio-18-responsibility"><p>Content from <a href="18-responsibility.html">Using shared resources responsibly</a></p>
 <hr>
-<p>Last updated on 2025-10-08 |
+<p>Last updated on 2025-10-13 |
 
         <a href="https://github.com/EPCCed/2025-10-14-archer2-intro-hpc/edit/main/episodes/18-responsibility.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 20 minutes</p>
@@ -4270,12 +4328,12 @@ unusable for everyone. While the machine is meant to be used, be sure to
 do so responsibly — in ways that will not adversely impact other users’
 experience.</p>
 <p>Login nodes are used to launch jobs. Cluster policies vary, but they
-may also be used for proving out workflows, and in some cases, may host
+may also be used for figuring out workflows, and in some cases, may host
 advanced cluster-specific debugging or development tools. The cluster
 may have modules that need to be loaded, possibly in a certain order,
 and paths or library versions that differ from your laptop, and doing an
 interactive test run on the head node is a quick and reliable way to
-discover and fix these issues, however …</p>
+discover and fix these issues.</p>
 <div id="login-nodes-are-a-shared-resource" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
@@ -4327,7 +4385,7 @@ node?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Building software, creating directories, and unpacking software are
 common and acceptable tasks for the login node: options #2
@@ -4423,7 +4481,7 @@ the project.</p>
 <p>On ARCHER2, the home file systems are backed up so you can restore
 data you deleted by mistake. A copy of the data on home file system is
 also kept off site for disaster recovery purposes. The work file systems
-are not backed up in any way.</p>
+<strong>are not backed up in any way.</strong></p>
 </div>
 </div>
 </div>
@@ -4433,22 +4491,25 @@ are not backed up in any way.</p>
 <p>As mentioned earlier, many users run into the challenge of
 transferring large amounts of data off HPC systems at some point (this
 is more often in transferring data off than onto systems but the advice
-below applies in either case). Data transfer speed may be limited by
-many different factors so the best data transfer mechanism to use
-depends on the type of data being transferred and where the data is
-going.</p>
-<p>The components between your data’s source and destination have
-varying levels of performance, and in particular, may have different
-capabilities with respect to <strong>bandwidth</strong> and
-<strong>latency</strong>.</p>
-<p><strong>Bandwidth</strong> is generally the raw amount of data per
+below applies in either case).</p>
+<p>Data transfer speed may be limited by many different factors so the
+best data transfer mechanism to use depends on the type of data being
+transferred and where the data is going. The components between your
+data’s source and destination have varying levels of performance, and in
+particular, may have different capabilities with respect to
+<strong>bandwidth</strong> and <strong>latency</strong>.</p>
+<ul>
+<li>
+<strong>Bandwidth</strong> is generally the raw amount of data per
 unit time a device is capable of transmitting or receiving. It’s a
-common and generally well-understood metric.</p>
-<p><strong>Latency</strong> is a bit more subtle. For data transfers, it
-may be thought of as the amount of time it takes to get data out of
+common and generally well-understood metric.</li>
+<li>
+<strong>Latency</strong> is a bit more subtle. For data transfers,
+it may be thought of as the amount of time it takes to get data out of
 storage and into a transmittable form. Latency issues are the reason
 it’s advisable to execute data transfers by moving a small number of
-large files, rather than the converse.</p>
+large files, rather than the converse.</li>
+</ul>
 <p>Some of the key components and their associated issues are:</p>
 <ul>
 <li>
@@ -4485,12 +4546,12 @@ you are trying to transfer data to or from a host on a general purpose
 network you may find the firewall for that network will limit the
 transfer rate you can achieve.</li>
 </ul>
-<p>As mentioned above, if you have related data that consists of a large
-number of small files it is strongly recommended to pack the files into
-a larger <em>archive</em> file for long term storage and transfer. A
-single large file makes more efficient use of the file system and is
-easier to move, copy and transfer because significantly fewer metadata
-operations are required.</p>
+<p>As discussed in a previous episode, if you have related data that
+consists of a large number of small files it is strongly recommended to
+pack the files into a larger <em>archive</em> file for long term storage
+and transfer. A single large file makes more efficient use of the file
+system and is easier to move, copy and transfer because significantly
+fewer metadata operations are required.</p>
 <p>Archive files can be created using tools like <code>tar</code> and
 <code>zip</code>. We have already met <code>tar</code> when we talked
 about data transfer earlier.</p>
@@ -4560,7 +4621,7 @@ the following would be the best way to transfer them to ARCHER2?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>Lets go through each option</p>
 <ol style="list-style-type: decimal">

@@ -4,8 +4,8 @@ You will see in the job output that information is displayed about
 where each MPI process is running, in particular which node it is
 on.
 
-Modify the pi-mpi-run script that you run a total of 2 nodes and 16 processes;
-but to use only 8 tasks on each of two nodes.
+Modify the pi-mpi-run script so that you run with 2 nodes and a total of 16 processes;
+but use only 8 tasks on each of two nodes.
 Check the output file to ensure that you understand the job
 distribution.
 
