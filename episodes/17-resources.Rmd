@@ -39,7 +39,14 @@ jobs on the cluster - including input parameters, job options and resources used
 ::: discussion
 ## Our example
 In the rest of this episode, we will use an example parallel application that calculates 
-an estimate of the value of Pi. Although this is a toy problem, it exhibits all the properties of a full
+an estimate of the value of Pi. 
+
+* We can estimate π by randomly picking points inside a square and seeing how many land inside the circle. 
+* The fraction that fall inside the circle tells us π. 
+* Each point check is independent, so we can do many checks at the same time to speed it up.
+* Nice gif here -> [https://en.wikipedia.org/wiki/Monte_Carlo_method](https://en.wikipedia.org/wiki/Monte_Carlo_method)
+
+Although this is a toy problem, it exhibits all the properties of a full
 parallel application that we are interested in for this course.
 
 The main resource we will consider here is the use of compute core time as this is the
