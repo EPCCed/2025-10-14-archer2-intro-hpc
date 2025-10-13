@@ -349,7 +349,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Working with the scheduler</h1>
-        <p>Last updated on 2025-10-08 |
+        <p>Last updated on 2025-10-13 |
 
         <a href="https://github.com/EPCCed/2025-10-14-archer2-intro-hpc/edit/main/episodes/13-scheduler.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -488,10 +488,10 @@ Submitted batch job 11102066</code></pre>
 are currently on, <code>/home</code>, is not available on the compute
 nodes and that we are getting the default, short runtime. We will deal
 with the runtime later, but we need to move to a different file system
-to submit the job and have it visible to the compute nodes. On ARCHER2,
-this is the <code>/work</code> file system. The path is similar to home
-but with <code>/work</code> at the start. Lets move there now, copy our
-job script across and resubmit:</p>
+to submit the job and have it visible to the compute nodes.</p>
+<p>On ARCHER2, this is the <code>/work</code> file system. The path is
+similar to home but with <code>/work</code> at the start. Lets move
+there now, copy our job script across and resubmit:</p>
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -534,6 +534,21 @@ like this:</p>
 the <code>R</code> or <code>RUNNING</code> state. Sometimes our jobs
 might need to wait in a queue and show the <code>PD</code> or
 <code>PENDING</code> state.</p>
+<div id="wheres-the-output" class="callout discussion">
+<div class="callout-square">
+<i class="callout-icon" data-feather="message-circle"></i>
+</div>
+<span class="callout-header">Discussion</span>
+<div id="wheres-the-output" class="callout-inner">
+<h3 class="callout-title">Where’s the Output?</h3>
+<div class="callout-content">
+<p>On the login node, this script printed output to the terminal but now
+there’s nothing. Where’d it go? HPC job output is typically redirected
+to a file in the directory you launched it from. Use <code>ls</code> to
+find and read the file.</p>
+</div>
+</div>
+</div>
 <p>The best way to check our job’s status is with <code>squeue</code>.
 Of course, running <code>squeue</code> repeatedly to check on things can
 be a little tiresome. To see a real-time view of our jobs, we can use
@@ -542,8 +557,7 @@ command at 2-second intervals. This is too frequent for a large machine
 like ARCHER2 and <strong>will upset your system administrator.</strong>
 You can change the interval to a more reasonable value with the
 <code>-n seconds</code> parameter. ARCHER2 system administration
-recommmend this to be set for 60 seconfs or longer.</p>
-<p>Let’s try using it to monitor another job.</p>
+recommmend this to be set for 60 seconds or longer.</p>
 <div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -553,21 +567,6 @@ recommmend this to be set for 60 seconfs or longer.</p>
 <p>You should see an auto-updating display of your job’s status. When it
 finishes, it will disappear from the queue. Press <code>Ctrl-c</code>
 when you want to stop the <code>watch</code> command.</p>
-<div id="wheres-the-output" class="callout discussion">
-<div class="callout-square">
-<i class="callout-icon" data-feather="message-circle"></i>
-</div>
-<span class="callout-header">Discussion</span>
-<div id="wheres-the-output" class="callout-inner">
-<h3 class="callout-title">Where’s the Output?</h3>
-<div class="callout-content">
-<p>On the login node, this script printed output to the terminal — but
-when we exit <code>watch</code>, there’s nothing. Where’d it go? HPC job
-output is typically redirected to a file in the directory you launched
-it from. Use <code>ls</code> to find and read the file.</p>
-</div>
-</div>
-</div>
 </section><section><h2 class="section-heading" id="customising-a-job">Customising a Job<a class="anchor" aria-label="anchor" href="#customising-a-job"></a></h2>
 <hr class="half-width"><p>The job we just ran used some of the scheduler’s default options. In
 a real-world scenario, that’s probably not what we want. The default
@@ -709,24 +708,12 @@ echo "This script has finished successfully."</code></pre>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="ex">userid@ln03:~</span><span class="op">&gt;</span> sbatch example-job.sh</span></code></pre>
 </div>
-<p>Why are the Slurm runtime and <code>sleep</code> time not
+<p>Why do we not make the Slurm time and <code>sleep</code> time
 identical?</p>
 </div>
 </div>
 </div>
 </div>
-<!--
-
-::: challenge
-## Job environment variables
-
-When Slurm runs a job, it sets a number of environment variables for the job. One of these will
-let us check our work from the last problem. The `SLURM_CPUS_PER_TASK` variable is set to the
-number of CPUs we requested with `-c`. Using the `SLURM_CPUS_PER_TASK` variable, modify your job
-so that it prints how many CPUs have been allocated.
-
-:::
--->
 <p>Resource requests are typically binding. If you exceed them, your job
 will be killed. Let’s use the walltime as an example. We will request 30
 seconds of walltime, and attempt to run a job for two minutes.</p>
@@ -1138,8 +1125,8 @@ use like [gitbash][gitbash]
   "url": "https://EPCCed.github.io/2025-10-14-archer2-intro-hpc/instructor/13-scheduler.html",
   "identifier": "https://EPCCed.github.io/2025-10-14-archer2-intro-hpc/instructor/13-scheduler.html",
   "dateCreated": "2025-10-14",
-  "dateModified": "2025-10-08",
-  "datePublished": "2025-10-08"
+  "dateModified": "2025-10-13",
+  "datePublished": "2025-10-13"
 }
 
   </script><script>

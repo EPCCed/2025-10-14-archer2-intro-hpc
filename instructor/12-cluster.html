@@ -348,7 +348,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Working on a remote HPC system</h1>
-        <p>Last updated on 2025-10-08 |
+        <p>Last updated on 2025-10-13 |
 
         <a href="https://github.com/EPCCed/2025-10-14-archer2-intro-hpc/edit/main/episodes/12-cluster.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -418,10 +418,9 @@ in computing centers that support several such systems, all sharing
 common networking and storage to support common compute intensive
 tasks.</p>
 </section><section><h2 class="section-heading" id="logging-in">Logging In<a class="anchor" aria-label="anchor" href="#logging-in"></a></h2>
-<hr class="half-width"><figure><img src="../fig/connect-to-remote.svg" alt="Connect to cluster" class="figure mx-auto d-block"><div class="figcaption">Connect to cluster</div>
-</figure><p>Go ahead and open your terminal or graphical SSH client, then log in
-to the cluster using your username and the remote computer you can reach
-from the outside world, EPCC, The University of Edinburgh.</p>
+<hr class="half-width"><p>Go ahead and open your terminal and log in to ARCHER2. Remember, we
+are opening a terminal on our local laptop to connect to a remote system
+which is physically at EPCC in Edinburgh.</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -438,8 +437,8 @@ supplied by the instructors.</p>
 <h3 class="callout-title">Want to refresh your memory on the log in
 process?</h3>
 <div class="callout-content">
-<p>This was covered in <a href="10-connecting-hpc.html">lesson 1</a>,
-and you can find a QuickStart guide in the <a href="index.html">set-up
+<p>This was covered in <a href="10-connecting-hpc.html">lesson 1</a> or
+you can find a QuickStart guide in the <a href="index.html">set-up
 section</a>. Ask an instructor if you need help!</p>
 </div>
 </div>
@@ -450,28 +449,29 @@ computing installation as one giant, magical machine. Sometimes, people
 will assume that the computer they’ve logged onto is the entire
 computing cluster. So what’s really happening? What computer have we
 logged on to?</p>
-<p>The name of the current computer we are logged onto can be checked
-with the <code>hostname</code> command. (You may also notice that the
-current hostname is also part of our prompt!)</p>
+<p>We can check where we are in the system with the
+<code>hostname</code> command. (You may also notice that the current
+hostname is also part of our prompt!)</p>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ex">userid@ln03:~</span><span class="op">&gt;</span> hostname</span>
 <span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="ex">userid@ln03:~</span><span class="op">&gt;</span> ln03</span></code></pre>
 </div>
-<div id="whats-in-your-home-directory" class="callout challenge">
+<div id="where-are-we-when-we-login" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <span class="callout-header">Challenge</span>
-<div id="whats-in-your-home-directory" class="callout-inner">
-<h3 class="callout-title">What’s in Your Home Directory?</h3>
+<div id="where-are-we-when-we-login" class="callout-inner">
+<h3 class="callout-title">Where are we when we login?</h3>
 <div class="callout-content">
+<p>Take a look around and see what you can find.</p>
 <p>The system administrators may have configured your home directory
 with some helpful files, folders, and links (shortcuts) to space
-reserved for you on other filesystems. Take a look around and see what
-you can find. <em>Hint:</em> The shell commands <code>pwd</code> and
-<code>ls</code> may come in handy. Home directory contents vary from
+reserved for you on other filesystems.</p>
+<p><em>Hint:</em> The shell commands <code>pwd</code>, <code>cd</code>
+and <code>ls</code> may come in handy. Home directory contents vary from
 user to user. Please discuss any differences you spot with your
 neighbors.</p>
 </div>
@@ -521,10 +521,11 @@ node</em>, <em>login node</em>, <em>landing pad</em>, or <em>submit
 node</em>. A login node serves as an access point to the cluster.</p>
 <p>As a gateway, it is well suited for uploading and downloading files,
 setting up software, and running quick tests. Generally speaking, the
-login node should not be used for time-consuming or resource-intensive
-tasks. You should be alert to this, and check with your site’s operators
-or documentation for details of what is and isn’t allowed. In these
-lessons, we will avoid running jobs on the head node.</p>
+login node should <strong>not</strong> be used for time-consuming or
+resource-intensive tasks. You should be alert to this, and check with
+your site’s operators or documentation for details of what is and isn’t
+allowed. In these lessons, we will avoid running jobs on the head node
+(because we will get in trouble otherwise).</p>
 <div id="specialised-nodes" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
@@ -589,11 +590,9 @@ own laptop or desktop: <em>CPUs</em> (sometimes also called
 <em>RAM</em>), and <em>disk</em> space. CPUs are a computer’s tool for
 actually running programs and calculations. Information about a current
 task is stored in the computer’s memory. Disk refers to all storage that
-can be accessed like a file system. This is generally storage that can
-hold data permanently, i.e. data is still there even if the computer has
-been restarted. While this storage can be local (a hard drive installed
-inside of it), it is more common for nodes to connect to a shared,
-remote fileserver or cluster of servers.</p>
+can be accessed like a file system. While this storage can be local (a
+hard drive installed inside of it), it is more common for nodes to
+connect to a shared, remote fileserver or cluster of servers.</p>
 <figure><img src="../fig/node_anatomy.png" max-width="20%" caption="" alt="Node anatomy" class="figure mx-auto d-block"><div class="figcaption">Node anatomy</div>
 </figure><div id="explore-your-computer" class="callout challenge">
 <div class="callout-square">
@@ -717,8 +716,9 @@ what kind of filesystem each resource is.</p>
 <div id="shared-filesystems" class="callout-inner">
 <h3 class="callout-title">Shared Filesystems</h3>
 <div class="callout-content">
-<p>This is an important point to remember: files saved on one node
-(computer) are often available everywhere on the cluster!</p>
+<p>This is an important point to remember: files saved on one login node
+are available in <code>/home</code> regardless of which login node you
+are on.</p>
 </div>
 </div>
 </div>
@@ -845,8 +845,8 @@ use like [gitbash][gitbash]
   "url": "https://EPCCed.github.io/2025-10-14-archer2-intro-hpc/instructor/12-cluster.html",
   "identifier": "https://EPCCed.github.io/2025-10-14-archer2-intro-hpc/instructor/12-cluster.html",
   "dateCreated": "2025-10-14",
-  "dateModified": "2025-10-08",
-  "datePublished": "2025-10-08"
+  "dateModified": "2025-10-13",
+  "datePublished": "2025-10-13"
 }
 
   </script><script>

@@ -892,7 +892,7 @@ use like [gitbash][gitbash]
  -->
 </section></section><section id="aio-11-hpc-intro"><p>Content from <a href="11-hpc-intro.html">Why do we use HPC?</a></p>
 <hr>
-<p>Last updated on 2025-10-07 |
+<p>Last updated on 2025-10-13 |
 
         <a href="https://github.com/EPCCed/2025-10-14-archer2-intro-hpc/edit/main/episodes/11-hpc-intro.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 20 minutes</p>
@@ -1028,10 +1028,10 @@ it possible that these data centers do not require to be nearby your
 laptop.</p>
 <p>What people call <strong>the cloud</strong> is mostly a web-service
 where you can rent such servers by requesting remote resources that
-satisfy your requirements and paying for the time. This is often handled
-through an online, browser-based interface listing the various machines
-available and their capacities in terms of processing power, memory, and
-storage.</p>
+satisfy your requirements and then pay for the time you need. This is
+often handled through an online, browser-based interface listing the
+various machines available and their capacities in terms of processing
+power, memory, and storage.</p>
 <p>The server itself has no direct display or input methods attached to
 it. But most importantly, it has much more storage, memory and compute
 capacity than your laptop will ever have.</p>
@@ -1079,7 +1079,7 @@ results.</p>
   Some Ideas
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <ul>
 <li>
@@ -1097,15 +1097,11 @@ that database is a <a href="https://en.wikipedia.org/wiki/MapReduce" class="exte
 Servers are involved at every step.</li>
 <li>
 <strong>Searching for directions on a mapping website</strong>
-involves connecting your
-<ol style="list-style-type: upper-alpha">
-<li>starting and (B) end points by <a href="https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm" class="external-link">traversing a
+involves connecting your starting and end points by <a href="https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm" class="external-link">traversing a
 graph</a> in search of the “shortest” path by distance, time, expense,
 or another metric. Converting a map into the right form is relatively
 simple, but calculating all the possible routes between A and B is
 expensive.</li>
-</ol>
-</li>
 <li>
 <strong>Streaming a movie or music:</strong> when you press play on
 a streaming service, your computer requests data from a network of
@@ -1123,8 +1119,7 @@ recognition and natural language models.</li>
 <li>
 <strong>Using cloud storage:</strong> saving a document to somewhere
 in the cloud means it’s being encrypted, stored, and backed up across
-multiple servers — possibly even across continents — so it’s safe even
-if your laptop isn’t.</li>
+multiple servers so it’s safe even if your laptop isn’t.</li>
 </ul>
 <p>Checking email could be serial: your machine connects to one server
 and exchanges data. Searching by querying the database for your search
@@ -1165,7 +1160,7 @@ use like [gitbash][gitbash]
  -->
 </section></section><section id="aio-12-cluster"><p>Content from <a href="12-cluster.html">Working on a remote HPC system</a></p>
 <hr>
-<p>Last updated on 2025-10-08 |
+<p>Last updated on 2025-10-13 |
 
         <a href="https://github.com/EPCCed/2025-10-14-archer2-intro-hpc/edit/main/episodes/12-cluster.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 35 minutes</p>
@@ -1236,10 +1231,9 @@ tasks.</p>
 </section><section><h2 class="section-heading" id="logging-in">Logging In<a class="anchor" aria-label="anchor" href="#logging-in"></a>
 </h2>
 <hr class="half-width">
-<figure><img src="../fig/connect-to-remote.svg" alt="Connect to cluster" class="figure mx-auto d-block"><div class="figcaption">Connect to cluster</div>
-</figure><p>Go ahead and open your terminal or graphical SSH client, then log in
-to the cluster using your username and the remote computer you can reach
-from the outside world, EPCC, The University of Edinburgh.</p>
+<p>Go ahead and open your terminal and log in to ARCHER2. Remember, we
+are opening a terminal on our local laptop to connect to a remote system
+which is physically at EPCC in Edinburgh.</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -1256,8 +1250,8 @@ supplied by the instructors.</p>
 <h3 class="callout-title">Want to refresh your memory on the log in
 process?</h3>
 <div class="callout-content">
-<p>This was covered in <a href="10-connecting-hpc.html">lesson 1</a>,
-and you can find a QuickStart guide in the <a href="index.html">set-up
+<p>This was covered in <a href="10-connecting-hpc.html">lesson 1</a> or
+you can find a QuickStart guide in the <a href="index.html">set-up
 section</a>. Ask an instructor if you need help!</p>
 </div>
 </div>
@@ -1270,28 +1264,29 @@ computing installation as one giant, magical machine. Sometimes, people
 will assume that the computer they’ve logged onto is the entire
 computing cluster. So what’s really happening? What computer have we
 logged on to?</p>
-<p>The name of the current computer we are logged onto can be checked
-with the <code>hostname</code> command. (You may also notice that the
-current hostname is also part of our prompt!)</p>
+<p>We can check where we are in the system with the
+<code>hostname</code> command. (You may also notice that the current
+hostname is also part of our prompt!)</p>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ex">userid@ln03:~</span><span class="op">&gt;</span> hostname</span>
 <span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="ex">userid@ln03:~</span><span class="op">&gt;</span> ln03</span></code></pre>
 </div>
-<div id="whats-in-your-home-directory" class="callout challenge">
+<div id="where-are-we-when-we-login" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <span class="callout-header">Challenge</span>
-<div id="whats-in-your-home-directory" class="callout-inner">
-<h3 class="callout-title">What’s in Your Home Directory?</h3>
+<div id="where-are-we-when-we-login" class="callout-inner">
+<h3 class="callout-title">Where are we when we login?</h3>
 <div class="callout-content">
+<p>Take a look around and see what you can find.</p>
 <p>The system administrators may have configured your home directory
 with some helpful files, folders, and links (shortcuts) to space
-reserved for you on other filesystems. Take a look around and see what
-you can find. <em>Hint:</em> The shell commands <code>pwd</code> and
-<code>ls</code> may come in handy. Home directory contents vary from
+reserved for you on other filesystems.</p>
+<p><em>Hint:</em> The shell commands <code>pwd</code>, <code>cd</code>
+and <code>ls</code> may come in handy. Home directory contents vary from
 user to user. Please discuss any differences you spot with your
 neighbors.</p>
 </div>
@@ -1343,10 +1338,11 @@ node</em>, <em>login node</em>, <em>landing pad</em>, or <em>submit
 node</em>. A login node serves as an access point to the cluster.</p>
 <p>As a gateway, it is well suited for uploading and downloading files,
 setting up software, and running quick tests. Generally speaking, the
-login node should not be used for time-consuming or resource-intensive
-tasks. You should be alert to this, and check with your site’s operators
-or documentation for details of what is and isn’t allowed. In these
-lessons, we will avoid running jobs on the head node.</p>
+login node should <strong>not</strong> be used for time-consuming or
+resource-intensive tasks. You should be alert to this, and check with
+your site’s operators or documentation for details of what is and isn’t
+allowed. In these lessons, we will avoid running jobs on the head node
+(because we will get in trouble otherwise).</p>
 <div id="specialised-nodes" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
@@ -1414,11 +1410,9 @@ own laptop or desktop: <em>CPUs</em> (sometimes also called
 <em>RAM</em>), and <em>disk</em> space. CPUs are a computer’s tool for
 actually running programs and calculations. Information about a current
 task is stored in the computer’s memory. Disk refers to all storage that
-can be accessed like a file system. This is generally storage that can
-hold data permanently, i.e. data is still there even if the computer has
-been restarted. While this storage can be local (a hard drive installed
-inside of it), it is more common for nodes to connect to a shared,
-remote fileserver or cluster of servers.</p>
+can be accessed like a file system. While this storage can be local (a
+hard drive installed inside of it), it is more common for nodes to
+connect to a shared, remote fileserver or cluster of servers.</p>
 <figure><img src="../fig/node_anatomy.png" max-width="20%" caption="" alt="Node anatomy" class="figure mx-auto d-block"><div class="figcaption">Node anatomy</div>
 </figure><div id="explore-your-computer" class="callout challenge">
 <div class="callout-square">
@@ -1542,8 +1536,9 @@ what kind of filesystem each resource is.</p>
 <div id="shared-filesystems" class="callout-inner">
 <h3 class="callout-title">Shared Filesystems</h3>
 <div class="callout-content">
-<p>This is an important point to remember: files saved on one node
-(computer) are often available everywhere on the cluster!</p>
+<p>This is an important point to remember: files saved on one login node
+are available in <code>/home</code> regardless of which login node you
+are on.</p>
 </div>
 </div>
 </div>
@@ -1616,7 +1611,7 @@ use like [gitbash][gitbash]
  -->
 </section></section><section id="aio-13-scheduler"><p>Content from <a href="13-scheduler.html">Working with the scheduler</a></p>
 <hr>
-<p>Last updated on 2025-10-08 |
+<p>Last updated on 2025-10-13 |
 
         <a href="https://github.com/EPCCed/2025-10-14-archer2-intro-hpc/edit/main/episodes/13-scheduler.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 80 minutes</p>
@@ -1756,10 +1751,10 @@ Submitted batch job 11102066</code></pre>
 are currently on, <code>/home</code>, is not available on the compute
 nodes and that we are getting the default, short runtime. We will deal
 with the runtime later, but we need to move to a different file system
-to submit the job and have it visible to the compute nodes. On ARCHER2,
-this is the <code>/work</code> file system. The path is similar to home
-but with <code>/work</code> at the start. Lets move there now, copy our
-job script across and resubmit:</p>
+to submit the job and have it visible to the compute nodes.</p>
+<p>On ARCHER2, this is the <code>/work</code> file system. The path is
+similar to home but with <code>/work</code> at the start. Lets move
+there now, copy our job script across and resubmit:</p>
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -1802,6 +1797,21 @@ like this:</p>
 the <code>R</code> or <code>RUNNING</code> state. Sometimes our jobs
 might need to wait in a queue and show the <code>PD</code> or
 <code>PENDING</code> state.</p>
+<div id="wheres-the-output" class="callout discussion">
+<div class="callout-square">
+<i class="callout-icon" data-feather="message-circle"></i>
+</div>
+<span class="callout-header">Discussion</span>
+<div id="wheres-the-output" class="callout-inner">
+<h3 class="callout-title">Where’s the Output?</h3>
+<div class="callout-content">
+<p>On the login node, this script printed output to the terminal but now
+there’s nothing. Where’d it go? HPC job output is typically redirected
+to a file in the directory you launched it from. Use <code>ls</code> to
+find and read the file.</p>
+</div>
+</div>
+</div>
 <p>The best way to check our job’s status is with <code>squeue</code>.
 Of course, running <code>squeue</code> repeatedly to check on things can
 be a little tiresome. To see a real-time view of our jobs, we can use
@@ -1810,8 +1820,7 @@ command at 2-second intervals. This is too frequent for a large machine
 like ARCHER2 and <strong>will upset your system administrator.</strong>
 You can change the interval to a more reasonable value with the
 <code>-n seconds</code> parameter. ARCHER2 system administration
-recommmend this to be set for 60 seconfs or longer.</p>
-<p>Let’s try using it to monitor another job.</p>
+recommmend this to be set for 60 seconds or longer.</p>
 <div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -1821,21 +1830,6 @@ recommmend this to be set for 60 seconfs or longer.</p>
 <p>You should see an auto-updating display of your job’s status. When it
 finishes, it will disappear from the queue. Press <code>Ctrl-c</code>
 when you want to stop the <code>watch</code> command.</p>
-<div id="wheres-the-output" class="callout discussion">
-<div class="callout-square">
-<i class="callout-icon" data-feather="message-circle"></i>
-</div>
-<span class="callout-header">Discussion</span>
-<div id="wheres-the-output" class="callout-inner">
-<h3 class="callout-title">Where’s the Output?</h3>
-<div class="callout-content">
-<p>On the login node, this script printed output to the terminal — but
-when we exit <code>watch</code>, there’s nothing. Where’d it go? HPC job
-output is typically redirected to a file in the directory you launched
-it from. Use <code>ls</code> to find and read the file.</p>
-</div>
-</div>
-</div>
 </section><section><h2 class="section-heading" id="customising-a-job">Customising a Job<a class="anchor" aria-label="anchor" href="#customising-a-job"></a>
 </h2>
 <hr class="half-width">
@@ -1982,24 +1976,12 @@ echo "This script has finished successfully."</code></pre>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="ex">userid@ln03:~</span><span class="op">&gt;</span> sbatch example-job.sh</span></code></pre>
 </div>
-<p>Why are the Slurm runtime and <code>sleep</code> time not
+<p>Why do we not make the Slurm time and <code>sleep</code> time
 identical?</p>
 </div>
 </div>
 </div>
 </div>
-<!--
-
-::: challenge
-## Job environment variables
-
-When Slurm runs a job, it sets a number of environment variables for the job. One of these will
-let us check our work from the last problem. The `SLURM_CPUS_PER_TASK` variable is set to the
-number of CPUs we requested with `-c`. Using the `SLURM_CPUS_PER_TASK` variable, modify your job
-so that it prints how many CPUs have been allocated.
-
-:::
--->
 <p>Resource requests are typically binding. If you exceed them, your job
 will be killed. Let’s use the walltime as an example. We will request 30
 seconds of walltime, and attempt to run a job for two minutes.</p>
@@ -3456,7 +3438,7 @@ worked or not.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Creating a file called <code>submit-pi-mpi.slurm</code>:</p>
 <div class="codewrapper sourceCode" id="cb2">
@@ -3654,7 +3636,7 @@ figure for the Calculation core seconds. Is this what you observe?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>The table below shows example timings for runs on ARCHER2</p>
 <table class="table">
@@ -3868,7 +3850,7 @@ choose this option?</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <p>The table below gives example results for ARCHER2 based on the
 example runtimes given in the solution above.</p>
@@ -4493,8 +4475,8 @@ use like [gitbash][gitbash]
   "url": "https://EPCCed.github.io/2025-10-14-archer2-intro-hpc/instructor/aio.html",
   "identifier": "https://EPCCed.github.io/2025-10-14-archer2-intro-hpc/instructor/aio.html",
   "dateCreated": "2025-10-14",
-  "dateModified": "2025-10-08",
-  "datePublished": "2025-10-08"
+  "dateModified": "2025-10-13",
+  "datePublished": "2025-10-13"
 }
 
   </script><script>
