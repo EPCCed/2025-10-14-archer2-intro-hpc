@@ -11,9 +11,9 @@ on parallel programming in just one lesson of teaching time. Instead, this
 lesson is intended to give students a good introduction and overview of the
 tools available and how to use them effectively.
 
-By the end of this lesson, students will know how to:
+::: keypoints
 
-::: checklist
+By the end of this lesson, students will know how to:
  * Identify problems an HPC system can help solve
  * Use the UNIX shell (also known as terminal or command line) to operate a
    computer, connect to an HPC system, and write simple shell scripts.

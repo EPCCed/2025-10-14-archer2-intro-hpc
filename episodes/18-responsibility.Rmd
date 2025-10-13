@@ -44,12 +44,12 @@ the machine is meant to be used, be sure to do so responsibly --- in ways
 that will not adversely impact other users' experience.
 
 Login nodes are used to launch jobs. Cluster policies vary,
-but they may also be used for proving out workflows, and in some cases, may
+but they may also be used for figuring out workflows, and in some cases, may
 host advanced cluster-specific debugging or development tools. The cluster may
 have modules that need to be loaded, possibly in a certain order, and paths or
 library versions that differ from your laptop, and doing an interactive test
 run on the head node is a quick and reliable way to discover and fix these
-issues, however ... 
+issues.  
 
 ::: callout
 ## Login Nodes Are a Shared Resource
@@ -168,8 +168,8 @@ transfer data off the system throughout the project.
 
 On ARCHER2, the home file systems are backed up so you can restore data you 
 deleted by mistake. A copy of the data on home file system is also kept off
-site for disaster recovery purposes. The work file systems are not backed up
-in any way.
+site for disaster recovery purposes. The work file systems **are not backed up
+in any way.**
 
 :::
 
@@ -178,23 +178,22 @@ in any way.
 As mentioned earlier, many users run into the challenge of transferring large
 amounts of data off HPC systems at some point (this is more often in
 transferring data off than onto systems but the advice below applies in either
-case). Data transfer speed may be limited by many different factors so the best
-data transfer mechanism to use depends on the type of data being transferred
-and where the data is going. 
+case). 
 
-The components between your data's source and destination have 
+Data transfer speed may be limited by many different factors so the best
+data transfer mechanism to use depends on the type of data being transferred
+and where the data is going. The components between your data's source and destination have 
 varying levels of performance, and in particular, may have 
 different capabilities with respect to **bandwidth** and **latency**.
 
-**Bandwidth** is generally the raw amount of data per unit time a
-device is capable of transmitting or receiving. It's a common
-and generally well-understood metric.
-
-**Latency** is a bit more subtle. For data transfers, it may be thought
-of as the amount of time it takes to get data out of storage and into
-a transmittable form. Latency issues are the reason it's advisable
-to execute data transfers by moving a small number of large 
-files, rather than the converse.
+- **Bandwidth** is generally the raw amount of data per unit time a
+  device is capable of transmitting or receiving. It's a common
+  and generally well-understood metric.
+- **Latency** is a bit more subtle. For data transfers, it may be thought
+  of as the amount of time it takes to get data out of storage and into
+  a transmittable form. Latency issues are the reason it's advisable
+  to execute data transfers by moving a small number of large 
+  files, rather than the converse.
 
 Some of the key components and their associated issues are:
 
@@ -224,7 +223,7 @@ Some of the key components and their associated issues are:
   general purpose network you may find the firewall for that network will limit
   the transfer rate you can achieve.
 
-As mentioned above, if you have related data that consists of a large number of
+As discussed in a previous episode, if you have related data that consists of a large number of
 small files it is strongly recommended to pack the files into a larger
 *archive* file for long term storage and transfer. A single large file makes
 more efficient use of the file system and is easier to move, copy and transfer

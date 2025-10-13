@@ -1,16 +1,25 @@
 ::: challenge
 ## Benchmarking the parallel performance
+
 Modify your job script to run on multiple cores and evaluate the performance of `pi-mpi.py`
 on a variety of different core counts and use multiple runs to complete a table like the one
 below.
-If you examine the log file you will see that it contains two timings: the total time taken by the
-entire program and the time taken solely by the calculation. The calculation of Pi from the Monte-Carlo counts
-is not parallelised so this is a serial overhead, performed by a single processor.
-The calculation part is, in theory, perfectly parallel (each processor operates on independent sets of unique random numbers
-) so this should get faster on more cores. The Calculation core seconds is the
-*calculation time* multiplied by the number of cores.
 
-| Cores      | Overall run time (s) | Calculation time (s) | Calculation core seconds |
+If you examine the log file you will see that it contains two timings: 
+
+- Total time taken by the entire program 
+- Time taken solely by the calculation i.e. measures only the time spent performing the main computation.. 
+
+The final step, calculation Pi from the Monte-Carlo counts, is not parallelised, meaning it runs on 
+a single processor. This creates a serial overhead that does not speed up when more cores are used.
+
+In contracts, the Monte Carlo calculation itself is perfectly parallel *in theory*, since each processor 
+works independently on its own set of random numbers. 
+Therefore, as you increase the number of cores, this part should ideally run faster.
+
+You can work out **Calculation core** time by multiplying **Calculation time** by the number of cores. 
+
+| Cores      | Overall run time (s) | Calculation time (s) | Calculation core (s) |
 |------------|----------------------|----------------------|--------------------------|
 | 1 (serial) |                      |                      |                          |
 | 2          |                      |                      |                          |
@@ -22,10 +31,14 @@ The calculation part is, in theory, perfectly parallel (each processor operates 
 | 128        |                      |                      |                          |
 | 256        |                      |                      |                          |
 
-Look at your results – do they make sense? Given the structure of the code, you would
-expect the performance of the calculation to increase
-linearly with the number of cores: this would give a roughly constant figure for the Calculation core
-seconds. Is this what you observe?
+Look at your results – do they make sense? 
+
+Based on how the code is structured, you would expect the calculation performance to scale linearly with 
+the number of cores. In other words, as you add more cores, the calculation should finish proportionally faster.
+
+If that’s true, the Calculation core time should stay roughly constant.
+
+Do your results show this expected behaviour?
 
 ::: solution
 
@@ -42,6 +55,8 @@ The table below shows example timings for runs on `r config$remote$name`
 |         64 |                0.249 |                0.163 |                         10.400 |
 |        128 |                0.170 |                0.083 |                         10.624 |
 |        256 |                0.187 |                0.135 |                         34.560 |
+
+Was our prediction correct?  
 
 :::
 :::
