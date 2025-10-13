@@ -340,12 +340,7 @@ As well as resources that you specifically request in your job script, ARCHER2's
 resource limits are also definied by two arguments that must be passed to `sbatch`: 
 `--partition` and `--qos`. 
 
-The **partition** specifies the nodes that are eligible to run your job, and
 the **Quality of Service (QoS)** specifies the job limits that apply.
-
-The reason for the partition is so that users can ask for more memory, run in 
-serial or run with GPUs. Helps to accommodate different types of workloads, all running 
-on the same machine. 
 
 The reason for the QoS is so that user's are restricted to certain time limits or certain numbers of jobs, 
 to help ensure fair and shared use of the machine. This is a difficult balance to make as we want to ensure that 
@@ -353,6 +348,9 @@ reearchers can use the full computational power of the machine, but also want to
 researchers can do science all at the same time. 
 
 ### Partitions 
+The **partition** specifies the nodes that are eligible to run your job. This is so that 
+users can ask for more memory, run in serial or run with GPUs. The partitions help to accommodate different 
+types of workloads, all running on the same machine. 
 
 | Partition | Description     | Max nodes available |
 | --------- | --------------- | ------------------- |
@@ -363,20 +361,26 @@ researchers can do science all at the same time.
 
 ### QoS 
 
+The **Quality of Service (QoS)** specifies the job limits that apply. This is so that 
+users are restricted to certain time limits or certain numbers of jobs, to help ensure fair 
+and shared use of the machine. This is a difficult balance to make as we want to ensure that 
+reearchers can use the full computational power of the machine, but also want to ensure that many 
+researchers can do science all at the same time. 
+
 | QoS        | Max Nodes Per Job | Max Walltime | Jobs Queued | Jobs Running | Partition(s) | Notes |
 | ---------- | ----------------- | ------------ | ----------- | ------------ | ------------ | ------|
-| standard   | 1024               | 24 hrs       | 64          | 16           | standard     | Maximum of 1024 nodes in use by any one user at any time |
-| highmem   | 256               | 24 hrs       | 16          | 16           | highmem     | Maximum of 256 nodes in use by any one user at any time |
-| taskfarm   | 16               | 24 hrs       | 128          | 32           | standard     | Maximum of 256 nodes in use by any one user at any time |
+| standard   | 1024               | 24 hrs       | 64          | 16           | standard     | Max 1024 nodes |
+| highmem   | 256               | 24 hrs       | 16          | 16           | highmem     | Max 256 nodes |
+| taskfarm   | 16               | 24 hrs       | 128          | 32           | standard     | Max 256 nodes |
 | short      | 32                 | 20 mins      | 16           | 4            | standard     | |
-| long       | 64                | 96 hrs       | 16          | 16           | standard     | Minimum walltime of 24 hrs, maximum 512 nodes in use by any one user at any time, maximum of 2048 nodes in use by QoS |
-| largescale | 5860               | 12 hrs        | 8           | 1            | standard     | Minimum job size of 1025 nodes |
-| lowpriority | 2048               | 24 hrs        | 16           | 16            | standard     | Jobs not charged but requires at least 1 CU in budget to use. |
-| serial | 32 cores and/or 128 GB memory   | 24 hrs        | 32           | 4            | serial    | Jobs not charged but requires at least 1 CU in budget to use. Maximum of 32 cores and/or 128 GB in use by any one user at any time. |
+| long       | 64                | 96 hrs       | 16          | 16           | standard     | Min 24hr walltime, max 512 nodes |
+| largescale | 5860               | 12 hrs        | 8           | 1            | standard     | Min 1025 nodes |
+| lowpriority | 2048               | 24 hrs        | 16           | 16            | standard     | Jobs not charged, requires <= 1 CU in budget. |
+| serial | 32 cores and/or 128 GB memory   | 24 hrs        | 32           | 4            | serial    | Jobs not charged, requires <= 1 CU in budget. Max 32 cores and/or 128 GB. |
 | reservation | Size of reservation  | Length of reservation       | No limit           | no limit           | standard   |  |
-| capabilityday | At least 4096 nodes  | 3 hrs        | 8           | 2            | standard     | Minimum job size of 512 nodes. Jobs only run during [Capability Days](#capability-days) |
-| gpu-shd    | 1               | 12 hrs      | 2          | 1           | gpu    | GPU nodes potentially shared with other users |
-| gpu-exc    | 2               | 12 hrs      | 2          | 1           | gpu    | GPU node exclusive node access |
+| capabilityday | At least 4096 nodes  | 3 hrs        | 8           | 2            | standard     | Min 512 nodes. Only Capability Days |
+| gpu-shd    | 1               | 12 hrs      | 2          | 1           | gpu    | potentially shared with other users |
+| gpu-exc    | 2               | 12 hrs      | 2          | 1           | gpu    | exclusive node access |
 
 
 
@@ -400,7 +404,7 @@ might have been run earlier in the gaps between other users' jobs.
 
 Sometimes we'll make a mistake and need to cancel a job. This can be done with
 the `scancel` command. Let's submit a job and then cancel it using
-its job number (remember to change the walltime so that it runs long enough for
+its job ID number (remember to change the walltime so that it runs long enough for
 you to cancel it before it is killed!).
 
 ```bash
@@ -439,10 +443,9 @@ Try submitting multiple jobs and then cancelling them all with `scancel -u yourU
 
 ## Other Types of Jobs
 
-Up to this point, we've focused on running jobs in batch mode.
-Slurm also provides the ability to start an interactive session.
-
-There are very frequently tasks that need to be done interactively. For example, when we want to debug something 
+Up to this point we've focused on running jobs in batch mode, but
+Slurm also provides the ability to start an interactive session. There are very 
+frequently tasks that need to be done interactively. For example, when we want to debug something 
 that went wrong with a previous job. The amount of resources needed is too much for a login node, but writing 
 an entire job script is overkill. 
 
@@ -480,7 +483,7 @@ to use the MPI (Message Passing Interface) parallel library for parallel computi
 take advantage of multiple processing cores in parallel, allowing researchers to run large simulations or 
 models more quickly. 
 
-The details of how MPI works, or even using MPI-based programs, is not important for this course. 
+The details of how MPI works is not important for this course. 
 However, it's important to know that MPI programs are launched differently from serial programs, 
 and you'll need to submit them correctly in your job submission scrips. Specifically, launching
 parallel MPI programs typically requires four things:
@@ -489,7 +492,7 @@ parallel MPI programs typically requires four things:
   - A specification of how many processes to use in parallel. For example, our parallel program
     may use 256 processes in parallel.
   - A specification of how many parallel processes to use per compute node. For example, if our
-    compute nodes each have 32 cores we can specify 32 parallel processes per node.
+    compute nodes each have 32 cores we can specify up to 32 parallel processes per node.
   - The command and arguments for our parallel program.
 
 
@@ -588,8 +591,8 @@ You will see in the job output that information is displayed about
 where each MPI process is running, in particular which node it is
 on.
 
-Modify the pi-mpi-run script that you run a total of 2 nodes and 16 processes;
-but to use only 8 tasks on each of two nodes.
+Modify the pi-mpi-run script so that you run with 2 nodes and a total of 16 processes;
+but use only 8 tasks on each of two nodes.
 Check the output file to ensure that you understand the job
 distribution.
 
@@ -613,8 +616,8 @@ srun python pi-mpi.py 10000000
 ::: keypoints
  - Schedulers manage fairness and efficiency on HPC systems, deciding which user jobs run and when.
  - A job is any command or script submitted for execution.
- - The scheduler handles how compute resources are shared between users.
  - Jobs should not run on login nodes — they must be submitted to the scheduler.
+ - The scheduler handles how compute resources are shared between users, on ARCHER2 this is through the `partition` and `qos` options. 
  - MPI jobs require special launch commands (srun, mpirun, etc.) and explicit process 
    counts to utilize multiple cores or nodes effectively.
 :::

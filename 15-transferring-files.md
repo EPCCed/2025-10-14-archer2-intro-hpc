@@ -34,11 +34,11 @@ and `wget https://some/link/to/a/file`. Try it out by downloading
 some material we'll use later on, from a terminal on your **local** machine.
 
 ```bash
-[user@laptop ~]$ curl -O https://epcced.github.io/2025-10-14-archer2-intro-hpcfiles/hpc-intro-data.tar.gz
+[user@laptop ~]$ curl -O https://epcced.github.io/2025-10-14-archer2-intro-hpc/files/hpc-intro-data.tar.gz
 ```
 or
 ```bash
-[user@laptop ~]$ wget https://epcced.github.io/2025-10-14-archer2-intro-hpcfiles/hpc-intro-data.tar.gz
+[user@laptop ~]$ wget https://epcced.github.io/2025-10-14-archer2-intro-hpc/files/hpc-intro-data.tar.gz
 ```
 
 ::: discussion
@@ -52,7 +52,7 @@ the same. We'll talk more about "tarballs" ("tar-dot-g-z" is a mouthful!) later 
 ## Transferring Single Files and Folders With `scp`
 
 To copy a single file to or from the cluster, we can use `scp` ("secure copy").
-The syntax can be a little complex for new users, but we'll break it down.
+The syntax can be a little complex, but we'll break it down.
 
 To *upload to* another computer:
 
@@ -67,7 +67,7 @@ To *download from* another computer:
 ```
 
 Note that everything after the `:` is relative to our home directory on the
-remote computer. We can leave it at that if we don't care where the file goes.
+remote computer. We can leave it at that if we don't care where the file goes:
 
 ```bash
 [user@laptop ~]$ scp local-file.txt userid@login.archer2.ac.uk:
@@ -79,7 +79,7 @@ Some computer clusters are behind firewalls set to only allow transfers
 initiated from the *outside*. This means that the `curl` command will fail,
 as an address outside the firewall is unreachable from the inside. To get
 around this, run the `curl` or `wget` command from your local machine to 
-download the file, then use the `scp` command (just below here) to upload
+download the file, then use the `scp` command to upload
 it to the cluster.
 
 :::
@@ -200,6 +200,17 @@ To download a file, we simply change the source and destination:
 ```bash
 [user@laptop ~]$ rsync -avzP userid@login.archer2.ac.uk:path/on/ARCHER2/file.txt path/to/local/
 ```
+
+::: callout
+
+If If you need to pass your SSH key to ssh using the `-i` command to login, you may need to 
+also do that here: 
+
+```bash 
+rsync -avzP -e "ssh -i ~/.ssh/key_for_remote_computer" path/to/local/dir userid@login.archer2.ac.uk:directory/path/on/ARCHER2/
+```
+:::
+
 :::
 
 ::: discussion
@@ -295,13 +306,6 @@ userid@ln03:~> du -sh hpc-intro-data.tar.gz
 36K     hpc-intro-data.tar.gz
 ```
 
-::: callout
-## Files Occupy at Least One "Block"
-
-If the filesystem block size is larger than 36 KB, you'll see a larger
-number: files cannot be smaller than one block.
-:::
-
 Now let's unpack the archive. We'll run `tar` with a few common flags:
 
 * `-x` to e**x**tract the archive
@@ -380,9 +384,11 @@ slightly different than Unix, and adds an extra character to every line.
 On a Unix system, every line in a file ends with a `\n` (newline). On
 Windows, every line in a file ends with a `\r\n` (carriage return + newline).
 This causes problems sometimes.
+
 Though most modern programming languages and software handles this correctly,
 in some rare instances, you may run into an issue. The solution is to convert
 a file from Windows to Unix encoding with the `dos2unix` command.
+
 You can identify if a file has Windows line endings with `cat -A filename`. A
 file with Windows line endings will have `^M$` at the end of every line. A
 file with Unix line endings will have `$` at the end of a line.

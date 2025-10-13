@@ -24,10 +24,11 @@ understand the reasoning behind this approach. The three biggest factors are:
 ### Software incompatibilities
 Software incompatibility is a major headache for programmers. Sometimes the
 presence (or absence) of a software package will break others that depend on
-it. Two of the most famous examples are Python 2 vs 3 and C compiler versions.
-Python 3 famously provides a `python` command that conflicts with that provided
-by Python 2. And software compiled against a newer version of the C libraries and
-then used when they are not present will result in a nasty `'GLIBCXX_3.4.20' not found` error.
+it. Two of the most famous examples are Python 2 vs 3 and C compiler versions: 
+- Python 3 famously provides a `python` command that conflicts with that provided
+  by Python 2. 
+- Software compiled against a newer version of the C libraries and
+  then used when they are not present will result in a nasty `'GLIBCXX_3.4.20' not found` error.
 
 ### Versioning
 Software versioning is another common issue. A team might depend on a certain
@@ -42,12 +43,12 @@ version) depends on having access to another software package (or even a
 particular version of another software package). For example, the VASP
 materials science software may depend on having a particular version of the
 FFTW (Fastest Fourier Transform in the West) software library available for it
-to work.
+to work. Therefore, it is useful to have multiple versions available for multiple use cases. 
 
 ## Environment Modules
 
 Environment modules are the solution to these problems. A *module* is a
-self-contained description of a software package --- it contains the
+self-contained description of a software package - it contains the
 settings required to run a software package and, usually, encodes required
 dependencies on other software packages.
 
@@ -143,7 +144,7 @@ We can find the `h5dump` command by using `module load`:
 
 ```bash
  module load cray-hdf5
-which h5dump
+ which h5dump
 ```
 ```output
 /opt/cray/pe/hdf5/1.12.2.1/bin/h5dump
@@ -202,10 +203,10 @@ Let's examine the output of `module avail` more closely.
  module avail cray-hdf5
 ```
 ```output
-------------------------------------------------------- /opt/cray/pe/lmod/modulefiles/mpi/crayclang/14.0/ofi/1.0/cray-mpich/8.0 --------------------------------------------------------
+---------------- /opt/cray/pe/lmod/modulefiles/mpi/crayclang/14.0/ofi/1.0/cray-mpich/8.0 ----------------
    cray-hdf5-parallel/1.12.2.1 (D)    cray-hdf5-parallel/1.12.2.7
 
----------------------------------------------------------------- /opt/cray/pe/lmod/modulefiles/compiler/crayclang/14.0 -----------------------------------------------------------------
+---------------- /opt/cray/pe/lmod/modulefiles/compiler/crayclang/14.0 ----------------------------------
    cray-hdf5/1.12.2.1 (L,D)    cray-hdf5/1.12.2.7
 
   Where:
@@ -235,10 +236,6 @@ expect to be there?
 
 ::: solution
 
-```bash
-userid@ln03:/work/ta215/ta215/userid> nano h5dump-module.sh
-userid@ln03:/work/ta215/ta215/userid> cat h5dump-module.sh
-```
 ```output
 #!/bin/bash
 #SBATCH --partition=standard
@@ -251,9 +248,9 @@ h5dump --version
 :::
 
 ::: keypoints
- - HPC systems use modules to help deal with software incompatibilities, versioning and dependencies
-- We can see what modules we currently have loaded with `module list`
-- We can see what modules are available with `module avail`
+- HPC systems use modules to help deal with software incompatibilities, versioning and dependencies.
+- We can see what modules we currently have loaded with `module list`.
+- We can see what modules are available with `module avail`.
 - We can load a module with `module load softwareName`.
 - We can unload a module with `module unload softwareName`.
 - We can swap modules for different versions with `module swap old-softwareName new-softwareName`.

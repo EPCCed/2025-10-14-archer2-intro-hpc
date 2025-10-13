@@ -17,13 +17,16 @@ exercises: 30
 :::
 
 We've touched on all the skills you need to interact with an HPC cluster:
-* Logging in over SSH, 
-* Loading software modules, 
-* Submitting parallel jobs, and
-* Finding the output
+- Logging in over SSH, 
+- Loading software modules, 
+- Submitting parallel jobs, and
+- Finding the output
 
-Let's learn about estimating resource usage and why it
+Now, let's learn about estimating resource usage and why it
 might matter. To do this we need to understand the basics of *benchmarking*.
+
+## The Basics of Benchmarking 
+
 Benchmarking is essentially performing simple experiments to help understand
 how the performance of our work varies as we change the properties of the
 jobs on the cluster - including input parameters, job options and resources used.
@@ -98,8 +101,10 @@ job for our baseline performance so that is where we will start
 ::: challenge
 ## Run a single core job
 Write a job submission script that runs the `pi-mpi.py` application on a single core. You
-will need to take an initial guess as to the walltime to request to give the job time 
-to complete. Submit the job and check the contents of the STDOUT file to see if the 
+will need to take an initial guess for how much walltime to request to give the job time 
+to complete. 
+
+Submit the job and check the contents of the STDOUT file to see if the 
 application worked or not.
 
 ::: solution
@@ -121,16 +126,16 @@ module load cray-python
 srun python pi-mpi.py 100000000
 ```
 
-Run application using a single process (i.e. in serial) with a blocking `srun` command:
+Submit with to the batch queue with:
+
 ```bash
-module load cray-python
- srun --partition=standard --qos=short python pi-mpi.py 100000000
+sbatch submit-pi-mpi.slurm
 ```
 
-OR submit with to the batch queue with:
-
+OR run application using a single process (i.e. in serial) with a blocking `srun` command:
 ```bash
-  submit-pi-mpi.slurm
+module load cray-python
+srun --partition=standard --qos=short --time=00:15:00 python pi-mpi.py 100000000
 ```
 
 Output in the job log should look something like:
@@ -146,8 +151,8 @@ Total run time=3.7914833110000927s
 :::
 :::
 
-Once your job has run, you should look in the output to identify the performance. Most 
-HPC programs should print out timing or performance information (usually somewhere near
+Once your job has run, look at the output to identify any performance information. Most 
+HPC programs should print out timing or performance (usually somewhere near
 the bottom of the summary output) and `pi-mpi.py` is no exception. You should see two 
 lines in the output that look something like:
 
@@ -156,13 +161,16 @@ lines in the output that look something like:
 Total run time=3.7914833110000927s
 ```
 
-You can also get an estimate of the overall run time from the final job statistics. If
-we look at how long the finished job ran for, this will provide a quick way to see
-roughly what the runtime was. This can be useful if you want to know quickly if a 
+You can also get an estimate of the overall run time from the final job statistics from Slurm. 
+This can be a quick way to see roughly what the runtime was, useful if you want to know quickly if a 
 job was faster or not than a previous job (as you do not have to find the output file
-to look up the performance) but the number is not as accurate as the performance recorded
+to look up the performance). 
+
+However, the number is not as accurate as the performance recorded
 by the application itself and also includes static overheads from running the job
-(such as loading modules and startup time) that can skew the timings. To do this on `Slurm`
+(such as loading modules and startup time) that can skew the timings. 
+
+To do this on `Slurm`
 use `sacct -l -j` with the job ID, e.g.:
 
 ```bash
@@ -192,17 +200,26 @@ the runtime varies with core count.
 
 ::: challenge
 ## Benchmarking the parallel performance
+
 Modify your job script to run on multiple cores and evaluate the performance of `pi-mpi.py`
 on a variety of different core counts and use multiple runs to complete a table like the one
 below.
-If you examine the log file you will see that it contains two timings: the total time taken by the
-entire program and the time taken solely by the calculation. The calculation of Pi from the Monte-Carlo counts
-is not parallelised so this is a serial overhead, performed by a single processor.
-The calculation part is, in theory, perfectly parallel (each processor operates on independent sets of unique random numbers
-) so this should get faster on more cores. The Calculation core seconds is the
-*calculation time* multiplied by the number of cores.
 
-| Cores      | Overall run time (s) | Calculation time (s) | Calculation core seconds |
+If you examine the log file you will see that it contains two timings: 
+
+- Total time taken by the entire program 
+- Time taken solely by the calculation i.e. measures only the time spent performing the main computation.. 
+
+The final step, calculation Pi from the Monte-Carlo counts, is not parallelised, meaning it runs on 
+a single processor. This creates a serial overhead that does not speed up when more cores are used.
+
+In contracts, the Monte Carlo calculation itself is perfectly parallel *in theory*, since each processor 
+works independently on its own set of random numbers. 
+Therefore, as you increase the number of cores, this part should ideally run faster.
+
+You can work out **Calculation core** time by multiplying **Calculation time** by the number of cores. 
+
+| Cores      | Overall run time (s) | Calculation time (s) | Calculation core (s) |
 |------------|----------------------|----------------------|--------------------------|
 | 1 (serial) |                      |                      |                          |
 | 2          |                      |                      |                          |
@@ -214,10 +231,14 @@ The calculation part is, in theory, perfectly parallel (each processor operates 
 | 128        |                      |                      |                          |
 | 256        |                      |                      |                          |
 
-Look at your results – do they make sense? Given the structure of the code, you would
-expect the performance of the calculation to increase
-linearly with the number of cores: this would give a roughly constant figure for the Calculation core
-seconds. Is this what you observe?
+Look at your results – do they make sense? 
+
+Based on how the code is structured, you would expect the calculation performance to scale linearly with 
+the number of cores. In other words, as you add more cores, the calculation should finish proportionally faster.
+
+If that’s true, the Calculation core time should stay roughly constant.
+
+Do your results show this expected behaviour?
 
 ::: solution
 
@@ -235,6 +256,8 @@ The table below shows example timings for runs on ARCHER2
 |        128 |                0.170 |                0.083 |                         10.624 |
 |        256 |                0.187 |                0.135 |                         34.560 |
 
+Was our prediction correct?  
+
 :::
 :::
 
@@ -244,16 +267,16 @@ Now we have some data showing the performance of our application we need to try 
 useful conclusions as to what the most efficient set of resources are to use for our jobs. To
 do this we introduce two metrics:
 
-  - **Actual speedup** The ratio of the baseline runtime (or runtime on the lowest core count)
-    to the runtime at the specified core count. i.e. baseline runtime divided by runtime
-    at the specified core count.
-  - **Ideal speedup** The expected speedup if the application showed perfect scaling. i.e. if
+  - **Actual speedup:** The ratio of the baseline runtime (or runtime on the lowest core count)
+    to the runtime at the specified core count. *(i.e. baseline runtime divided by runtime
+    at the specified core count)*.
+  - **Ideal speedup:** The expected speedup if the application showed perfect scaling. i.e. if
     you double the number of cores, the application should run twice as fast.
-  - **Parallel efficiency** The fraction of *ideal speedup* actually obtained for a given
+  - **Parallel efficiency:** The fraction of ideal speedup actually obtained for a given
     core count. This gives an indication of how well you are exploiting the additional resources
     you are using.
 
-We will now use our performance results to compute these two metrics for the sharpen application
+We will now use our performance results to compute these three metrics for the `pi-mpi.py` application
 and use the metrics to evaluate the performance and make some decisions about the most 
 effective use of resources.
 
@@ -299,34 +322,48 @@ runtimes given in the solution above.
 |        128 |                0.170 |         23.122 |       128.000 |               0.181 |
 |        256 |                0.187 |         21.077 |       256.000 |               0.082 |
 
-### What is the core count where you get the **most** efficient use of resources?
+#### What is the core count where you get the **most** efficient use of resources?
 
-Just using a single core is the cheapest (and always will be unless your speedup is better
-than perfect – “super-linear” speedup). However, it may not be possible to run on small
-numbers of cores depending on how much memory you need or other technical constraints.
+::: solution
+Just using a single core is the cheapest in terms of resources costs and is the most efficient 
+(and always will be unless your speedup is better than perfect – “super-linear” speedup). 
 
-**Note:** on most high-end systems, nodes are not shared between users. This means you are
-charged for all the CPU-cores on a node regardless of whether you actually use them. Typically
+However, it may not be possible to run on small
+numbers of cores depending on how much memory you need or other technical constraints, and will often be slow! 
+
+**Note:** On most high-end systems, nodes are not shared between users. This means you are
+charged for **all** the CPU-cores on a node regardless of whether you actually use them. Typically
 we would be running on many hundreds of CPU-cores not a few tens, so the real question in
-practice is: what is the optimal number of nodes to use?
+practice is: *what is the optimal number of nodes to use?*
+:::
 
-### What is the core count where you get the fastest solution, irrespective of efficiency?
+#### What is the core count where you get the fastest solution, irrespective of efficiency?
 
-256 cores gives the fastest time to solution.
+::: solution
+128 cores gives the fastest time to solution.
+
 The fastest time to solution does not often make the most efficient use of resources so 
-to use this option, you may end up wasting your resources. Sometimes, when there is 
+to use this option, you may end up wasting your resources. Occasionally, when there is 
 time pressure to run the calculations, this may be a valid approach to running 
 applications.
+:::
 
-### What do you think a good core count choice would be for this application to use?
+#### What do you think a good core count choice would be for this application to use?
 
+::: solution
 8 cores is probably a good number of cores to use with a parallel efficiency of 86%.
+
 Usually, the best choice is one that delivers good parallel efficiency with an acceptable
-time to solution. Note that *acceptable time to solution* differs depending on circumstances
-so this is something that the individual researcher will have to assess. Good parallel
+time to solution. 
+
+Note that *acceptable time to solution* differs depending on circumstances
+so this is something that the individual researcher will have to assess. 
+
+Good parallel
 efficiency is often considered to be 70% or greater though many researchers will be happy
 to run in a regime with parallel efficiency greater than 60%. As noted above, running with
 worse parallel efficiency may also be useful if the time to solution is an overriding factor.
+:::
 
 :::
 :::
