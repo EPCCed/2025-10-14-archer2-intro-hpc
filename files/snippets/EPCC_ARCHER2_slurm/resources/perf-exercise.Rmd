@@ -39,7 +39,9 @@ runtimes given in the solution above.
 |        128 |                0.170 |         23.122 |       128.000 |               0.181 |
 |        256 |                0.187 |         21.077 |       256.000 |               0.082 |
 
-#### What is the core count where you get the **most** efficient use of resources?
+
+What is the core count where you get the **most** efficient use of resources?
+
 
 ::: solution
 Just using a single core is the cheapest in terms of resources costs and is the most efficient 
@@ -54,7 +56,9 @@ we would be running on many hundreds of CPU-cores not a few tens, so the real qu
 practice is: *what is the optimal number of nodes to use?*
 :::
 
+
 #### What is the core count where you get the fastest solution, irrespective of efficiency?
+
 
 ::: solution
 128 cores gives the fastest time to solution.
@@ -65,7 +69,9 @@ time pressure to run the calculations, this may be a valid approach to running
 applications.
 :::
 
+
 #### What do you think a good core count choice would be for this application to use?
+
 
 ::: solution
 8 cores is probably a good number of cores to use with a parallel efficiency of 86%.
