@@ -450,7 +450,7 @@ node?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -676,7 +676,7 @@ options we have been specifying on the command line
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb16">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -777,19 +777,19 @@ all at the same time.</p>
 to run your job. This is so that users can ask for more memory, run in
 serial or run with GPUs. The partitions help to accommodate different
 types of workloads, all running on the same machine.</p>
-<table class="table"><thead><tr class="header"><th>Partition</th>
+<table class="table"><thead><tr><th>Partition</th>
 <th>Description</th>
 <th>Max nodes available</th>
-</tr></thead><tbody><tr class="odd"><td>standard</td>
+</tr></thead><tbody><tr><td>standard</td>
 <td>CPU nodes 256/512 GB memory</td>
 <td>5860</td>
-</tr><tr class="even"><td>highmem</td>
+</tr><tr><td>highmem</td>
 <td>CPU nodes 512 GB memory</td>
 <td>584</td>
-</tr><tr class="odd"><td>serial</td>
+</tr><tr><td>serial</td>
 <td>CPU nodes 512 GB memory</td>
 <td>2</td>
-</tr><tr class="even"><td>gpu</td>
+</tr><tr><td>gpu</td>
 <td>GPU nodes 512 GB memory</td>
 <td>4</td>
 </tr></tbody></table></div>
@@ -802,63 +802,63 @@ the machine. This is a difficult balance to make as we want to ensure
 that reearchers can use the full computational power of the machine, but
 also want to ensure that many researchers can do science all at the same
 time.</p>
-<table class="table"><colgroup><col width="12%"><col width="21%"><col width="15%"><col width="13%"><col width="15%"><col width="15%"><col width="7%"></colgroup><thead><tr class="header"><th>QoS</th>
+<table class="table"><colgroup><col width="12%"><col width="21%"><col width="15%"><col width="13%"><col width="15%"><col width="15%"><col width="7%"></colgroup><thead><tr><th>QoS</th>
 <th>Max Nodes Per Job</th>
 <th>Max Walltime</th>
 <th>Jobs Queued</th>
 <th>Jobs Running</th>
 <th>Partition(s)</th>
 <th>Notes</th>
-</tr></thead><tbody><tr class="odd"><td>standard</td>
+</tr></thead><tbody><tr><td>standard</td>
 <td>1024</td>
 <td>24 hrs</td>
 <td>64</td>
 <td>16</td>
 <td>standard</td>
 <td>Max 1024 nodes</td>
-</tr><tr class="even"><td>highmem</td>
+</tr><tr><td>highmem</td>
 <td>256</td>
 <td>24 hrs</td>
 <td>16</td>
 <td>16</td>
 <td>highmem</td>
 <td>Max 256 nodes</td>
-</tr><tr class="odd"><td>taskfarm</td>
+</tr><tr><td>taskfarm</td>
 <td>16</td>
 <td>24 hrs</td>
 <td>128</td>
 <td>32</td>
 <td>standard</td>
 <td>Max 256 nodes</td>
-</tr><tr class="even"><td>short</td>
+</tr><tr><td>short</td>
 <td>32</td>
 <td>20 mins</td>
 <td>16</td>
 <td>4</td>
 <td>standard</td>
 <td></td>
-</tr><tr class="odd"><td>long</td>
+</tr><tr><td>long</td>
 <td>64</td>
 <td>96 hrs</td>
 <td>16</td>
 <td>16</td>
 <td>standard</td>
 <td>Min 24hr walltime, max 512 nodes</td>
-</tr><tr class="even"><td>largescale</td>
+</tr><tr><td>largescale</td>
 <td>5860</td>
 <td>12 hrs</td>
 <td>8</td>
 <td>1</td>
 <td>standard</td>
 <td>Min 1025 nodes</td>
-</tr><tr class="odd"><td>lowpriority</td>
+</tr><tr><td>lowpriority</td>
 <td>2048</td>
 <td>24 hrs</td>
 <td>16</td>
 <td>16</td>
 <td>standard</td>
 <td>Jobs not charged, requires &lt;= 1 CU in budget.</td>
-</tr><tr class="even"><td>serial</td>
+</tr><tr><td>serial</td>
 <td>32 cores and/or 128 GB memory</td>
 <td>24 hrs</td>
 <td>32</td>
@@ -866,28 +866,28 @@ time.</p>
 <td>serial</td>
 <td>Jobs not charged, requires &lt;= 1 CU in budget. Max 32 cores and/or
 128 GB.</td>
-</tr><tr class="odd"><td>reservation</td>
+</tr><tr><td>reservation</td>
 <td>Size of reservation</td>
 <td>Length of reservation</td>
 <td>No limit</td>
 <td>no limit</td>
 <td>standard</td>
 <td></td>
-</tr><tr class="even"><td>capabilityday</td>
+</tr><tr><td>capabilityday</td>
 <td>At least 4096 nodes</td>
 <td>3 hrs</td>
 <td>8</td>
 <td>2</td>
 <td>standard</td>
 <td>Min 512 nodes. Only Capability Days</td>
-</tr><tr class="odd"><td>gpu-shd</td>
+</tr><tr><td>gpu-shd</td>
 <td>1</td>
 <td>12 hrs</td>
 <td>2</td>
 <td>1</td>
 <td>gpu</td>
 <td>potentially shared with other users</td>
-</tr><tr class="even"><td>gpu-exc</td>
+</tr><tr><td>gpu-exc</td>
 <td>2</td>
 <td>12 hrs</td>
 <td>2</td>
@@ -1105,7 +1105,7 @@ of cores in parallel for the calculation.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <p>Here is a modified script</p>
 <div class="codewrapper sourceCode" id="cb34">
@@ -1149,7 +1149,7 @@ output file to ensure that you understand the job distribution.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4"> Show me the solution </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb35">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1258,7 +1258,7 @@ use like [gitbash][gitbash]
   "identifier": "https://EPCCed.github.io/2025-10-14-archer2-intro-hpc/13-scheduler.html",
   "dateCreated": "2025-10-14",
   "dateModified": "2026-03-31",
-  "datePublished": "2026-04-28"
+  "datePublished": "2026-05-05"
 }
 
   </script><script>
